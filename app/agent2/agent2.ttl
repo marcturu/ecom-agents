@@ -1,0 +1,5 @@
+@prefix ex: <http://example.org/> .
+
+ex:Agent2 a ex:Agent ;
+    ex:name "Agent2" ;
+    ex:location "http://localhost:5002" .
