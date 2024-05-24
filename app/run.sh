@@ -1,0 +1,20 @@
+#!/bin/bash
+# Start Directory Service
+cd directory
+python3 directory.py &
+
+# Start Agent 1
+cd ../agent1
+python3 agent1.py &
+
+# Start Agent 2
+cd ../agent2
+python3 agent2.py &
+
+# Wait to ensure all services are up
+sleep 3
+
+# Display the URLs for access
+echo "Directory Service running at http://localhost:5000"
+echo "Agent 1 running at http://localhost:5001"
+echo "Agent 2 running at http://localhost:5002"
