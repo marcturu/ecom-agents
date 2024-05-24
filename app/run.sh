@@ -1,14 +1,14 @@
 #!/bin/bash
 # Start Directory Service
-cd directory
+cd agents
 python3 directory.py &
 
 # Start Agent 1
-cd ../agent1
+
 python3 agent1.py &
 
 # Start Agent 2
-cd ../agent2
+
 python3 agent2.py &
 
 # Wait to ensure all services are up
