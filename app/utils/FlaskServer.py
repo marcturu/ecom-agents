@@ -2,18 +2,13 @@
 """
 File: AgentUtil
 
-Created on 31/01/2014 9:31 ###
-
 Diferentes funciones comunes a los agentes implementados en ECSDI
-
-@author: bejar
 
 """
 
 from flask import request
 
-__author__ = 'bejar'
-
+__author__ = 'SergiMarcMiquel'
 
 
 def shutdown_server():
@@ -26,5 +21,3 @@ def shutdown_server():
     if func is None:
         raise RuntimeError('Not running with the Werkzeug Server')
     func()
-
-

@@ -8,17 +8,11 @@ Util.py
 
     Different Auxiliary functions used for different purposes
 
-:Authors:
-    bejar
-
-:Version: 
-
-:Date:  23/02/2021 ###
 """
 import socket
 from pif import get_public_ip
 
-__author__ = 'bejar'
+__author__ = 'SergiMarcMiquel'
 
 def gethostname():
     try:

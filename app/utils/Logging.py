@@ -21,18 +21,11 @@ Logging
     logger.error('esto no funciona')
 
     Detalles en https://docs.python.org/2/howto/logging.html
-
-:Authors:
-    bejar
-
-:Version: 
-
-:Date:  01/04/2015 ###
 """
 
 import logging
 
-__author__ = 'bejar'
+__author__ = 'SergiMarcMiquel'
 
 def config_logger(level=0, file=None):
     """
