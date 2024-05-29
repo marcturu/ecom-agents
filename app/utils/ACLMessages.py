@@ -8,12 +8,12 @@ Created on 08/02/2014 ###
 
 @author: javier
 """
-__author__ = 'javier'
+__author__ = 'SergiMarcMiquel'
 
 from rdflib import Graph, URIRef
 import requests
 from rdflib.namespace import RDF, OWL
-from AgentUtil.ACL import ACL
+from utils.ACL import ACL
 
 
 def build_message(gmess, perf, sender=None, receiver=None,  content=None, msgcnt=0):

@@ -2,14 +2,10 @@
 """
 File: OntoNamespaces
 
-Created on 31/01/2014 8:55 ###
-
 Diversos namespaces utiles y algunas clases y propiedades de esos namespaces
 
-@author: bejar
-
 """
-__author__ = 'bejar'
+__author__ = 'SergiMarcMiquel'
 
 from rdflib import Graph, RDF, RDFS, OWL, Namespace, Literal
 
