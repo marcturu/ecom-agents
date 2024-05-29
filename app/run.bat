@@ -15,6 +15,10 @@ start "Agent 1" cmd /c "cd agents && python agent1.py"
 echo Starting Agent 2 on port 5002...
 start "Agent 2" cmd /c "cd agents && python agent2.py"
 
+:: Start Seller Agent
+echo Starting Seller Agent on port 5003...
+start "Seller Agent" cmd /c "cd agents && python SellerAgent.py"
+
 :: Wait a bit to ensure all agents start
 timeout /t 2 /nobreak > NUL
 
@@ -22,4 +26,5 @@ echo All services are up and running.
 echo Directory Service running at http://localhost:5000
 echo Agent 1 running at http://localhost:5001
 echo Agent 2 running at http://localhost:5002
+echo Seller Agent running at http://localhost:5003
 pause

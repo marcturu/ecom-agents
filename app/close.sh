@@ -22,4 +22,8 @@ kill_by_port 5001
 
 kill_by_port 5002
 
+# Kill Seller Agent (port 5003)
+
+kill_by_port 5003
+
 echo "All agents and the directory service have been terminated."
