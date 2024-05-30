@@ -26,13 +26,13 @@ from flask import Flask, request, render_template
 from rdflib import Graph, RDF, Namespace, RDFS, Literal
 from rdflib.namespace import FOAF
 
-from AgentUtil.ACL import ACL
-from AgentUtil.FlaskServer import shutdown_server
-from AgentUtil.Agent import Agent
-from AgentUtil.ACLMessages import build_message, get_message_properties
-from AgentUtil.Logging import config_logger
-from AgentUtil.DSO import DSO
-from AgentUtil.Util import gethostname
+from utils.ACL import ACL
+from utils.FlaskServer import shutdown_server
+from utils.Agent import Agent
+from utils.ACLMessages import build_message, get_message_properties
+from utils.Logging import config_logger
+from utils.DSO import DSO
+from utils.Util import gethostname
 import socket
 
 __author__ = 'javier'

@@ -20,8 +20,8 @@ import socket
 from rdflib import Namespace, Graph
 from flask import Flask
 
-from AgentUtil.FlaskServer import shutdown_server
-from AgentUtil.Agent import Agent
+from utils.FlaskServer import shutdown_server
+from utils.Agent import Agent
 
 __author__ = 'javier'
 
