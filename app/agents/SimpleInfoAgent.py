@@ -17,13 +17,13 @@ from flask import Flask, request
 from rdflib import Graph, Namespace, Literal
 from rdflib.namespace import FOAF, RDF
 
-from AgentUtil.ACL import ACL
-from AgentUtil.FlaskServer import shutdown_server
-from AgentUtil.ACLMessages import build_message, send_message, get_message_properties
-from AgentUtil.Agent import Agent
-from AgentUtil.Logging import config_logger
-from AgentUtil.DSO import DSO
-from AgentUtil.Util import gethostname
+from utils.ACL import ACL
+from utils.FlaskServer import shutdown_server
+from utils.ACLMessages import build_message, send_message, get_message_properties
+from utils.Agent import Agent
+from utils.Logging import config_logger
+from utils.DSO import DSO
+from utils.Util import gethostname
 import socket
 
 

@@ -11,6 +11,12 @@ g = Graph()
 print("Cargando el archivo Ontologies_v8.ttl...")
 g.parse("Ontologies_v8.ttl", format="ttl")
 
+# Añadir triples al grafo
+g.add((ECSDI.Ciutat_entrega, RDF.type, OWL.ObjectProperty))
+g.add((ECSDI.Ciutat_entrega, RDFS.domain, ECSDI.DemanarOfertaTransport))
+g.add((ECSDI.Ciutat_entrega, RDFS.range, ECSDI.Ciutat))
+g.add((ECSDI.Ciutat_entrega, RDFS.subPropertyOf, OWL.topObjectProperty))
+
 # Ejemplo de cómo agregar una clase a la ontología
 nueva_clase = URIRef(ECSDI['NuevaClase'])
 g.add((nueva_clase, RDF.type, OWL.Class))
@@ -25,5 +31,6 @@ g.add((nueva_instancia, RDFS.label, Literal("Instancia de Nueva Clase")))
 g.serialize(destination="nueva_ontologia.ttl", format="ttl")
 
 # Consulta de la ontología y mostrar las tripletas
+print("Grafo RDF después de agregar triples:")
 for s, p, o in g:
     print(s, p, o)
