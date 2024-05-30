@@ -7,11 +7,9 @@ ECSDI = Namespace("http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI
 # Crear un grafo RDF
 g = Graph()
 
-# Cargar la ontología desde un archivo exportado de Protégé
-print("Cargando el archivo Ontologies_v6.owl...")
-g.parse("Ontologies_v6.owl", format="xml")
-
-# g.parse("Ontologies_v7.owl", format="xml")
+# Cargar la ontología desde un archivo TTL exportado de Protégé
+print("Cargando el archivo Ontologies_v8.ttl...")
+g.parse("Ontologies_v8.ttl", format="ttl")
 
 # Ejemplo de cómo agregar una clase a la ontología
 nueva_clase = URIRef(ECSDI['NuevaClase'])
@@ -23,8 +21,8 @@ nueva_instancia = URIRef(ECSDI['InstanciaDeNuevaClase'])
 g.add((nueva_instancia, RDF.type, nueva_clase))
 g.add((nueva_instancia, RDFS.label, Literal("Instancia de Nueva Clase")))
 
-# Guardar los cambios en un nuevo archivo
-g.serialize(destination="nueva_ontologia.owl", format="xml")
+# Guardar los cambios en un nuevo archivo TTL
+g.serialize(destination="nueva_ontologia.ttl", format="ttl")
 
 # Consulta de la ontología y mostrar las tripletas
 for s, p, o in g:

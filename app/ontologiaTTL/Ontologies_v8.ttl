@@ -1,0 +1,633 @@
+@prefix : <http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#> .
+@prefix g: <http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix practicaecsdi: <http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#> .
+@base <http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#> .
+
+<http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI> rdf:type owl:Ontology .
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Ciutat_entrega
+practicaecsdi:Ciutat_entrega rdf:type owl:ObjectProperty ;
+                             rdfs:subPropertyOf owl:topObjectProperty ;
+                             rdfs:domain practicaecsdi:DemanarOfertaTransport ;
+                             rdfs:range practicaecsdi:Ciutat .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Constituida_per
+practicaecsdi:Constituida_per rdf:type owl:ObjectProperty ;
+                              rdfs:subPropertyOf owl:topObjectProperty ;
+                              rdfs:domain practicaecsdi:Valoracio ;
+                              rdfs:range practicaecsdi:Producte .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Constituida_per2
+practicaecsdi:Constituida_per2 rdf:type owl:ObjectProperty ;
+                               rdfs:subPropertyOf owl:topObjectProperty ;
+                               rdfs:domain practicaecsdi:Valoracio ;
+                               rdfs:range practicaecsdi:Usuari .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Constituit_per
+practicaecsdi:Constituit_per rdf:type owl:ObjectProperty ;
+                             rdfs:subPropertyOf owl:topObjectProperty ;
+                             rdfs:domain practicaecsdi:LotProductes ;
+                             rdfs:range practicaecsdi:CompraUsuari ;
+                             rdfs:comment "Un lot de productes esta constituit per diferents productes" .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Conte
+practicaecsdi:Conte rdf:type owl:ObjectProperty ;
+                    rdfs:subPropertyOf owl:topObjectProperty ;
+                    rdfs:domain practicaecsdi:Recomanacio ;
+                    rdfs:range practicaecsdi:Producte .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#De
+practicaecsdi:De rdf:type owl:ObjectProperty ;
+                 rdfs:subPropertyOf owl:topObjectProperty ;
+                 rdfs:domain practicaecsdi:EnviarLots ;
+                 rdfs:range practicaecsdi:LotProductes ;
+                 rdfs:comment "Enviament d'un lot de productes" .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Demana
+practicaecsdi:Demana rdf:type owl:ObjectProperty ;
+                     rdfs:subPropertyOf owl:topObjectProperty ;
+                     rdfs:domain practicaecsdi:BuscarProducte ;
+                     rdfs:range practicaecsdi:Producte ;
+                     rdfs:comment "El usuari demana Buscar un o més producte (ja sigui filtrant-lo o demanant un producte en especific)" .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Disposa2_de
+practicaecsdi:Disposa2_de rdf:type owl:ObjectProperty ;
+                          rdfs:subPropertyOf owl:topObjectProperty ;
+                          rdfs:domain practicaecsdi:CentreLogistic ;
+                          rdfs:range practicaecsdi:Stock .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Disposa_de
+practicaecsdi:Disposa_de rdf:type owl:ObjectProperty ;
+                         rdfs:subPropertyOf owl:topObjectProperty ;
+                         rdfs:domain practicaecsdi:Producte ;
+                         rdfs:range practicaecsdi:Stock ;
+                         rdfs:comment "Un centre logistic disposa de stock" .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Es_demana_a
+practicaecsdi:Es_demana_a rdf:type owl:ObjectProperty ;
+                          rdfs:subPropertyOf owl:topObjectProperty ;
+                          rdfs:domain practicaecsdi:DemanarDisponibilitat ;
+                          rdfs:range practicaecsdi:CentreLogistic ;
+                          rdfs:comment "Es demana disponibilitat de stock al centre logistic" .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Es_dirigida2_a
+practicaecsdi:Es_dirigida2_a rdf:type owl:ObjectProperty ;
+                             rdfs:subPropertyOf owl:topObjectProperty ;
+                             rdfs:domain practicaecsdi:TriarTransportista ;
+                             rdfs:range practicaecsdi:EmpresaTransport .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Es_dirigida_a
+practicaecsdi:Es_dirigida_a rdf:type owl:ObjectProperty ;
+                            rdfs:subPropertyOf owl:topObjectProperty ;
+                            rdfs:domain practicaecsdi:DemanarOfertaTransport ;
+                            rdfs:range practicaecsdi:EmpresaTransport .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Es_propietat_de
+practicaecsdi:Es_propietat_de rdf:type owl:ObjectProperty ;
+                              rdfs:subPropertyOf owl:topObjectProperty ;
+                              rdfs:domain practicaecsdi:ProducteExtern ;
+                              rdfs:range practicaecsdi:VenedorExtern .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Formada2_de
+practicaecsdi:Formada2_de rdf:type owl:ObjectProperty ;
+                          rdfs:subPropertyOf owl:topObjectProperty ;
+                          rdfs:domain practicaecsdi:CompraUsuari ;
+                          rdfs:range practicaecsdi:Usuari .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Formada_de
+practicaecsdi:Formada_de rdf:type owl:ObjectProperty ;
+                         rdfs:subPropertyOf owl:topObjectProperty ;
+                         rdfs:domain practicaecsdi:CompraUsuari ;
+                         rdfs:range practicaecsdi:Compra ;
+                         rdfs:comment "Una compra esta formada per diferents productes" .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Formada_per
+practicaecsdi:Formada_per rdf:type owl:ObjectProperty ;
+                          rdfs:subPropertyOf owl:topObjectProperty ;
+                          rdfs:domain practicaecsdi:EmpresaTransport ;
+                          rdfs:range practicaecsdi:Transportista ;
+                          rdfs:comment "Empresa de transport formada per diferents transportistes" .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Format2_per
+practicaecsdi:Format2_per rdf:type owl:ObjectProperty ;
+                          rdfs:subPropertyOf owl:topObjectProperty ;
+                          rdfs:domain practicaecsdi:CercaUsuari ;
+                          rdfs:range practicaecsdi:Usuari .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Format_per
+practicaecsdi:Format_per rdf:type owl:ObjectProperty ;
+                         rdfs:subPropertyOf owl:topObjectProperty ;
+                         rdfs:domain practicaecsdi:CercaUsuari ;
+                         rdfs:range practicaecsdi:Producte .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Necessita
+practicaecsdi:Necessita rdf:type owl:ObjectProperty ;
+                        rdfs:subPropertyOf owl:topObjectProperty ;
+                        rdfs:domain practicaecsdi:OfertaTransport ;
+                        rdfs:range practicaecsdi:Transportista ;
+                        rdfs:comment "Una oferta de transport necessita un transportista" .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Ofereix
+practicaecsdi:Ofereix rdf:type owl:ObjectProperty ;
+                      rdfs:subPropertyOf owl:topObjectProperty ;
+                      rdfs:domain practicaecsdi:EmpresaTransport ;
+                      rdfs:range practicaecsdi:OfertaTransport ;
+                      rdfs:comment "Una empresa de transport ofereix diferents ofertes" .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Registra_a
+practicaecsdi:Registra_a rdf:type owl:ObjectProperty ;
+                         rdfs:subPropertyOf owl:topObjectProperty ;
+                         rdfs:domain practicaecsdi:RegistrarProducteExtern ;
+                         rdfs:range practicaecsdi:ProducteExtern .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Retorna
+practicaecsdi:Retorna rdf:type owl:ObjectProperty ;
+                      rdfs:subPropertyOf owl:topObjectProperty ;
+                      rdfs:domain practicaecsdi:PeticioDevolucio ;
+                      rdfs:range practicaecsdi:Compra .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Retorna2
+practicaecsdi:Retorna2 rdf:type owl:ObjectProperty ;
+                       rdfs:subPropertyOf owl:topObjectProperty ;
+                       rdfs:domain practicaecsdi:IniciarCompra ;
+                       rdfs:range practicaecsdi:Compra .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Sentrega_a
+practicaecsdi:Sentrega_a rdf:type owl:ObjectProperty ;
+                         rdfs:subPropertyOf owl:topObjectProperty ;
+                         rdfs:domain practicaecsdi:CompraUsuari ;
+                         rdfs:range practicaecsdi:Direcció .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Senvia_a
+practicaecsdi:Senvia_a rdf:type owl:ObjectProperty ;
+                       rdfs:subPropertyOf owl:topObjectProperty ;
+                       rdfs:domain practicaecsdi:Recomanacio ;
+                       rdfs:range practicaecsdi:Usuari .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Te
+practicaecsdi:Te rdf:type owl:ObjectProperty ;
+                 rdfs:subPropertyOf owl:topObjectProperty ;
+                 rdfs:domain practicaecsdi:Compra ;
+                 rdfs:range practicaecsdi:Producte .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Te_desti_en
+practicaecsdi:Te_desti_en rdf:type owl:ObjectProperty ;
+                          rdfs:subPropertyOf owl:topObjectProperty ;
+                          rdfs:domain practicaecsdi:LotProductes ;
+                          rdfs:range practicaecsdi:Ciutat ;
+                          rdfs:comment "Un lot de productes (que esta format per productes comprats) tots sentreguen a la mateixa ciutat" .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Te_origen_en
+practicaecsdi:Te_origen_en rdf:type owl:ObjectProperty ;
+                           rdfs:subPropertyOf owl:topObjectProperty ;
+                           rdfs:domain practicaecsdi:LotProductes ;
+                           rdfs:range practicaecsdi:CentreLogistic .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Transporta
+practicaecsdi:Transporta rdf:type owl:ObjectProperty ;
+                         rdfs:subPropertyOf owl:topObjectProperty ;
+                         rdfs:domain practicaecsdi:Transportista ;
+                         rdfs:range practicaecsdi:EnviarLots .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Ubicat2_en
+practicaecsdi:Ubicat2_en rdf:type owl:ObjectProperty ;
+                         rdfs:subPropertyOf owl:topObjectProperty ;
+                         rdfs:domain practicaecsdi:CentreLogistic ;
+                         rdfs:range practicaecsdi:Ciutat .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Ubicat3_en
+practicaecsdi:Ubicat3_en rdf:type owl:ObjectProperty ;
+                         rdfs:subPropertyOf owl:topObjectProperty ;
+                         rdfs:domain practicaecsdi:EmpresaTransport ;
+                         rdfs:range practicaecsdi:Direcció .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Ubicat4_en
+practicaecsdi:Ubicat4_en rdf:type owl:ObjectProperty ;
+                         rdfs:subPropertyOf owl:topObjectProperty ;
+                         rdfs:domain practicaecsdi:EmpresaTransport ;
+                         rdfs:range practicaecsdi:Ciutat .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Ubicat_en
+practicaecsdi:Ubicat_en rdf:type owl:ObjectProperty ;
+                        rdfs:subPropertyOf owl:topObjectProperty ;
+                        rdfs:domain practicaecsdi:CentreLogistic ;
+                        rdfs:range practicaecsdi:Direcció ;
+                        rdfs:comment "un Centre logistic esta ubicat en una ciutat" .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Una
+practicaecsdi:Una rdf:type owl:ObjectProperty ;
+                  rdfs:subPropertyOf owl:topObjectProperty ;
+                  rdfs:domain practicaecsdi:Transferir ;
+                  rdfs:range practicaecsdi:Compra .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Viu2_a
+practicaecsdi:Viu2_a rdf:type owl:ObjectProperty ;
+                     rdfs:subPropertyOf owl:topObjectProperty ;
+                     rdfs:domain practicaecsdi:Usuari ;
+                     rdfs:range practicaecsdi:Direcció .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Viu_a
+practicaecsdi:Viu_a rdf:type owl:ObjectProperty ;
+                    rdfs:subPropertyOf owl:topObjectProperty ;
+                    rdfs:domain practicaecsdi:Usuari ;
+                    rdfs:range practicaecsdi:Ciutat ;
+                    rdfs:comment """1 usuari viu a 1 ciutat
+1 ciutat hi viuen 1..* usuaris""" .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#carrer
+practicaecsdi:carrer rdf:type owl:DatatypeProperty ;
+                     rdfs:subPropertyOf owl:topDataProperty ;
+                     rdfs:domain practicaecsdi:Direcció ;
+                     rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#categoria
+practicaecsdi:categoria rdf:type owl:DatatypeProperty ;
+                        rdfs:subPropertyOf owl:topDataProperty ;
+                        rdfs:domain practicaecsdi:Producte ;
+                        rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#correu
+practicaecsdi:correu rdf:type owl:DatatypeProperty ;
+                     rdfs:subPropertyOf owl:topDataProperty ;
+                     rdfs:domain practicaecsdi:Usuari ;
+                     rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#data
+practicaecsdi:data rdf:type owl:DatatypeProperty ;
+                   rdfs:subPropertyOf owl:topDataProperty ;
+                   rdfs:domain practicaecsdi:Compra ,
+                               practicaecsdi:OfertaTransport ,
+                               practicaecsdi:Recomanacio ,
+                               practicaecsdi:TriarTransportista ,
+                               practicaecsdi:Valoracio ;
+                   rdfs:range xsd:dateTime .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#dataEntrega
+practicaecsdi:dataEntrega rdf:type owl:DatatypeProperty ;
+                          rdfs:subPropertyOf owl:topDataProperty ;
+                          rdfs:domain practicaecsdi:EnviarLots ;
+                          rdfs:range xsd:dateTime .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#dataEnviament
+practicaecsdi:dataEnviament rdf:type owl:DatatypeProperty ;
+                            rdfs:subPropertyOf owl:topDataProperty ;
+                            rdfs:domain practicaecsdi:EnviarLots ;
+                            rdfs:range xsd:dateTime .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#dataMaximaEntrega
+practicaecsdi:dataMaximaEntrega rdf:type owl:DatatypeProperty ;
+                                rdfs:subPropertyOf owl:topDataProperty ;
+                                rdfs:domain practicaecsdi:DemanarOfertaTransport ;
+                                rdfs:range xsd:dateTime .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#descripcio
+practicaecsdi:descripcio rdf:type owl:DatatypeProperty ;
+                         rdfs:subPropertyOf owl:topDataProperty ;
+                         rdfs:domain practicaecsdi:CentreLogistic ,
+                                     practicaecsdi:EmpresaTransport ,
+                                     practicaecsdi:Producte ,
+                                     practicaecsdi:Valoracio ;
+                         rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#estrelles
+practicaecsdi:estrelles rdf:type owl:DatatypeProperty ;
+                        rdfs:subPropertyOf owl:topDataProperty ;
+                        rdfs:domain practicaecsdi:Valoracio ;
+                        rdfs:range xsd:int .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#estrellesMitges
+practicaecsdi:estrellesMitges rdf:type owl:DatatypeProperty ;
+                              rdfs:subPropertyOf owl:topDataProperty ;
+                              rdfs:domain practicaecsdi:Producte ;
+                              rdfs:range xsd:double .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#latitud
+practicaecsdi:latitud rdf:type owl:DatatypeProperty ;
+                      rdfs:subPropertyOf owl:topDataProperty ;
+                      rdfs:domain practicaecsdi:Ciutat ;
+                      rdfs:range xsd:float .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#longitud
+practicaecsdi:longitud rdf:type owl:DatatypeProperty ;
+                       rdfs:subPropertyOf owl:topDataProperty ;
+                       rdfs:domain practicaecsdi:Ciutat ;
+                       rdfs:range xsd:float .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#nom
+practicaecsdi:nom rdf:type owl:DatatypeProperty ;
+                  rdfs:subPropertyOf owl:topDataProperty ;
+                  rdfs:domain practicaecsdi:Ciutat ,
+                              practicaecsdi:Producte ,
+                              practicaecsdi:Transportista ,
+                              practicaecsdi:Usuari ,
+                              practicaecsdi:Valoracio ,
+                              practicaecsdi:VenedorExtern ;
+                  rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#nomEmpresa
+practicaecsdi:nomEmpresa rdf:type owl:DatatypeProperty ;
+                         rdfs:subPropertyOf owl:topDataProperty ;
+                         rdfs:domain practicaecsdi:EmpresaTransport ;
+                         rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#nomUsuari
+practicaecsdi:nomUsuari rdf:type owl:DatatypeProperty ;
+                        rdfs:subPropertyOf owl:topDataProperty .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#numCerques
+practicaecsdi:numCerques rdf:type owl:DatatypeProperty ;
+                         rdfs:subPropertyOf owl:topDataProperty ;
+                         rdfs:domain practicaecsdi:CercaUsuari ;
+                         rdfs:range xsd:integer .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#numValoracions
+practicaecsdi:numValoracions rdf:type owl:DatatypeProperty ;
+                             rdfs:subPropertyOf owl:topDataProperty ;
+                             rdfs:domain practicaecsdi:Producte ;
+                             rdfs:range xsd:integer .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#numero
+practicaecsdi:numero rdf:type owl:DatatypeProperty ;
+                     rdfs:subPropertyOf owl:topDataProperty ;
+                     rdfs:domain practicaecsdi:Direcció ;
+                     rdfs:range xsd:integer .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#pais
+practicaecsdi:pais rdf:type owl:DatatypeProperty ;
+                   rdfs:subPropertyOf owl:topDataProperty ;
+                   rdfs:domain practicaecsdi:Ciutat ;
+                   rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#pes
+practicaecsdi:pes rdf:type owl:DatatypeProperty ;
+                  rdfs:subPropertyOf owl:topDataProperty ;
+                  rdfs:domain practicaecsdi:DemanarOfertaTransport ,
+                              practicaecsdi:TriarTransportista ;
+                  rdfs:range xsd:float .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#pis
+practicaecsdi:pis rdf:type owl:DatatypeProperty ;
+                  rdfs:subPropertyOf owl:topDataProperty ;
+                  rdfs:domain practicaecsdi:Direcció ;
+                  rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#preu
+practicaecsdi:preu rdf:type owl:DatatypeProperty ;
+                   rdfs:subPropertyOf owl:topDataProperty ;
+                   rdfs:domain practicaecsdi:OfertaTransport ,
+                               practicaecsdi:Producte ;
+                   rdfs:range xsd:double .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#preuTotal
+practicaecsdi:preuTotal rdf:type owl:DatatypeProperty ;
+                        rdfs:subPropertyOf owl:topDataProperty ;
+                        rdfs:domain practicaecsdi:Compra ;
+                        rdfs:range xsd:double .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#prioritatEntrega
+practicaecsdi:prioritatEntrega rdf:type owl:DatatypeProperty ;
+                               rdfs:subPropertyOf owl:topDataProperty ;
+                               rdfs:domain practicaecsdi:Compra ;
+                               rdfs:range xsd:int ;
+                               rdfs:comment """Baixa prioritat: no es paga res extra
+Mitja prioritat: es paga un 5% extra de la compra
+Alta prioritat: es paga un 10% extra de la compra
+
+1: Alta prioritat d'entrega
+2: Mitjana prioritat d'entrega
+3: Baixa prioritat d'entrega""" .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#quantitat
+practicaecsdi:quantitat rdf:type owl:DatatypeProperty ;
+                        rdfs:subPropertyOf owl:topDataProperty ;
+                        rdfs:domain practicaecsdi:Stock ;
+                        rdfs:range xsd:integer .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#telefon
+practicaecsdi:telefon rdf:type owl:DatatypeProperty ;
+                      rdfs:subPropertyOf owl:topDataProperty ;
+                      rdfs:domain practicaecsdi:VenedorExtern ;
+                      rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#cobrat?
+<http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#cobrat?> rdf:type owl:DatatypeProperty ;
+                                                                        rdfs:subPropertyOf owl:topDataProperty ;
+                                                                        rdfs:domain practicaecsdi:Compra ;
+                                                                        rdfs:range xsd:boolean .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Accio
+practicaecsdi:Accio rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#BuscarProducte
+practicaecsdi:BuscarProducte rdf:type owl:Class ;
+                             rdfs:subClassOf practicaecsdi:Accio .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#CentreLogistic
+practicaecsdi:CentreLogistic rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#CercaUsuari
+practicaecsdi:CercaUsuari rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Ciutat
+practicaecsdi:Ciutat rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Compra
+practicaecsdi:Compra rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#CompraUsuari
+practicaecsdi:CompraUsuari rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#DemanarDisponibilitat
+practicaecsdi:DemanarDisponibilitat rdf:type owl:Class ;
+                                    rdfs:subClassOf practicaecsdi:Accio .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#DemanarOfertaTransport
+practicaecsdi:DemanarOfertaTransport rdf:type owl:Class ;
+                                     rdfs:subClassOf practicaecsdi:Accio .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Direcció
+practicaecsdi:Direcció rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#EmpresaTransport
+practicaecsdi:EmpresaTransport rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#EnviarLots
+practicaecsdi:EnviarLots rdf:type owl:Class ;
+                         rdfs:subClassOf practicaecsdi:Accio .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#FiltrarProducte
+practicaecsdi:FiltrarProducte rdf:type owl:Class ;
+                              rdfs:subClassOf practicaecsdi:BuscarProducte ;
+                              owl:disjointWith practicaecsdi:MostrarProducte .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#IniciarCompra
+practicaecsdi:IniciarCompra rdf:type owl:Class ;
+                            rdfs:subClassOf practicaecsdi:Accio .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#LotProductes
+practicaecsdi:LotProductes rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#MostrarProducte
+practicaecsdi:MostrarProducte rdf:type owl:Class ;
+                              rdfs:subClassOf practicaecsdi:BuscarProducte .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#OfertaTransport
+practicaecsdi:OfertaTransport rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#PeticioDevolucio
+practicaecsdi:PeticioDevolucio rdf:type owl:Class ;
+                               rdfs:subClassOf practicaecsdi:Accio .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Producte
+practicaecsdi:Producte rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#ProducteExtern
+practicaecsdi:ProducteExtern rdf:type owl:Class ;
+                             rdfs:subClassOf practicaecsdi:Producte ;
+                             owl:disjointWith practicaecsdi:ProductePropi .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#ProductePropi
+practicaecsdi:ProductePropi rdf:type owl:Class ;
+                            rdfs:subClassOf practicaecsdi:Producte .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Recomanacio
+practicaecsdi:Recomanacio rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#RegistrarProducteExtern
+practicaecsdi:RegistrarProducteExtern rdf:type owl:Class ;
+                                      rdfs:subClassOf practicaecsdi:Accio .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Stock
+practicaecsdi:Stock rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Transferir
+practicaecsdi:Transferir rdf:type owl:Class ;
+                         rdfs:subClassOf practicaecsdi:Accio .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Transportista
+practicaecsdi:Transportista rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#TriarTransportista
+practicaecsdi:TriarTransportista rdf:type owl:Class ;
+                                 rdfs:subClassOf practicaecsdi:Accio .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Usuari
+practicaecsdi:Usuari rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Valoracio
+practicaecsdi:Valoracio rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#VenedorExtern
+practicaecsdi:VenedorExtern rdf:type owl:Class .
+
+
+###  Generated by the OWL API (version 4.5.26.2023-07-17T20:34:13Z) https://github.com/owlcs/owlapi
