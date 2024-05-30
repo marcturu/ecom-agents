@@ -14,11 +14,13 @@ Asume que el agente de registro esta en el puerto 9000
 @author: javier
 """
 
+
 from multiprocessing import Process, Queue
 import socket
+import requests
 
 from rdflib import Namespace, Graph
-from flask import Flask
+from flask import Flask, request
 
 from utils.FlaskServer import shutdown_server
 from utils.Agent import Agent
@@ -56,16 +58,6 @@ cola1 = Queue()
 app = Flask(__name__)
 
 
-@app.route("/comm")
-def comunicacion():
-    """
-    Entrypoint de comunicacion
-    """
-    global dsgraph
-    global mss_cnt
-    pass
-
-
 @app.route("/Stop")
 def stop():
     """
@@ -94,15 +86,53 @@ def agentbehavior1(cola):
     """
     pass
 
+# Función para enviar un mensaje a otro agente
+def enviar_mensaje(destino, mensaje):
+    print("Enviando mensaje a", destino, ":", mensaje)
 
-if __name__ == '__main__':
-    # Ponemos en marcha los behaviors
-    ab1 = Process(target=agentbehavior1, args=(cola1,))
-    ab1.start()
+    url_destino = "http://localhost:{}/comm".format(destino)
+    response = requests.post(url_destino, json=mensaje)
+    # Procesar la respuesta si es necesario
+    if response.status_code == 200:
+        print("Mensaje enviado con éxito a {}".format(destino))
+    else:
+        print("Error al enviar mensaje a {}".format(destino))
 
-    # Ponemos en marcha el servidor
-    app.run(host=hostname, port=port)
+# Ejemplo de cómo enviar un mensaje desde AgentTemplate.py a AgentTemplate2.py
+mensaje_para_agent2 = {"contenido": "Hola, soy AgentTemplate1"}
+enviar_mensaje(9020, mensaje_para_agent2)
 
-    # Esperamos a que acaben los behaviors
-    ab1.join()
-    print('The End')
+
+@app.route("/comm", methods=['POST'])
+def comunicacion():
+    """
+    Entrypoint de comunicacion
+    """
+    global dsgraph
+    global mss_cnt
+
+    # Obtener el contenido del mensaje recibido
+    mensaje_recibido = request.get_json()
+    print("Mensaje recibido:", mensaje_recibido)
+
+    # Lógica para procesar el mensaje
+
+    return "OK"  # O la respuesta que desees enviar al agente remitente
+
+
+if __name__ == "__main__":
+    app.run(port=9000)
+
+
+
+# if __name__ == '__main__':
+#     # Ponemos en marcha los behaviors
+#     ab1 = Process(target=agentbehavior1, args=(cola1,))
+#     ab1.start()
+
+#     # Ponemos en marcha el servidor
+#     app.run(host=hostname, port=port)
+
+#     # Esperamos a que acaben los behaviors
+#     ab1.join()
+#     print('The End')
