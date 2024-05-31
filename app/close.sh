@@ -19,15 +19,15 @@ kill_by_port 5000
 kill_by_port 5001
 
 # Kill Agent 2 (port 5002)
-
 kill_by_port 5002
 
 # Kill Seller Agent (port 5003)
-
 kill_by_port 5003
 
-# Kill Seller Agent (port 5004)
-
+# Kill Agent Extern (port 5004)
 kill_by_port 5004
+
+# Kill Agent Valoracions (port 5005)
+kill_by_port 5005
 
 echo "All agents and the directory service have been terminated."
