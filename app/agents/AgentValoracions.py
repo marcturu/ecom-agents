@@ -1,23 +1,28 @@
-from flask import Flask, request, render_template, redirect, url_for
+from flask import Flask, request, redirect, url_for
 from rdflib import Graph, Namespace, Literal
 from rdflib.namespace import RDF, XSD
 import uuid
 import requests
 
-
 app = Flask(__name__)
 
-archivo_base_datos = "../data/productes.rdf"
+# archivo_base_datos = "../data/productes.rdf"
 
-# Definir el namespace
-ns = Namespace("http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#")
+# # Definir el namespace
+# ns = Namespace("http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#")
 
 
 @app.route('/', methods=['GET', 'POST'])
 def home():
     if request.method == 'POST':
-        return """
-            IMPLEMENTAR ALGO AQUI
+        # Procesar la valoración del producto enviado por el usuario
+        valoracion = request.form['valoracion']
+        # Aquí puedes agregar la lógica para registrar la valoración en tu base de datos
+        # por ejemplo, almacenarla en una base de datos o enviarla a través de un mensaje a otro agente
+
+        return f"""
+            Producto valorado correctamente con una puntuación de {valoracion}. <br>           
+            <a href="/">Valorar otro producto</a>
         """
 
     else:
@@ -26,30 +31,14 @@ def home():
             <html lang="en">
             <head>
                 <meta charset="UTF-8">
-                <title>Añadir Producto Externo</title>
+                <title>Valorar Producto</title>
             </head>
             <body>
-                <h1>Añadir Nuevo Producto Externo</h1>
+                <h1>Valorar Producto</h1>
                 <form method="post">
-                    <label for="nom">Nom:</label>
-                    <input type="text" id="nom" name="nom" required><br><br>
-
-                    <label for="preu">Preu:</label>
-                    <input type="number" step="1" id="preu" name="preu" required><br><br>
-
-                    <label for="categoria">Categoria:</label>
-                    <input type="text" id="categoria" name="categoria" required><br><br>
-
-                    <label for="descripcio">Descripcio:</label>
-                    <input type="text" id="descripcio" name="descripcio" required><br><br>
-
-                    <label for="numValoracions">Num. Valoracions:</label>
-                    <input type="number" step="1" id="numValoracions" name="numValoracions" required><br><br>
-
-                    <label for="estrellesMitges">Estrelles mitges (1-5):</label>
-                    <input type="number" id="estrellesMitges" name="estrellesMitges" min="1" max="5" required><br><br>
-
-                    <input type="submit" value="Añadir Producto">
+                    <label for="valoracion">Valoración (1-5):</label>
+                    <input type="number" id="valoracion" name="valoracion" min="1" max="5" required><br><br>
+                    <input type="submit" value="Enviar Valoración">
                 </form>
             </body>
             </html>
