@@ -37,7 +37,7 @@ def register_agent():
     return jsonify(agents), 201
 
 
-def leer_base_datos(ruta_archivo):
+def leer_DB(ruta_archivo):
     # Cargar el grafo RDF desde el archivo
     g = Graph()
     try:
@@ -48,19 +48,26 @@ def leer_base_datos(ruta_archivo):
         print("Error:", e)
     return g
 
-def mostrar_productos(base_datos):
+def mostrar_DB(base_datos):
     # Mostrar todas las tripletas en la base de datos
     for subj, pred, obj in base_datos:
         print(f"Sujeto: {subj}, Predicado: {pred}, Objeto: {obj}")
 
 def añadir_producto(base_datos, nombre_producto):
     ns = Namespace("http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#")
-    producte_uri = ns.Producte_2222 # Cambiar el URI según corresponda
+    producte_uri = ns.Producte_3333 # Cambiar el URI según corresponda
     base_datos.add((producte_uri, RDF.type, ns.Producte))
     base_datos.add((producte_uri, ns.Nombre, Literal(nombre_producto)))
     
+def añadir_compra(base_datos, nomCompra, preuCompra, dataEntrega):
+    ns = Namespace("http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#")
+    compra_uri = ns.Compra_C # Cambiar el URI según corresponda
+    base_datos.add((compra_uri, RDF.type, ns.Compra))
+    base_datos.add((compra_uri, ns.PreuTotal, Literal(preuCompra)))
+    base_datos.add((compra_uri, ns.DataEntrega, Literal(dataEntrega)))
 
-def guardar_base_datos(base_datos, ruta_archivo):
+
+def guardar_DB(base_datos, ruta_archivo):
     # Guardar los valores en el archivo de la base de datos
     base_datos.serialize(destination=ruta_archivo, format="xml")
 
@@ -69,17 +76,35 @@ if __name__ == "__main__":
     app.run(port=5000)
 
     archivo_base_datos = "../data/productes.rdf"
-    base_datos = leer_base_datos(archivo_base_datos)
+    base_datos = leer_DB(archivo_base_datos)
     
     # Mostrar los productos existentes
     print("Productos existentes en la base de datos:")
-    mostrar_productos(base_datos)
+    mostrar_DB(base_datos)
     
     # Añadir un nuevo producto
     nuevo_producto = "Nuevo Producto"
     añadir_producto(base_datos, nuevo_producto)
     
     # Guardar los cambios en la base de datos
-    guardar_base_datos(base_datos, archivo_base_datos)
+    guardar_DB(base_datos, archivo_base_datos)
+
+
+    
+    archivo_base_datos = "../data/compres.rdf"
+    base_datos = leer_DB(archivo_base_datos)
+    
+    # Mostrar los productos existentes
+    print("Compras existentes en la base de datos:")
+    mostrar_DB(base_datos)
+    
+    # Añadir un nuevo producto
+    nomCompra = "Compra Antonia"
+    preuCompra = "80"
+    dataEntrega = "20/10/2024"
+    añadir_compra(base_datos, nomCompra, preuCompra, dataEntrega)
+    
+    # Guardar los cambios en la base de datos
+    guardar_DB(base_datos, archivo_base_datos)
 
 
