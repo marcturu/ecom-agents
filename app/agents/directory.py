@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request
+from flask import Flask, render_template, jsonify, request
 from rdflib import Graph, Namespace, Literal
 from rdflib.namespace import RDF
 
@@ -55,7 +55,7 @@ def mostrar_DB(base_datos):
 
 def añadir_producto(base_datos, nombre_producto):
     ns = Namespace("http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#")
-    producte_uri = ns.Producte_3333 # Cambiar el URI según corresponda
+    producte_uri = ns.Producte_4444 # Cambiar el URI según corresponda
     base_datos.add((producte_uri, RDF.type, ns.Producte))
     base_datos.add((producte_uri, ns.Nombre, Literal(nombre_producto)))
     
