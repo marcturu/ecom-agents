@@ -8,7 +8,9 @@ app = Flask(__name__)
 agents = {
     'Agent1': 'http://localhost:5001',
     'Agent2': 'http://localhost:5002',
-    'SellerAgent': 'http://localhost:5003'
+    'SellerAgent': 'http://localhost:5003',
+    'AgentExtern': 'http://localhost:5004'
+
 }
 
 @app.route('/')
