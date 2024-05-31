@@ -39,32 +39,7 @@ archivo_base_datos = "../data/productes.rdf"
 
 @app.route('/')
 def home():
-    html = """
-        <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>Añadir Nuevo Producto</title>
-    </head>
-    <body>
-        <h1>Añadir Nuevo Producto</h1>
-        <form method="post">
-            <label for="nombre">Nombre:</label>
-            <input type="text" id="nombre" name="nombre" required><br>
-            <label for="marca">Marca:</label>
-            <input type="text" id="marca" name="marca" required><br>
-            <label for="modelo">Modelo:</label>
-            <input type="text" id="modelo" name="modelo" required><br>
-            <label for="precio">Precio:</label>
-            <input type="number" step="0.01" id="precio" name="precio" required><br>
-            <label for="peso">Peso:</label>
-            <input type="number" step="0.01" id="peso" name="peso" required><br>
-            <input type="submit" value="Añadir Producto">
-        </form>
-    </body>
-    </html>
-    """
-    return html
+    return "Hello from Agent 1"
 
 @app.route('/newProduct', methods=['GET', 'POST'])
 def new_product():
