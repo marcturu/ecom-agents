@@ -11,49 +11,13 @@ archivo_base_datos = "../data/productes.rdf"
 
 # Definir el namespace
 ns = Namespace("http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#")
-  
-# Función para leer la base de datos RDF
-def leer_DB(ruta_archivo):
-    base_datos = Graph()
-    try:
-        base_datos.parse(ruta_archivo, format="xml")
-        num_tripletas = len(base_datos)
-        print(f"Se han cargado {num_tripletas} tripletas desde el archivo RDF.")
-    except Exception as e:
-        print("Error:", e)
-    return base_datos
-
-# Función para añadir un producto a la base de datos RDF
-def añadir_producto(nom, preu, categoria, descripcio, numValoracions, estrellesMitges):
-    base_datos = leer_DB(archivo_base_datos)
-
-    product_uri = ns["Producte_" + nom.replace(" ", "_")]  # Generar URI única para el producto
-    base_datos.add((product_uri, RDF.type, ns.Producte))
-    base_datos.add((product_uri, ns.Nom, Literal(nom)))
-    base_datos.add((product_uri, ns.Preu, Literal(preu)))
-    base_datos.add((product_uri, ns.Categoria, Literal(categoria)))
-    base_datos.add((product_uri, ns.Descripcio, Literal(descripcio)))
-    base_datos.add((product_uri, ns.NumValoracions, Literal(numValoracions)))
-    base_datos.add((product_uri, ns.EstrellesMitges, Literal(estrellesMitges)))
-
-    base_datos.serialize(destination=archivo_base_datos, format="xml")
 
 
 @app.route('/', methods=['GET', 'POST'])
 def home():
     if request.method == 'POST':
-        nom = request.form['nom']
-        preu = request.form['preu']
-        categoria = request.form['categoria']
-        descripcio = request.form['descripcio']
-        numValoracions = request.form['numValoracions']
-        estrellesMitges = request.form['estrellesMitges']
-
-        añadir_producto(nom, preu, categoria, descripcio, numValoracions, estrellesMitges)
-
         return """
-            Producto añadido correctamente a la base de datos RDF.<br>
-            <a href="/">Añadir Nuevo Producto</a>
+            IMPLEMENTAR ALGO AQUI
         """
 
     else:
@@ -96,7 +60,7 @@ def register_with_directory():
     directory_url = 'http://localhost:5000/register'
     agent_info = {
         'name': 'SellerAgent',
-        'location': 'http://localhost:5004'
+        'location': 'http://localhost:5005'
     }
     response = requests.post(directory_url, json=agent_info)
     if response.status_code == 201:
@@ -107,4 +71,4 @@ def register_with_directory():
 
 if __name__ == "__main__":
     register_with_directory()
-    app.run(port=5004)
+    app.run(port=5005)
