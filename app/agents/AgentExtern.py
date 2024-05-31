@@ -3,86 +3,92 @@ from rdflib import Graph, Namespace, Literal
 from rdflib.namespace import RDF, XSD
 import uuid
 
-app = Flask(__name__, template_folder='templates')
+app = Flask(__name__)
+
+archivo_base_datos = "../data/productes.rdf"
 
 # Definir el namespace
-ECSDI = Namespace("http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#")
+ns = Namespace("http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#")
 
-# Función para leer el archivo RDF
+# Función para leer la base de datos RDF
 def leer_DB(ruta_archivo):
-    g = Graph()
+    base_datos = Graph()
     try:
-        g.parse(ruta_archivo, format="xml")
-        num_tripletas = len(g)
+        base_datos.parse(ruta_archivo, format="xml")
+        num_tripletas = len(base_datos)
         print(f"Se han cargado {num_tripletas} tripletas desde el archivo RDF.")
     except Exception as e:
         print("Error:", e)
-    return g
+    return base_datos
 
-# Función para guardar el archivo RDF
-def guardar_DB(base_datos, ruta_archivo):
-    base_datos.serialize(destination=ruta_archivo, format="xml")
+# Función para añadir un producto a la base de datos RDF
+def añadir_producto(nom, preu, categoria, descripcio, numValoracions, estrellesMitges):
+    base_datos = leer_DB(archivo_base_datos)
 
-# Función para añadir un nuevo producto
-def añadir_producto(base_datos, nombre_producto, marca, modelo, precio, peso):
-    product_uri = ECSDI['Producto_' + str(uuid.uuid4())]
+    product_uri = ns["Producte_" + nom.replace(" ", "_")]  # Generar URI única para el producto
+    base_datos.add((product_uri, RDF.type, ns.Producte))
+    base_datos.add((product_uri, ns.Nom, Literal(nom)))
+    base_datos.add((product_uri, ns.Preu, Literal(preu)))
+    base_datos.add((product_uri, ns.Categoria, Literal(categoria)))
+    base_datos.add((product_uri, ns.Descripcio, Literal(descripcio)))
+    base_datos.add((product_uri, ns.NumValoracions, Literal(numValoracions)))
+    base_datos.add((product_uri, ns.EstrellesMitges, Literal(estrellesMitges)))
 
-    base_datos.add((product_uri, RDF.type, ECSDI.Producto))
-    base_datos.add((product_uri, ECSDI.Nombre, Literal(nombre_producto, datatype=XSD.string)))
-    base_datos.add((product_uri, ECSDI.Marca, Literal(marca, datatype=XSD.string)))
-    base_datos.add((product_uri, ECSDI.Modelo, Literal(modelo, datatype=XSD.string)))
-    base_datos.add((product_uri, ECSDI.Precio, Literal(precio, datatype=XSD.float)))
-    base_datos.add((product_uri, ECSDI.Peso, Literal(peso, datatype=XSD.float)))
+    base_datos.serialize(destination=archivo_base_datos, format="xml")
 
-# Ruta al archivo RDF
-archivo_base_datos = "../data/productes.rdf"
 
-@app.route('/')
+@app.route('/', methods=['GET', 'POST'])
 def home():
-    html = """
-        <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>Añadir Nuevo Producto</title>
-    </head>
-    <body>
-        <h1>Añadir Nuevo Producto</h1>
-        <form method="post">
-            <label for="nombre">Nombre:</label>
-            <input type="text" id="nombre" name="nombre" required><br>
-            <label for="marca">Marca:</label>
-            <input type="text" id="marca" name="marca" required><br>
-            <label for="modelo">Modelo:</label>
-            <input type="text" id="modelo" name="modelo" required><br>
-            <label for="precio">Precio:</label>
-            <input type="number" step="0.01" id="precio" name="precio" required><br>
-            <label for="peso">Peso:</label>
-            <input type="number" step="0.01" id="peso" name="peso" required><br>
-            <input type="submit" value="Añadir Producto">
-        </form>
-    </body>
-    </html>
-    """
-    return html
-
-@app.route('/newProduct', methods=['GET', 'POST'])
-def new_product():
     if request.method == 'POST':
-        nombre_producto = request.form['nombre']
-        marca = request.form['marca']
-        modelo = request.form['modelo']
-        precio = float(request.form['precio'])
-        peso = float(request.form['peso'])
+        nom = request.form['nom']
+        preu = request.form['preu']
+        categoria = request.form['categoria']
+        descripcio = request.form['descripcio']
+        numValoracions = request.form['numValoracions']
+        estrellesMitges = request.form['estrellesMitges']
 
-        base_datos = leer_DB(archivo_base_datos)
-        añadir_producto(base_datos, nombre_producto, marca, modelo, precio, peso)
-        guardar_DB(base_datos, archivo_base_datos)
+        añadir_producto(nom, preu, categoria, descripcio, numValoracions, estrellesMitges)
 
-        return redirect(url_for('home'))
+        return """
+            Producto añadido correctamente a la base de datos RDF.<br>
+            <a href="/">Añadir Nuevo Producto</a>
+        """
 
-    return render_template('addProduct.html')
+    else:
+        html = """
+            <!DOCTYPE html>
+            <html lang="en">
+            <head>
+                <meta charset="UTF-8">
+                <title>Añadir Producto Externo</title>
+            </head>
+            <body>
+                <h1>Añadir Nuevo Producto Externo</h1>
+                <form method="post">
+                    <label for="nom">Nom:</label>
+                    <input type="text" id="nom" name="nom" required><br><br>
 
+                    <label for="preu">Preu:</label>
+                    <input type="number" step="1" id="preu" name="preu" required><br><br>
+
+                    <label for="categoria">Categoria:</label>
+                    <input type="text" id="categoria" name="categoria" required><br><br>
+
+                    <label for="descripcio">Descripcio:</label>
+                    <input type="text" id="descripcio" name="descripcio" required><br><br>
+
+                    <label for="numValoracions">Num. Valoracions:</label>
+                    <input type="number" step="1" id="numValoracions" name="numValoracions" required><br><br>
+
+                    <label for="estrellesMitges">Estrelles mitges (1-5):</label>
+                    <input type="number" id="estrellesMitges" name="estrellesMitges" min="1" max="5" required><br><br>
+
+                    <input type="submit" value="Añadir Producto">
+                </form>
+            </body>
+            </html>
+        """
+        return html
 
 if __name__ == "__main__":
     app.run(port=5004)
