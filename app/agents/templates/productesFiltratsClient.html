@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Productes Filtrats</title>
+</head>
+<body>
+    <h1>Productes Filtrats</h1>
+    <ul>
+        {% for producto in productos %}
+            <li>
+                <a href="{{ url_for('detalle', product_id=producto['id']) }}">{{ producto['nom'] }}</a> -
+                {{ producto['preu'] }} EUR - {{ producto['categoria'] }}
+            </li>
+        {% endfor %}
+    </ul>
+    <br>
+    <a href="/">Tornar</a>
+</body>
+</html>
