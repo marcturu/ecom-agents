@@ -7,7 +7,7 @@ import requests
 app = Flask(__name__)
 
 
-AGENTE_URL = 'http://localhost:5006/'
+AGENTE_URL = 'http://localhost:5006/FiltrarProducte'
 
 # Definir el namespace
 ns = Namespace("http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#")
