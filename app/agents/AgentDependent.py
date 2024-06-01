@@ -26,7 +26,13 @@ def register_with_directory():
         print('Registered successfully with the directory')
     else:
         print('Failed to register with the directory')
-      
+
+# IDEES DE COSES A FER/MOSTRAR DE UN ALTRE ANY:
+# Buscar sin filtro -> Retrona todos los productos de la base de datos.
+# Buscar por nombre = Cable -> Retorna un producto llamado Cable.
+# Buscar por precio máximo = 100 -> Retorna los poroductos con un precio inferior a 100.
+# Buscar por precio mínimo = 100 -> Retorn a los productos con un precio superior a 100.
+# Bucar por precio máximo = 100 y mínimo = 100 y nombre = Cable -> Retorna el producto Cable 
 
 if __name__ == "__main__":
     register_with_directory()
