@@ -6,29 +6,86 @@ import requests
 
 app = Flask(__name__)
 
-archivo_base_datos = "../data/productes.rdf"
+
+AGENTE_URL = 'http://localhost:5006'
 
 # Definir el namespace
 ns = Namespace("http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#")
   
 
 @app.route('/', methods=['GET', 'POST'])
-def home():
-    return "hi i am the client"
+def home(): 
+    if request.method == 'POST':
+        nom = request.form['nom']
+        preu_min = request.form['preu_min']
+        preu_max = request.form['preu_max']
+        categoria = request.form['categoria']
+        num_valoracions_min = request.form['num_valoracions_min']
+        estrelles_min = request.form['estrelles_min']
 
-def register_with_directory():
-    directory_url = 'http://localhost:5000/register'
-    agent_info = {
-        'name': 'SellerAgent',
-        'location': 'http://localhost:5007'
-    }
-    response = requests.post(directory_url, json=agent_info)
-    if response.status_code == 201:
-        print('Registered successfully with the directory')
+        # Crear un JSON con los datos
+        filtro_json = {
+            "nom": nom,
+            "preu_min": preu_min,
+            "preu_max": preu_max,
+            "categoria": categoria,
+            "num_valoracions_min": num_valoracions_min,
+            "estrelles_min": estrelles_min
+        }
+
+        try:
+            response = requests.post(AGENTE_URL, json=filtro_json)
+            print(f"Código de estado de la respuesta: {response.status_code}")
+            if response.status_code == 200:
+                return """Filtres registrats correctament <br>
+                    <a href="/">Afegir nous filtres</a>
+                    """
+            else:
+                return """Error en l'enviament dels filtres <br>
+                    <a href="/">Tornar</a>
+                    """
+        except Exception as e:
+            return f"""Error en l'enviament dels filtres: {e} <br>
+                <a href="/">Tornar</a>
+                """
+        
     else:
-        print('Failed to register with the directory')
-      
+        html = """
+            <!DOCTYPE html>
+            <html lang="en">
+            <head>
+                <meta charset="UTF-8">
+                <title>Filtrar Productes</title>
+            </head>
+            <body>
+                <h1>Filtrar Productes</h1>
+                <form method="post">
+                    <label for="nom">Nom:</label>
+                    <input type="text" id="nom" name="nom"><br><br>
+                    
+                    <label for="preu_min">Precio Mínimo:</label>
+                    <input type="number" step="1" id="preu_min" name="preu_min"><br><br>
+
+                    <label for="preu_max">Precio Máximo:</label>
+                    <input type="number" step="1" id="preu_max" name="preu_max"><br><br>
+
+                    <label for="categoria">Categoría:</label>
+                    <input type="text" id="categoria" name="categoria"><br><br>
+
+                    <label for="num_valoracions_min">Número de Valoraciones Mínimo:</label>
+                    <input type="number" step="1" id="num_valoracions_min" name="num_valoracions_min"><br><br>
+
+                    <label for="estrelles_min">Estrellas Mínimas:</label>
+                    <input type="number" id="estrelles_min" name="estrelles_min" min="1" max="5"><br><br>
+
+                    <input type="submit" value="Filtrar">
+                </form>
+            </body>
+            </html>
+            """
+        return html
+
+
 
 if __name__ == "__main__":
-    register_with_directory()
     app.run(port=5007)
