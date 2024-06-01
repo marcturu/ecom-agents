@@ -6,11 +6,12 @@ import requests
 
 app = Flask(__name__)
 
-productosTotales = ""
+carritoCompra = []
 
 AGENTE_URL = 'http://localhost:5006/FiltrarProducte'
 AGENTE_PRODUCTE_URL = 'http://localhost:5006/MostrarProducte'
-
+VENDEDOR_URL = 'http://localhost:5003'
+# VENDEDOR_URL = 'http://localhost:5003/ProcesarCompra'
 
 # Definir el namespace
 ns = Namespace("http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#")
@@ -48,7 +49,9 @@ def home():
                         otra_response = requests.post(AGENTE_PRODUCTE_URL, json=prod1)
                         if otra_response.status_code == 200:
                             print("El primer producto se ha enviado correctamente a otra URL.")
-                            return "El primer producto se ha enviado correctamente a otra URL."
+                            carritoCompra.append(prod1)
+                            return render_template('producto_enviado.html')
+                            # return "El primer producto se ha enviado correctamente a otra URL."
                         else:
                             print("Error al enviar el primer producto a otra URL.")
                     except Exception as e:
@@ -56,18 +59,11 @@ def home():
                 else:
                     print("No se encontraron productos.")
 
-                # return """Filtres registrats correctament <br>
-                #     <a href="/">Afegir nous filtres</a>
-                #     """
             else:
                 mensaje = "Productos no trobats." if response.status_code == 404 else "Error en el envío de los filtros."
                 return f"""{mensaje}<br>
                 <a href="/">Tornar</a>
                 """
-        # except Exception as e:
-        #     return f"""Error en l'enviament dels filtres: {e} <br>
-        #         <a href="/">Tornar</a>
-        #         """
         except Exception as e:
             # Manejo de errores
             return f"Ocurrió un error: {e}", 500
@@ -102,13 +98,28 @@ def home():
                     <input type="number" id="estrelles_min" name="estrelles_min" min="1" max="5"><br><br>
 
                     <input type="submit" value="Filtrar">
+                    <p><a href="/cart">Anar carrito compra</a></p>
                 </form>
             </body>
             </html>
             """
         return html
 
+@app.route('/cart')
+def view_cart():
+    return render_template('carritoCompra.html', carritoCompra=carritoCompra)
 
-
+@app.route('/comprar')
+def comprar():
+    try:
+        response = requests.post(VENDEDOR_URL, json=carritoCompra)
+        if response.status_code == 200:
+            # ENVIAR LA INFO AL VENDEDOR
+            return "Compra realizada con éxito."
+        else:
+            return "Error al procesar la compra."
+    except Exception as e:
+        return f"Error al enviar la información al vendedor: {e}"
+    
 if __name__ == "__main__":
     app.run(port=5007)
