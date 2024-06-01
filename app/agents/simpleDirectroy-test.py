@@ -1,3 +1,5 @@
+import os
+import signal
 import socket
 from multiprocessing import Process, Queue
 
@@ -10,7 +12,7 @@ from app.utils.FlaskServer import shutdown_server
 
 # Configuration stuff
 hostname = socket.gethostname()
-port = 9000
+port = 5000
 
 # Namespace for the ontology
 ECSDI = Namespace(
@@ -20,10 +22,8 @@ ECSDI = Namespace(
 dsgraph = Graph()
 
 # Agent Definition
-DirectoryAgent = Agent('DirectoryAgent',
-                       ECSDI.DirectoryAgent,
-                       f'http://{hostname}:{port}/comm',
-                       f'http://{hostname}:{port}/Stop')
+DirectoryAgent = Agent('DirectoryAgent', ECSDI.DirectoryAgent,
+                       f'http://{hostname}:{port}/comm', f'http://{hostname}:{port}/Stop')
 
 # Flask app
 app = Flask(__name__)
@@ -34,7 +34,12 @@ registered_agents = {}
 
 @app.route("/Stop")
 def stop():
-    shutdown_server()
+    try:
+        shutdown_server()
+    except Exception as e:
+        print(f"Error stopping server: {e}")
+        print('Using Alternative stopping method...')
+        os.kill(os.getpid(), signal.SIGINT)
     return "DirectoryAgent stopping..."
 
 
@@ -54,5 +59,4 @@ def get_agents():
 
 
 if __name__ == "__main__":
-    # Start the Flask app
     app.run(host=hostname, port=port)

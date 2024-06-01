@@ -1,3 +1,5 @@
+import os
+import signal
 import socket
 from multiprocessing import Process, Queue
 
@@ -11,10 +13,16 @@ from app.utils.FlaskServer import shutdown_server
 
 # Configuration stuff
 hostname = socket.gethostname()
-port = 9010
+port = 5001
+
+self_name = 'Agent1'
 
 # Directory agent address
-directory_address = 'http://localhost:9000/Register'
+directory_address_hostname = socket.gethostname()
+directory_address_port = 5000
+directory_address = f'http://{directory_address_hostname}:{
+    directory_address_port}'
+directory_address_register = f'{directory_address}/Register'
 
 # Namespace for the ontology
 ECSDI = Namespace(
@@ -24,10 +32,8 @@ ECSDI = Namespace(
 dsgraph = Graph()
 
 # Agent Definition
-Agent1 = Agent('Agent1',
-               ECSDI.Agent1,
-               f'http://{hostname}:{port}/comm',
-               f'http://{hostname}:{port}/Stop')
+Agent1 = Agent('Agent1', ECSDI.Agent1,
+               f'http://{hostname}:{port}/comm', f'http://{hostname}:{port}/Stop')
 
 # Flask app
 app = Flask(__name__)
@@ -35,7 +41,13 @@ app = Flask(__name__)
 
 @app.route("/Stop")
 def stop():
-    shutdown_server()
+    try:
+        shutdown_server()
+    except Exception as e:
+        print(f"Error stopping server: {e}")
+        print('Using Alternative stopping method...')
+        os.kill(os.getpid(), signal.SIGINT)
+
     return "Agent1 stopping..."
 
 
@@ -47,49 +59,56 @@ def agentbehavior(cola):
         print(f"Agent1 behavior received message: {msg}")
 
 
+def get_agent_dir(sender):
+    response = requests.get(f'{directory_address}/GetAgents')
+    response_body = response.json()
+    sender_address = response_body.get(sender)
+    return sender_address
+
+
 @app.route("/comm", methods=['POST'])
 def communicate():
     global dsgraph
     message = request.get_json()
     print("Agent1 received message:", message)
 
-    # Process the received message and create a response if needed
     if message['type'] == 'response':
         print(f"Received product info: {
               message['product']} priced at {message['price']}")
     elif message['type'] == 'request':
-        product_info = {
-            'type': 'response',
-            'product': 'Laptop',
-            'price': '1200'
-        }
-        requests.post('http://localhost:9020/comm', json=product_info)
-        print("Response sent from Agent1 to Agent2")
+        if message['performative'] == 'infoProd':
+            product = message['product']
+            # TODO: fetch product from the directory
+            response_body = {
+                'type': 'request',
+                'product': product,
+                'sender': self_name,
+                'performative': message['performative']
+            }
+            url = get_agent_dir('Agent2')
+            requests.post(url, json=response_body)
+        else:
+            print("Invalid performative")
 
     return "OK"
 
 
 def register_with_directory():
-    # Function to register Agent1 with the Directory Agent
     registration_info = {
-        'name': 'Agent1',
+        'name': self_name,
         'address': f'http://{hostname}:{port}/comm'
     }
-    requests.post(directory_address, json=registration_info)
+    requests.post(directory_address_register, json=registration_info)
     print("Agent1 registered with DirectoryAgent")
 
 
 if __name__ == "__main__":
-    # Start the agent behavior as a separate process
     cola = Queue()
     p = Process(target=agentbehavior, args=(cola,))
     p.start()
 
-    # Register with the directory agent
     register_with_directory()
 
-    # Run the Flask app
     app.run(host=hostname, port=port)
 
-    # Join the process after the Flask app stops
     p.join()
