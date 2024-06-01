@@ -104,10 +104,10 @@ def cerca():
             producto_filtrado = {
                 'nombre': nombre if nombre else '',
                 'precio': float(precio) if precio else 0.0,
-                'categoria': categoria_producto if categoria_producto else '',
-                'descripcion': descripcion if descripcion else '',
-                'num_valoraciones': int(num_valoraciones) if num_valoraciones else 0,
-                'estrellas_mitges': int(estrellas_mitges) if estrellas_mitges else 0
+                #'categoria': categoria_producto if categoria_producto else '',
+                #'descripcion': descripcion if descripcion else '',
+                #'num_valoraciones': int(num_valoraciones) if num_valoraciones else 0,
+                #'estrellas_mitges': int(estrellas_mitges) if estrellas_mitges else 0
             }
             productos_filtrados_list.append(producto_filtrado)
 
@@ -119,20 +119,58 @@ def cerca():
 
 @app.route("/MostrarProducte", methods=['GET', 'POST'])
 def mostrar():
+
     data = request.get_json()
     print(f"Datos recibidos: {data}")
 
-    # Verificar si se proporcionó el nombre del producto seleccionado y el nombre de usuario en la solicitud
-    if 'nom' in data and 'usuari' in data:
-        nom = data.get('nom', '')
-        usuari = data.get('usuari', '')
+    try:
+        base_datos = leer_DB(base_datos_productos)
+    except Exception as e:
+        return f"Error al leer la base de datos: {e}", 500
 
-        # Guardar el nombre del producto y el nombre del usuario en la base de datos
-        if nom and usuari:
+    # Verificar si se proporcionó el nombre del producto seleccionado
+    if 'nombre' in data:
+        nom = data.get('nombre', '')
+        usuari = "Sergi"
+        if nom:
             guardar_producto_cercat(nom, usuari)
-            return jsonify(data), 200
+
+            # Recorrer la base de datos para encontrar la información del producto
+            for producto in base_datos.subjects(RDF.type, ECSDI.Producte):
+                nombre = base_datos.value(producto, ECSDI.Nom)
+                if str(nombre) == str(nom):
+                    precio = base_datos.value(producto, ECSDI.Preu)
+                    categoria = base_datos.value(producto, ECSDI.Categoria)
+                    descripcion = base_datos.value(producto, ECSDI.Descripcio)
+                    num_valoraciones = base_datos.value(producto, ECSDI.NumValoracions)
+                    estrellas_mitges = base_datos.value(producto, ECSDI.EstrellesMitges)
+
+                    # Preparar la información del producto para la respuesta
+                    producto_info = {
+                        'Nom': nombre,
+                        'Preu': float(precio) if precio else 0.0,
+                        'Categoria': categoria if categoria else '',
+                        'Descripcio': descripcion if descripcion else '',
+                        'NumValoracions': int(num_valoraciones) if num_valoraciones else 0,
+                        'EstrellesMitges': int(estrellas_mitges) if estrellas_mitges else 0
+                    }
+
+                    # Convertir los datos de producto_info a un formato JSON más común
+                    producto_info_a_enviar = {
+                        'Nom': str(producto_info['Nom']),
+                        'Preu': float(producto_info['Preu']),
+                        'Categoria': str(producto_info['Categoria']),
+                        'Descripcio': str(producto_info['Descripcio']),
+                        'NumValoracions': int(producto_info['NumValoracions']),
+                        'EstrellesMitges': int(producto_info['EstrellesMitges'])
+                    }
+
+                    print(f"Info de producte individual a passar al Sergi: {producto_info_a_enviar}")
+                    return jsonify(producto_info_a_enviar), 200
+
+            return jsonify({"error": "Producto no encontrado"}), 404
     else:
-        return jsonify({"error": "Debe proporcionar el nombre del producto seleccionado y el nombre de usuario en el cuerpo del mensaje."}), 400
+        return jsonify({"error": "Debe proporcionar el nombre del producto seleccionado en el cuerpo del mensaje."}), 400
 
 
 def register_with_directory():
