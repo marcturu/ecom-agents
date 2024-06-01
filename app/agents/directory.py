@@ -6,11 +6,11 @@ app = Flask(__name__)
 
 # Directory of agents
 agents = {
-    'Agent1': 'http://localhost:5001',
     'AgentVenedor': 'http://localhost:5003',
     'AgentExtern': 'http://localhost:5004',
     'AgentValoracions': 'http://localhost:5005',
-    'AgentDependent': 'http://localhost:5006'
+    'AgentDependent': 'http://localhost:5006',
+    'Client': 'http://localhost:5007'
 }
 
 @app.route('/')
