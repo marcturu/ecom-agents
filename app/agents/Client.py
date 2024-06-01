@@ -3,10 +3,12 @@ from rdflib import Graph, Namespace, Literal
 from rdflib.namespace import RDF, XSD
 import uuid
 import requests
+import json
 
 app = Flask(__name__)
 
 carritoCompra = []
+precioTotal = 0.0
 
 AGENTE_URL = 'http://localhost:5006/FiltrarProducte'
 AGENTE_PRODUCTE_URL = 'http://localhost:5006/MostrarProducte'
@@ -50,8 +52,12 @@ def home():
                         if otra_response.status_code == 200:
                             print("El primer producto se ha enviado correctamente a otra URL.")
                             carritoCompra.append(prod1)
-                            return render_template('producto_enviado.html')
-                            # return "El primer producto se ha enviado correctamente a otra URL."
+                            return render_template('carritoCompra.html', carritoCompra=carritoCompra)
+                            # global precioTotal 
+                            # precioTotal += prod1.precio
+                            # precio_producto = prod1.get('precio', 0)  # Obtener el precio del diccionario o establecerlo en 0 si no está presente
+                            # carritoCompra.append({'nombre': prod1['nombre'], 'precio': precio_producto})
+                            # return render_template('carritoCompra.html', carritoCompra=carritoCompra, precioTotal=precioTotal)
                         else:
                             print("Error al enviar el primer producto a otra URL.")
                     except Exception as e:
@@ -107,14 +113,25 @@ def home():
 
 @app.route('/cart')
 def view_cart():
+    
     return render_template('carritoCompra.html', carritoCompra=carritoCompra)
 
 @app.route('/comprar')
 def comprar():
+    if not carritoCompra:
+        return """
+        El carrito está vacío. Añade productos antes de proceder a la compra.<br>
+        <a href="/">Volver a la página principal</a>
+        """
     try:
         response = requests.post(VENDEDOR_URL, json=carritoCompra)
         if response.status_code == 200:
-            # ENVIAR LA INFO AL VENDEDOR
+
+             # ENVIAR LA INFO AL VENDEDOR
+
+            carritoCompra.clear()  # Limpiar el carrito después de la compra exitosa
+            global precioTotal 
+            precioTotal = 0
             return "Compra realizada con éxito."
         else:
             return "Error al procesar la compra."
