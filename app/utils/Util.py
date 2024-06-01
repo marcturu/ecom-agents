@@ -26,5 +26,3 @@ def gethostname():
         print(f"Error: {e}")
         return socket.gethostname()
 
-
-print(get_hostname())
