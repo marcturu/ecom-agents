@@ -3,9 +3,44 @@
    xmlns:ns1="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#"
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
 >
-  <rdf:Description rdf:about="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Compra_C">
+  <rdf:Description rdf:about="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Compra_1717238914_539823_Producte1_Producte1">
     <rdf:type rdf:resource="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Compra"/>
-    <ns1:PreuTotal>80</ns1:PreuTotal>
-    <ns1:DataEntrega>20/10/2024</ns1:DataEntrega>
+    <ns1:Nom>Producte1</ns1:Nom>
+    <ns1:Quantitat rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5</ns1:Quantitat>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Compra_1717238914_539823_Producte2_Producte2">
+    <rdf:type rdf:resource="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Compra"/>
+    <ns1:Nom>Producte2</ns1:Nom>
+    <ns1:Quantitat rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</ns1:Quantitat>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Compra_1717238914_539823_Producte3_Producte3">
+    <rdf:type rdf:resource="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Compra"/>
+    <ns1:Nom>Producte3</ns1:Nom>
+    <ns1:Quantitat rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">7</ns1:Quantitat>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Compra_1717238914_539823_Producte4_Producte4">
+    <rdf:type rdf:resource="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Compra"/>
+    <ns1:Nom>Producte4</ns1:Nom>
+    <ns1:Quantitat rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</ns1:Quantitat>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Compra_1717238912_536871_Producte3_Producte3">
+    <rdf:type rdf:resource="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Compra"/>
+    <ns1:Nom>Producte3</ns1:Nom>
+    <ns1:Quantitat rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">6</ns1:Quantitat>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Compra_1717238912_536871_Producte1_Producte1">
+    <rdf:type rdf:resource="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Compra"/>
+    <ns1:Nom>Producte1</ns1:Nom>
+    <ns1:Quantitat rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">3</ns1:Quantitat>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Compra_1717238912_536871_Producte4_Producte4">
+    <rdf:type rdf:resource="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Compra"/>
+    <ns1:Nom>Producte4</ns1:Nom>
+    <ns1:Quantitat rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</ns1:Quantitat>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Compra_1717238912_536871_Producte2_Producte2">
+    <rdf:type rdf:resource="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Compra"/>
+    <ns1:Nom>Producte2</ns1:Nom>
+    <ns1:Quantitat rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">7</ns1:Quantitat>
   </rdf:Description>
 </rdf:RDF>

@@ -15,10 +15,28 @@ ns = Namespace("http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#")
 # Función para leer la base de datos RDF
 def leer_DB(ruta_archivo):
     base_datos = Graph()
+    
     try:
         base_datos.parse(ruta_archivo, format="xml")
-        num_tripletas = len(base_datos)
-        print(f"Se han cargado {num_tripletas} tripletas desde el archivo RDF.")
+        print("Productos en la base de datos RDF:")
+        
+        # Iterar sobre todos los sujetos que son de tipo 'Producte'
+        for producto in base_datos.subjects(RDF.type, ns.Producte):
+            nombre = base_datos.value(producto, ns.Nom)
+            precio = base_datos.value(producto, ns.Preu)
+            categoria = base_datos.value(producto, ns.Categoria)
+            descripcion = base_datos.value(producto, ns.Descripcio)
+            num_valoraciones = base_datos.value(producto, ns.NumValoracions)
+            estrellas_mitges = base_datos.value(producto, ns.EstrellesMitges)
+
+            print(f"Producto: {nombre}")
+            print(f"  Precio: {precio}")
+            print(f"  Categoría: {categoria}")
+            print(f"  Descripción: {descripcion}")
+            print(f"  Número de Valoraciones: {num_valoraciones}")
+            print(f"  Estrellas Medias: {estrellas_mitges}")
+            print("---")
+            
     except Exception as e:
         print("Error:", e)
     return base_datos

@@ -15,9 +15,9 @@ start "Agent 1" cmd /c "cd agents && python agent1.py"
 echo Starting Agent 2 on port 5002...
 start "Agent 2" cmd /c "cd agents && python agent2.py"
 
-:: Start Seller Agent
-echo Starting Seller Agent on port 5003...
-start "Seller Agent" cmd /c "cd agents && python SellerAgent.py"
+:: Start Agent Venedor
+echo Starting Agent Venedor on port 5003...
+start "Agent Venedor" cmd /c "cd agents && python AgentVenedor.py"
 
 :: Start Agent Extern
 echo Starting Agent Extern on port 5004...
@@ -31,6 +31,10 @@ start "Agent Valoracions" cmd /c "cd agents && python AgentValoracions.py"
 echo Starting Agent Extern on port 5006...
 start "Agent Dependent" cmd /c "cd agents && python AgentDependent.py"
 
+:: Start Client
+echo Starting Client on port 5006...
+start "Client" cmd /c "cd agents && python Client.py"
+
 :: Wait a bit to ensure all agents start
 timeout /t 2 /nobreak > NUL
 
@@ -38,8 +42,9 @@ echo All services are up and running.
 echo Directory Service running at http://localhost:5000
 echo Agent 1 running at http://localhost:5001
 echo Agent 2 running at http://localhost:5002
-echo Seller Agent running at http://localhost:5003
+echo Agent Venedor running at http://localhost:5003
 echo Agent Extern running at http://localhost:5004
 echo Agent Valoracions running at http://localhost:5005
 echo Agent Dependent running at http://localhost:5006
+echo Client running at http://localhost:5007
 pause

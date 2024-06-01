@@ -11,9 +11,9 @@ python3 agent1.py &
 
 python3 agent2.py &
 
-# Start Agent Seller
+# Start Agent Venedor
 
-python3 SellerAgent.py &
+python3 AgentVenedor.py &
 
 # Start Agent Extern
 
@@ -27,6 +27,10 @@ python3 AgentValoracions.py &
 
 python3 AgentDependent.py &
 
+# Start Client
+
+python3 Client.py &
+
 # Wait to ensure all services are up
 sleep 3
 
@@ -38,4 +42,6 @@ echo "Agent 3 running at http://localhost:5003"
 echo "Agent 4 running at http://localhost:5004"
 echo "Agent 5 running at http://localhost:5005"
 echo "Agent 6 running at http://localhost:5006"
+echo "Agent 7 running at http://localhost:5007"
+
 
