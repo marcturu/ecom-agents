@@ -3,6 +3,15 @@
    xmlns:ns1="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#"
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
 >
+  <rdf:Description rdf:about="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Producte_Producte3">
+    <rdf:type rdf:resource="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Producte"/>
+    <ns1:Nom>Producte3</ns1:Nom>
+    <ns1:Preu>3</ns1:Preu>
+    <ns1:Categoria>sdcsd</ns1:Categoria>
+    <ns1:Descripcio>csdcsd</ns1:Descripcio>
+    <ns1:NumValoracions>3</ns1:NumValoracions>
+    <ns1:EstrellesMitges>4</ns1:EstrellesMitges>
+  </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Producte_Moto">
     <rdf:type rdf:resource="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Producte"/>
     <ns1:Nom>Moto</ns1:Nom>
@@ -11,5 +20,14 @@
     <ns1:Descripcio>Moto 125cc</ns1:Descripcio>
     <ns1:NumValoracions>3</ns1:NumValoracions>
     <ns1:EstrellesMitges>4</ns1:EstrellesMitges>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Producte_Producte2">
+    <rdf:type rdf:resource="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Producte"/>
+    <ns1:Nom>Producte2</ns1:Nom>
+    <ns1:Preu>23</ns1:Preu>
+    <ns1:Categoria>s</ns1:Categoria>
+    <ns1:Descripcio>sdcdsvdscs</ns1:Descripcio>
+    <ns1:NumValoracions>3</ns1:NumValoracions>
+    <ns1:EstrellesMitges>3</ns1:EstrellesMitges>
   </rdf:Description>
 </rdf:RDF>
