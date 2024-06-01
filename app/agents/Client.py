@@ -6,8 +6,11 @@ import requests
 
 app = Flask(__name__)
 
+productosTotales = ""
 
 AGENTE_URL = 'http://localhost:5006/FiltrarProducte'
+AGENTE_PRODUCTE_URL = 'http://localhost:5006/MostrarProducte'
+
 
 # Definir el namespace
 ns = Namespace("http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#")
@@ -37,22 +40,37 @@ def home():
             response = requests.post(AGENTE_URL, json=filtro_json)
             print(f"Código de estado de la respuesta: {response.status_code}")
             if response.status_code == 200:
-                productos = response.json()
-                # primer_producto = productos[0] if productos else None
-                # response = requests.post(AGENTE_URL, json=primer_producto)
-                return render_template('productesFiltratsClient.html', productos=productos)
-            
+                productosFiltrados = response.json()
+
+                if productosFiltrados:
+                    prod1 = productosFiltrados[0]
+                    try:
+                        otra_response = requests.post(AGENTE_PRODUCTE_URL, json=prod1)
+                        if otra_response.status_code == 200:
+                            print("El primer producto se ha enviado correctamente a otra URL.")
+                            return "El primer producto se ha enviado correctamente a otra URL."
+                        else:
+                            print("Error al enviar el primer producto a otra URL.")
+                    except Exception as e:
+                        print(f"Error al enviar el primer producto a otra URL: {e}")
+                else:
+                    print("No se encontraron productos.")
+
                 # return """Filtres registrats correctament <br>
                 #     <a href="/">Afegir nous filtres</a>
                 #     """
             else:
-                return """Error en l'enviament dels filtres <br>
-                    <a href="/">Tornar</a>
-                    """
-        except Exception as e:
-            return f"""Error en l'enviament dels filtres: {e} <br>
+                mensaje = "Productos no trobats." if response.status_code == 404 else "Error en el envío de los filtros."
+                return f"""{mensaje}<br>
                 <a href="/">Tornar</a>
                 """
+        # except Exception as e:
+        #     return f"""Error en l'enviament dels filtres: {e} <br>
+        #         <a href="/">Tornar</a>
+        #         """
+        except Exception as e:
+            # Manejo de errores
+            return f"Ocurrió un error: {e}", 500
         
     else:
         html = """
