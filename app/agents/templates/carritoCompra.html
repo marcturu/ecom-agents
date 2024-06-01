@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrito de Compras</title>
+</head>
+<body>
+    <h1>Carrito de Compras</h1>
+    <ul>
+        {% for producto in carritoCompra %}
+            <li>{{ producto['nombre'] }} - {{ producto['precio'] }} EUR</li>
+        {% endfor %}
+    </ul>
+    <br>
+    <p><a href="/">Seguir Comprando</a></p>
+    <p><a href="{{ url_for('comprar') }}">Realizar Compra</a></p>
+</body>
+</html>
