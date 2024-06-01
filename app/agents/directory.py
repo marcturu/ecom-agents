@@ -9,8 +9,9 @@ agents = {
     'Agent1': 'http://localhost:5001',
     'Agent2': 'http://localhost:5002',
     'SellerAgent': 'http://localhost:5003',
-    'AgentExtern': 'http://localhost:5004'
-
+    'AgentExtern': 'http://localhost:5004',
+    'AgentValoracions': 'http://localhost:5005',
+    'AgentDependent': 'http://localhost:5006'
 }
 
 @app.route('/')
@@ -54,12 +55,6 @@ def mostrar_DB(base_datos):
     # Mostrar todas las tripletas en la base de datos
     for subj, pred, obj in base_datos:
         print(f"Sujeto: {subj}, Predicado: {pred}, Objeto: {obj}")
-
-def añadir_producto(base_datos, nombre_producto):
-    ns = Namespace("http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#")
-    producte_uri = ns.Producte_4444 # Cambiar el URI según corresponda
-    base_datos.add((producte_uri, RDF.type, ns.Producte))
-    base_datos.add((producte_uri, ns.Nombre, Literal(nombre_producto)))
     
 def añadir_compra(base_datos, nomCompra, preuCompra, dataEntrega):
     ns = Namespace("http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#")
@@ -76,23 +71,7 @@ def guardar_DB(base_datos, ruta_archivo):
 
 if __name__ == "__main__":
     app.run(port=5000)
-
-    archivo_base_datos = "../data/productes.rdf"
-    base_datos = leer_DB(archivo_base_datos)
-    
-    # Mostrar los productos existentes
-    print("Productos existentes en la base de datos:")
-    mostrar_DB(base_datos)
-    
-    # Añadir un nuevo producto
-    nuevo_producto = "Nuevo Producto"
-    añadir_producto(base_datos, nuevo_producto)
-    
-    # Guardar los cambios en la base de datos
-    guardar_DB(base_datos, archivo_base_datos)
-
-
-    
+  
     archivo_base_datos = "../data/compres.rdf"
     base_datos = leer_DB(archivo_base_datos)
     
