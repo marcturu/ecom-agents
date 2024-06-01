@@ -7,7 +7,7 @@ import requests
 app = Flask(__name__)
 
 
-AGENTE_URL = 'http://localhost:5006/FiltrarProducte'
+AGENTE_URL = 'http://localhost:5006/'
 
 # Definir el namespace
 ns = Namespace("http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#")
@@ -37,9 +37,14 @@ def home():
             response = requests.post(AGENTE_URL, json=filtro_json)
             print(f"Código de estado de la respuesta: {response.status_code}")
             if response.status_code == 200:
-                return """Filtres registrats correctament <br>
-                    <a href="/">Afegir nous filtres</a>
-                    """
+                productos = response.json()
+                # primer_producto = productos[0] if productos else None
+                # response = requests.post(AGENTE_URL, json=primer_producto)
+                return render_template('productesFiltratsClient.html', productos=productos)
+            
+                # return """Filtres registrats correctament <br>
+                #     <a href="/">Afegir nous filtres</a>
+                #     """
             else:
                 return """Error en l'enviament dels filtres <br>
                     <a href="/">Tornar</a>
