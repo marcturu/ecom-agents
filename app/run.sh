@@ -15,6 +15,18 @@ python3 agent2.py &
 
 python3 SellerAgent.py &
 
+# Start Agent Extern
+
+python3 AgentExtern.py &
+
+# Start Agent Valoracions
+
+python3 AgentValoracions.py &
+
+# Start Agent Dependent
+
+python3 AgentDependent.py &
+
 # Wait to ensure all services are up
 sleep 3
 
@@ -23,4 +35,7 @@ echo "Directory Service running at http://localhost:5000"
 echo "Agent 1 running at http://localhost:5001"
 echo "Agent 2 running at http://localhost:5002"
 echo "Agent 3 running at http://localhost:5003"
+echo "Agent 4 running at http://localhost:5004"
+echo "Agent 5 running at http://localhost:5005"
+echo "Agent 6 running at http://localhost:5006"
 
