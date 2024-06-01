@@ -1,0 +1,62 @@
+import os
+import signal
+import socket
+from multiprocessing import Process, Queue
+
+from flask import Flask, jsonify, request
+from rdflib import Graph, Literal, Namespace, URIRef
+from rdflib.namespace import RDF
+
+from app.utils.Agent import Agent
+from app.utils.FlaskServer import shutdown_server
+
+# Configuration stuff
+hostname = socket.gethostname()
+port = 5000
+
+# Namespace for the ontology
+ECSDI = Namespace(
+    "http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#")
+
+# Global triplestore graph
+dsgraph = Graph()
+
+# Agent Definition
+DirectoryAgent = Agent('DirectoryAgent', ECSDI.DirectoryAgent,
+                       f'http://{hostname}:{port}/comm', f'http://{hostname}:{port}/Stop')
+
+# Flask app
+app = Flask(__name__)
+
+# Registered agents dictionary
+registered_agents = {}
+
+
+@app.route("/Stop")
+def stop():
+    try:
+        shutdown_server()
+    except Exception as e:
+        print(f"Error stopping server: {e}")
+        print('Using Alternative stopping method...')
+        os.kill(os.getpid(), signal.SIGINT)
+    return "DirectoryAgent stopping..."
+
+
+@app.route("/Register", methods=['POST'])
+def register():
+    global registered_agents
+    content = request.get_json()
+    agent_name = content['name']
+    agent_address = content['address']
+    registered_agents[agent_name] = agent_address
+    return jsonify({"message": f"Agent {agent_name} registered successfully"}), 200
+
+
+@app.route("/GetAgents", methods=['GET'])
+def get_agents():
+    return jsonify(registered_agents), 200
+
+
+if __name__ == "__main__":
+    app.run(host=hostname, port=port)

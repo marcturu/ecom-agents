@@ -10,9 +10,13 @@ Util.py
 
 """
 import socket
+
 from pif import get_public_ip
 
-def get_hostname():
+__author__ = 'SergiMarcMiquel'
+
+
+def gethostname():
     try:
         ip = get_public_ip()
         if not ip:
@@ -21,5 +25,6 @@ def get_hostname():
     except Exception as e:
         print(f"Error: {e}")
         return socket.gethostname()
+
 
 print(get_hostname())
