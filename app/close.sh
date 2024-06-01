@@ -30,4 +30,7 @@ kill_by_port 5004
 # Kill Agent Valoracions (port 5005)
 kill_by_port 5005
 
+# Kill Agent Dependent (port 5006)
+kill_by_port 5006
+
 echo "All agents and the directory service have been terminated."
