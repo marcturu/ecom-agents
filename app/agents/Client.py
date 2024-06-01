@@ -47,17 +47,15 @@ def home():
 
                 if productosFiltrados:
                     prod1 = productosFiltrados[0]
+                    print(prod1)
                     try:
                         otra_response = requests.post(AGENTE_PRODUCTE_URL, json=prod1)
                         if otra_response.status_code == 200:
                             print("El primer producto se ha enviado correctamente a otra URL.")
                             carritoCompra.append(prod1)
-                            return render_template('carritoCompra.html', carritoCompra=carritoCompra)
-                            # global precioTotal 
-                            # precioTotal += prod1.precio
-                            # precio_producto = prod1.get('precio', 0)  # Obtener el precio del diccionario o establecerlo en 0 si no está presente
-                            # carritoCompra.append({'nombre': prod1['nombre'], 'precio': precio_producto})
-                            # return render_template('carritoCompra.html', carritoCompra=carritoCompra, precioTotal=precioTotal)
+                            global precioTotal 
+                            precioTotal += prod1['precio']
+                            return render_template('carritoCompra.html', carritoCompra=carritoCompra, precioTotal=precioTotal)
                         else:
                             print("Error al enviar el primer producto a otra URL.")
                     except Exception as e:
@@ -113,8 +111,7 @@ def home():
 
 @app.route('/cart')
 def view_cart():
-    
-    return render_template('carritoCompra.html', carritoCompra=carritoCompra)
+    return render_template('carritoCompra.html', carritoCompra=carritoCompra, precioTotal=precioTotal)
 
 @app.route('/comprar')
 def comprar():
