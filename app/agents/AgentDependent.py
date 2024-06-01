@@ -7,6 +7,9 @@ import json
 
 app = Flask(__name__)
 
+AGENTE_CLIENT_URL = 'http://localhost:5007/ElegirProducte'
+
+
 base_datos_productos = "../data/productes.rdf"
 base_datos_productesCercats = "../data/productesCercats.rdf"
 ECSDI = Namespace("http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#")
@@ -47,35 +50,24 @@ def home():
 @app.route("/FiltrarProducte", methods=['GET', 'POST'])
 def cerca():
 
-    #x = request.json()
-    # x.get("nom", "")
-
-    # Coger filtros que pasa el usuario
-    '''if request.method == 'POST':
-        nom = request.form['nom']
-        preu = request.form['preu']
-        categoria = request.form['categoria']
-        numValoracions = request.form['numValoracions']
-        estrellesMitges = request.form['estrellesMitges']
-    '''
-
     data = request.get_json()
     print(f"Datos recibidos: {data}")
-    #return jsonify({"status": "success", "data": data}), 200
 
-    # Definir los filtros
     filtros = {
         'nom': data.get('nom', ''),
-        'preu': data.get('preu', ''),
+        'preu_min': data.get('preu_min', ''),
+        'preu_max': data.get('preu_max', ''),
         'categoria': data.get('categoria', ''),
-        'numValoracions': data.get('numValoracions', ''),
-        'estrellesMitges': data.get('estrellesMitges', '')
+        'num_valoracions_min': data.get('num_valoracions_min', ''),
+        'estrelles_min': data.get('estrelles_min', '')
     }
 
-    base_datos = leer_DB(base_datos_productos)
+    try:
+        base_datos = leer_DB(base_datos_productos)
+    except Exception as e:
+        return f"Error al leer la base de datos: {e}", 500
 
-    # Filtrar productos
-    productos_filtrados = Graph()
+    productos_filtrados_list = []
 
     for producto in base_datos.subjects(RDF.type, ECSDI.Producte):
         nombre = base_datos.value(producto, ECSDI.Nom)
@@ -85,31 +77,13 @@ def cerca():
         num_valoraciones = base_datos.value(producto, ECSDI.NumValoracions)
         estrellas_mitges = base_datos.value(producto, ECSDI.EstrellesMitges)
 
-        # Verificar si el producto cumple con todos los filtros
         if ((not filtros['nom'] or filtros['nom'].lower() in str(nombre).lower()) and
-                (not filtros['preu'] or float(precio) <= float(filtros['preu'])) and
+                (not filtros['preu_min'] or (precio and float(precio) >= float(filtros['preu_min']))) and
+                (not filtros['preu_max'] or (precio and float(precio) <= float(filtros['preu_max']))) and
                 (not filtros['categoria'] or filtros['categoria'].lower() in str(categoria_producto).lower()) and
-                (not filtros['numValoracions'] or (num_valoraciones and int(num_valoraciones) >= int(filtros['numValoracions']))) and
-                (not filtros['estrellesMitges'] or filtros['estrellesMitges'] in str(estrellas_mitges))):
-            '''
-            # Agregar el producto a los productos filtrados
-            productos_filtrados.add((producto, RDF.type, ECSDI.Producte))
-            if nombre:
-                productos_filtrados.add((producto, ECSDI.Nom, nombre))
-            if precio:
-                productos_filtrados.add((producto, ECSDI.Preu, precio))
-            if categoria_producto:
-                productos_filtrados.add((producto, ECSDI.Categoria, categoria_producto))
-            if descripcion:
-                productos_filtrados.add((producto, ECSDI.Descripcio, descripcion))
-            if num_valoraciones:
-                productos_filtrados.add((producto, ECSDI.NumValoracions, num_valoraciones))
-            if estrellas_mitges:
-                productos_filtrados.add((producto, ECSDI.EstrellesMitges, estrellas_mitges)) 
+                (not filtros['num_valoracions_min'] or (num_valoraciones and int(num_valoraciones) >= int(filtros['num_valoracions_min']))) and
+                (not filtros['estrelles_min'] or (estrellas_mitges and int(estrellas_mitges) >= int(filtros['estrelles_min'])))):
 
-    return productos_filtrados.serialize(format='xml')'''
-
-            # Crear un objeto JSON para el producto filtrado y agregarlo a la lista
             producto_filtrado = {
                 'nombre': nombre if nombre else '',
                 'precio': float(precio) if precio else 0.0,
@@ -120,25 +94,10 @@ def cerca():
             }
             productos_filtrados_list.append(producto_filtrado)
 
-    # Devolver la lista de productos filtrados como respuesta JSON
-    try:
-        response = requests.post('http://localhost:5006/', json=productos_filtrados_list)
-        print(f"Código de estado de la respuesta: {response.status_code}")
-        if response.status_code == 200:
-            return """Productes filtrats enviats correctament <br>
-                    <a href="/">Tornar</a>
-                    """
-        else:
-            return """Error en l'enviament dels productes filtrats <br>
-                    <a href="/">Tornar</a>
-                    """
-    except Exception as e:
-        return f"""Error en l'enviament dels productes filtrats: {e} <br>
-                <a href="/">Tornar</a>
-                """
-
-    '''else:
-        return "Método no soportado", 405 '''
+    if productos_filtrados_list:
+        return jsonify(productos_filtrados_list), 200
+    else:
+        return "No se encontraron productos que coincidan con los filtros proporcionados", 404
 
 
 @app.route("/MostrarProducte", methods=['GET', 'POST'])
