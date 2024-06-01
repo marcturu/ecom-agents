@@ -43,6 +43,23 @@ def leer_DB(ruta_archivo):
 
     return base_datos
 
+def guardar_producto_cercat(nombre_producto, nombre_usuario):
+    # Cargar la base de datos de productos cercados si no ha sido cargada previamente
+    if not hasattr(guardar_producto_cercat, 'base_datos_productes_cercats'):
+        guardar_producto_cercat.base_datos_productes_cercats = leer_DB(base_datos_productesCercats)
+
+    # Crear una nueva URI para el producto
+    producto_uri = ECSDI[f"Producte_{nombre_producto.replace(' ', '')}"]
+
+    # Agregar tripleta a la base de datos
+    guardar_producto_cercat.base_datos_productes_cercats.add((producto_uri, ECSDI.ProducteCercat, Literal(nombre_producto)))
+    guardar_producto_cercat.base_datos_productes_cercats.add((producto_uri, ECSDI.Usuario, Literal(nombre_usuario)))
+
+    # Guardar la base de datos en un archivo
+    guardar_producto_cercat.base_datos_productes_cercats.serialize(destination="../data/productesCercats.rdf", format="xml")
+
+    return
+
 @app.route('/', methods=['GET', 'POST'])
 def home():
     return "<h1>Bienvenido al agente dependiente</h1>"
@@ -102,50 +119,21 @@ def cerca():
 
 @app.route("/MostrarProducte", methods=['GET', 'POST'])
 def mostrar():
-    # Obtener el cuerpo del mensaje JSON de la solicitud
-    #data = request.json
-    producto = {
-        'nom': 'Moto',
-        'preu': 1000,
-        'categoria': 'Automobils',
-        'descripcio': 'Moto 125cc',
-        'numValoracions': 4,
-        'estrellesMitges': 4
-    }
-
-    data = {'producto_seleccionado': producto['nom'], 'nombre_usuario': "Marc"}
+    data = request.get_json()
+    print(f"Datos recibidos: {data}")
 
     # Verificar si se proporcionó el nombre del producto seleccionado y el nombre de usuario en la solicitud
-    if 'producto_seleccionado' in data and 'nombre_usuario' in data:
-        producto_seleccionado = data['producto_seleccionado']
-        nombre_usuario = data['nombre_usuario']
+    if 'nom' in data and 'usuari' in data:
+        nom = data.get('nom', '')
+        usuari = data.get('usuari', '')
 
         # Guardar el nombre del producto y el nombre del usuario en la base de datos
-        if producto_seleccionado and nombre_usuario:
-            guardar_producto_cercat(producto_seleccionado, nombre_usuario)
-            return jsonify(producto)
-            #return jsonify({"message": f"El producto '{producto_seleccionado}' ha sido guardado en la base de datos por el usuario '{nombre_usuario}'."}), 200
+        if nom and usuari:
+            guardar_producto_cercat(nom, usuari)
+            return jsonify(data), 200
     else:
         return jsonify({"error": "Debe proporcionar el nombre del producto seleccionado y el nombre de usuario en el cuerpo del mensaje."}), 400
 
-def guardar_producto_cercat(nombre_producto, nombre_usuario):
-    # Cargar la base de datos de productos cercados si no ha sido cargada previamente
-    if not hasattr(guardar_producto_cercat, 'base_datos_productes_cercats'):
-        guardar_producto_cercat.base_datos_productes_cercats = leer_DB(base_datos_productesCercats)
-
-    # Crear una nueva URI para el producto
-    producto_uri = ECSDI[f"Producte_{nombre_producto.replace(' ', '')}"]
-
-    # Agregar tripleta a la base de datos
-    guardar_producto_cercat.base_datos_productes_cercats.add((producto_uri, ECSDI.ProducteCercat, Literal(nombre_producto)))
-    guardar_producto_cercat.base_datos_productes_cercats.add((producto_uri, ECSDI.Usuario, Literal(nombre_usuario)))
-
-    # Guardar la base de datos en un archivo
-    guardar_producto_cercat.base_datos_productes_cercats.serialize(destination="../data/productesCercats.rdf", format="xml")
-
-    return
-
-#Regsitsrar a BD productesCercats
 
 def register_with_directory():
     directory_url = 'http://localhost:5000/register'
