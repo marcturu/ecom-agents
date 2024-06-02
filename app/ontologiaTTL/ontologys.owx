@@ -1,0 +1,1237 @@
+<?xml version="1.0"?>
+<Ontology xmlns="http://www.w3.org/2002/07/owl#"
+     xml:base="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     ontologyIRI="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI">
+    <Prefix name="" IRI="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#"/>
+    <Prefix name="g" IRI="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI/"/>
+    <Prefix name="owl" IRI="http://www.w3.org/2002/07/owl#"/>
+    <Prefix name="rdf" IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+    <Prefix name="xml" IRI="http://www.w3.org/XML/1998/namespace"/>
+    <Prefix name="xsd" IRI="http://www.w3.org/2001/XMLSchema#"/>
+    <Prefix name="rdfs" IRI="http://www.w3.org/2000/01/rdf-schema#"/>
+    <Prefix name="practicaecsdi" IRI="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#"/>
+    <Declaration>
+        <Class IRI="#Accio"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#BuscarProducte"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#CentreLogistic"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#CercaUsuari"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Ciutat"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Compra"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#CompraUsuari"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#DemanarDisponibilitat"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#DemanarOfertaTransport"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Direcció"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#EmpresaTransport"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#EnviarLots"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#FiltrarProducte"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#IniciarCompra"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#LotProductes"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#MostrarProducte"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#OfertaTransport"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#PeticioDevolucio"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Producte"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#ProducteExtern"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#ProductePropi"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Recomanacio"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#RegistrarProducteExtern"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Stock"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Transferir"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Transportista"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#TriarTransportista"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Usuari"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Valoracio"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#VenedorExtern"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#Ciutat_entrega"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#Constituida_per"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#Constituida_per2"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#Constituit_per"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#Conte"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#De"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#Demana"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#Disposa2_de"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#Disposa_de"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#Es_demana_a"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#Es_dirigida2_a"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#Es_dirigida_a"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#Es_propietat_de"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#Formada2_de"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#Formada_de"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#Formada_per"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#Format2_per"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#Format_per"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#Necessita"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#Ofereix"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#Registra_a"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#Retorna"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#Retorna2"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#Sentrega_a"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#Senvia_a"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#Te"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#Te_desti_en"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#Te_origen_en"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#Transporta"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#Ubicat2_en"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#Ubicat3_en"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#Ubicat4_en"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#Ubicat_en"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#Una"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#Viu2_a"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#Viu_a"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#carrer"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#categoria"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#correu"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#data"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#dataEntrega"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#dataEnviament"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#dataMaximaEntrega"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#descripcio"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#estrelles"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#estrellesMitges"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#latitud"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#longitud"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#nom"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#nomEmpresa"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#nomUsuari"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#numCerques"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#numValoracions"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#numero"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#pais"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#pes"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#pis"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#preu"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#preuTotal"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#prioritatEntrega"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#quantitat"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#telefon"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#cobrat?"/>
+    </Declaration>
+    <SubClassOf>
+        <Class IRI="#BuscarProducte"/>
+        <Class IRI="#Accio"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#DemanarDisponibilitat"/>
+        <Class IRI="#Accio"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#DemanarOfertaTransport"/>
+        <Class IRI="#Accio"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#EnviarLots"/>
+        <Class IRI="#Accio"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#FiltrarProducte"/>
+        <Class IRI="#BuscarProducte"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#IniciarCompra"/>
+        <Class IRI="#Accio"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#MostrarProducte"/>
+        <Class IRI="#BuscarProducte"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#PeticioDevolucio"/>
+        <Class IRI="#Accio"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#ProducteExtern"/>
+        <Class IRI="#Producte"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#ProductePropi"/>
+        <Class IRI="#Producte"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#RegistrarProducteExtern"/>
+        <Class IRI="#Accio"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Transferir"/>
+        <Class IRI="#Accio"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#TriarTransportista"/>
+        <Class IRI="#Accio"/>
+    </SubClassOf>
+    <DisjointClasses>
+        <Class IRI="#FiltrarProducte"/>
+        <Class IRI="#MostrarProducte"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#ProducteExtern"/>
+        <Class IRI="#ProductePropi"/>
+    </DisjointClasses>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#Ciutat_entrega"/>
+        <ObjectProperty abbreviatedIRI="owl:topObjectProperty"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#Constituida_per"/>
+        <ObjectProperty abbreviatedIRI="owl:topObjectProperty"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#Constituida_per2"/>
+        <ObjectProperty abbreviatedIRI="owl:topObjectProperty"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#Constituit_per"/>
+        <ObjectProperty abbreviatedIRI="owl:topObjectProperty"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#Conte"/>
+        <ObjectProperty abbreviatedIRI="owl:topObjectProperty"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#De"/>
+        <ObjectProperty abbreviatedIRI="owl:topObjectProperty"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#Demana"/>
+        <ObjectProperty abbreviatedIRI="owl:topObjectProperty"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#Disposa2_de"/>
+        <ObjectProperty abbreviatedIRI="owl:topObjectProperty"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#Disposa_de"/>
+        <ObjectProperty abbreviatedIRI="owl:topObjectProperty"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#Es_demana_a"/>
+        <ObjectProperty abbreviatedIRI="owl:topObjectProperty"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#Es_dirigida2_a"/>
+        <ObjectProperty abbreviatedIRI="owl:topObjectProperty"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#Es_dirigida_a"/>
+        <ObjectProperty abbreviatedIRI="owl:topObjectProperty"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#Es_propietat_de"/>
+        <ObjectProperty abbreviatedIRI="owl:topObjectProperty"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#Formada2_de"/>
+        <ObjectProperty abbreviatedIRI="owl:topObjectProperty"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#Formada_de"/>
+        <ObjectProperty abbreviatedIRI="owl:topObjectProperty"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#Formada_per"/>
+        <ObjectProperty abbreviatedIRI="owl:topObjectProperty"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#Format2_per"/>
+        <ObjectProperty abbreviatedIRI="owl:topObjectProperty"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#Format_per"/>
+        <ObjectProperty abbreviatedIRI="owl:topObjectProperty"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#Necessita"/>
+        <ObjectProperty abbreviatedIRI="owl:topObjectProperty"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#Ofereix"/>
+        <ObjectProperty abbreviatedIRI="owl:topObjectProperty"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#Registra_a"/>
+        <ObjectProperty abbreviatedIRI="owl:topObjectProperty"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#Retorna"/>
+        <ObjectProperty abbreviatedIRI="owl:topObjectProperty"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#Retorna2"/>
+        <ObjectProperty abbreviatedIRI="owl:topObjectProperty"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#Sentrega_a"/>
+        <ObjectProperty abbreviatedIRI="owl:topObjectProperty"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#Senvia_a"/>
+        <ObjectProperty abbreviatedIRI="owl:topObjectProperty"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#Te"/>
+        <ObjectProperty abbreviatedIRI="owl:topObjectProperty"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#Te_desti_en"/>
+        <ObjectProperty abbreviatedIRI="owl:topObjectProperty"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#Te_origen_en"/>
+        <ObjectProperty abbreviatedIRI="owl:topObjectProperty"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#Transporta"/>
+        <ObjectProperty abbreviatedIRI="owl:topObjectProperty"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#Ubicat2_en"/>
+        <ObjectProperty abbreviatedIRI="owl:topObjectProperty"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#Ubicat3_en"/>
+        <ObjectProperty abbreviatedIRI="owl:topObjectProperty"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#Ubicat4_en"/>
+        <ObjectProperty abbreviatedIRI="owl:topObjectProperty"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#Ubicat_en"/>
+        <ObjectProperty abbreviatedIRI="owl:topObjectProperty"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#Una"/>
+        <ObjectProperty abbreviatedIRI="owl:topObjectProperty"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#Viu2_a"/>
+        <ObjectProperty abbreviatedIRI="owl:topObjectProperty"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#Viu_a"/>
+        <ObjectProperty abbreviatedIRI="owl:topObjectProperty"/>
+    </SubObjectPropertyOf>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#Ciutat_entrega"/>
+        <Class IRI="#DemanarOfertaTransport"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#Constituida_per"/>
+        <Class IRI="#Valoracio"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#Constituida_per2"/>
+        <Class IRI="#Valoracio"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#Constituit_per"/>
+        <Class IRI="#LotProductes"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#Conte"/>
+        <Class IRI="#Recomanacio"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#De"/>
+        <Class IRI="#EnviarLots"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#Demana"/>
+        <Class IRI="#BuscarProducte"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#Disposa2_de"/>
+        <Class IRI="#CentreLogistic"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#Disposa_de"/>
+        <Class IRI="#Producte"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#Es_demana_a"/>
+        <Class IRI="#DemanarDisponibilitat"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#Es_dirigida2_a"/>
+        <Class IRI="#TriarTransportista"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#Es_dirigida_a"/>
+        <Class IRI="#DemanarOfertaTransport"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#Es_propietat_de"/>
+        <Class IRI="#ProducteExtern"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#Formada2_de"/>
+        <Class IRI="#CompraUsuari"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#Formada_de"/>
+        <Class IRI="#CompraUsuari"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#Formada_per"/>
+        <Class IRI="#EmpresaTransport"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#Format2_per"/>
+        <Class IRI="#CercaUsuari"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#Format_per"/>
+        <Class IRI="#CercaUsuari"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#Necessita"/>
+        <Class IRI="#OfertaTransport"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#Ofereix"/>
+        <Class IRI="#EmpresaTransport"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#Registra_a"/>
+        <Class IRI="#RegistrarProducteExtern"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#Retorna"/>
+        <Class IRI="#PeticioDevolucio"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#Retorna2"/>
+        <Class IRI="#IniciarCompra"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#Sentrega_a"/>
+        <Class IRI="#CompraUsuari"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#Senvia_a"/>
+        <Class IRI="#Recomanacio"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#Te"/>
+        <Class IRI="#Compra"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#Te_desti_en"/>
+        <Class IRI="#LotProductes"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#Te_origen_en"/>
+        <Class IRI="#LotProductes"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#Transporta"/>
+        <Class IRI="#Transportista"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#Ubicat2_en"/>
+        <Class IRI="#CentreLogistic"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#Ubicat3_en"/>
+        <Class IRI="#EmpresaTransport"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#Ubicat4_en"/>
+        <Class IRI="#EmpresaTransport"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#Ubicat_en"/>
+        <Class IRI="#CentreLogistic"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#Una"/>
+        <Class IRI="#Transferir"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#Viu2_a"/>
+        <Class IRI="#Usuari"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#Viu_a"/>
+        <Class IRI="#Usuari"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#Ciutat_entrega"/>
+        <Class IRI="#Ciutat"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#Constituida_per"/>
+        <Class IRI="#Producte"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#Constituida_per2"/>
+        <Class IRI="#Usuari"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#Constituit_per"/>
+        <Class IRI="#CompraUsuari"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#Conte"/>
+        <Class IRI="#Producte"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#De"/>
+        <Class IRI="#LotProductes"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#Demana"/>
+        <Class IRI="#Producte"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#Disposa2_de"/>
+        <Class IRI="#Stock"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#Disposa_de"/>
+        <Class IRI="#Stock"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#Es_demana_a"/>
+        <Class IRI="#CentreLogistic"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#Es_dirigida2_a"/>
+        <Class IRI="#EmpresaTransport"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#Es_dirigida_a"/>
+        <Class IRI="#EmpresaTransport"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#Es_propietat_de"/>
+        <Class IRI="#VenedorExtern"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#Formada2_de"/>
+        <Class IRI="#Usuari"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#Formada_de"/>
+        <Class IRI="#Compra"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#Formada_per"/>
+        <Class IRI="#Transportista"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#Format2_per"/>
+        <Class IRI="#Usuari"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#Format_per"/>
+        <Class IRI="#Producte"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#Necessita"/>
+        <Class IRI="#Transportista"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#Ofereix"/>
+        <Class IRI="#OfertaTransport"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#Registra_a"/>
+        <Class IRI="#ProducteExtern"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#Retorna"/>
+        <Class IRI="#Compra"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#Retorna2"/>
+        <Class IRI="#Compra"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#Sentrega_a"/>
+        <Class IRI="#Direcció"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#Senvia_a"/>
+        <Class IRI="#Usuari"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#Te"/>
+        <Class IRI="#Producte"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#Te_desti_en"/>
+        <Class IRI="#Ciutat"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#Te_origen_en"/>
+        <Class IRI="#CentreLogistic"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#Transporta"/>
+        <Class IRI="#EnviarLots"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#Ubicat2_en"/>
+        <Class IRI="#Ciutat"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#Ubicat3_en"/>
+        <Class IRI="#Direcció"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#Ubicat4_en"/>
+        <Class IRI="#Ciutat"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#Ubicat_en"/>
+        <Class IRI="#Direcció"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#Una"/>
+        <Class IRI="#Compra"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#Viu2_a"/>
+        <Class IRI="#Direcció"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#Viu_a"/>
+        <Class IRI="#Ciutat"/>
+    </ObjectPropertyRange>
+    <SubDataPropertyOf>
+        <DataProperty IRI="#carrer"/>
+        <DataProperty abbreviatedIRI="owl:topDataProperty"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
+        <DataProperty IRI="#categoria"/>
+        <DataProperty abbreviatedIRI="owl:topDataProperty"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
+        <DataProperty IRI="#correu"/>
+        <DataProperty abbreviatedIRI="owl:topDataProperty"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
+        <DataProperty IRI="#data"/>
+        <DataProperty abbreviatedIRI="owl:topDataProperty"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
+        <DataProperty IRI="#dataEntrega"/>
+        <DataProperty abbreviatedIRI="owl:topDataProperty"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
+        <DataProperty IRI="#dataEnviament"/>
+        <DataProperty abbreviatedIRI="owl:topDataProperty"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
+        <DataProperty IRI="#dataMaximaEntrega"/>
+        <DataProperty abbreviatedIRI="owl:topDataProperty"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
+        <DataProperty IRI="#descripcio"/>
+        <DataProperty abbreviatedIRI="owl:topDataProperty"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
+        <DataProperty IRI="#estrelles"/>
+        <DataProperty abbreviatedIRI="owl:topDataProperty"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
+        <DataProperty IRI="#estrellesMitges"/>
+        <DataProperty abbreviatedIRI="owl:topDataProperty"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
+        <DataProperty IRI="#latitud"/>
+        <DataProperty abbreviatedIRI="owl:topDataProperty"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
+        <DataProperty IRI="#longitud"/>
+        <DataProperty abbreviatedIRI="owl:topDataProperty"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
+        <DataProperty IRI="#nom"/>
+        <DataProperty abbreviatedIRI="owl:topDataProperty"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
+        <DataProperty IRI="#nomEmpresa"/>
+        <DataProperty abbreviatedIRI="owl:topDataProperty"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
+        <DataProperty IRI="#nomUsuari"/>
+        <DataProperty abbreviatedIRI="owl:topDataProperty"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
+        <DataProperty IRI="#numCerques"/>
+        <DataProperty abbreviatedIRI="owl:topDataProperty"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
+        <DataProperty IRI="#numValoracions"/>
+        <DataProperty abbreviatedIRI="owl:topDataProperty"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
+        <DataProperty IRI="#numero"/>
+        <DataProperty abbreviatedIRI="owl:topDataProperty"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
+        <DataProperty IRI="#pais"/>
+        <DataProperty abbreviatedIRI="owl:topDataProperty"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
+        <DataProperty IRI="#pes"/>
+        <DataProperty abbreviatedIRI="owl:topDataProperty"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
+        <DataProperty IRI="#pis"/>
+        <DataProperty abbreviatedIRI="owl:topDataProperty"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
+        <DataProperty IRI="#preu"/>
+        <DataProperty abbreviatedIRI="owl:topDataProperty"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
+        <DataProperty IRI="#preuTotal"/>
+        <DataProperty abbreviatedIRI="owl:topDataProperty"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
+        <DataProperty IRI="#prioritatEntrega"/>
+        <DataProperty abbreviatedIRI="owl:topDataProperty"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
+        <DataProperty IRI="#quantitat"/>
+        <DataProperty abbreviatedIRI="owl:topDataProperty"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
+        <DataProperty IRI="#telefon"/>
+        <DataProperty abbreviatedIRI="owl:topDataProperty"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
+        <DataProperty IRI="#cobrat?"/>
+        <DataProperty abbreviatedIRI="owl:topDataProperty"/>
+    </SubDataPropertyOf>
+    <DataPropertyDomain>
+        <DataProperty IRI="#carrer"/>
+        <Class IRI="#Direcció"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="#categoria"/>
+        <Class IRI="#Producte"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="#correu"/>
+        <Class IRI="#Usuari"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="#data"/>
+        <Class IRI="#Compra"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="#data"/>
+        <Class IRI="#OfertaTransport"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="#data"/>
+        <Class IRI="#Recomanacio"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="#data"/>
+        <Class IRI="#TriarTransportista"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="#data"/>
+        <Class IRI="#Valoracio"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="#dataEntrega"/>
+        <Class IRI="#EnviarLots"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="#dataEnviament"/>
+        <Class IRI="#EnviarLots"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="#dataMaximaEntrega"/>
+        <Class IRI="#DemanarOfertaTransport"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="#descripcio"/>
+        <Class IRI="#CentreLogistic"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="#descripcio"/>
+        <Class IRI="#EmpresaTransport"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="#descripcio"/>
+        <Class IRI="#Producte"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="#descripcio"/>
+        <Class IRI="#Valoracio"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="#estrelles"/>
+        <Class IRI="#Valoracio"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="#estrellesMitges"/>
+        <Class IRI="#Producte"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="#latitud"/>
+        <Class IRI="#Ciutat"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="#longitud"/>
+        <Class IRI="#Ciutat"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="#nom"/>
+        <Class IRI="#Ciutat"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="#nom"/>
+        <Class IRI="#Producte"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="#nom"/>
+        <Class IRI="#Transportista"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="#nom"/>
+        <Class IRI="#Usuari"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="#nom"/>
+        <Class IRI="#Valoracio"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="#nom"/>
+        <Class IRI="#VenedorExtern"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="#nomEmpresa"/>
+        <Class IRI="#EmpresaTransport"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="#numCerques"/>
+        <Class IRI="#CercaUsuari"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="#numValoracions"/>
+        <Class IRI="#Producte"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="#numero"/>
+        <Class IRI="#Direcció"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="#pais"/>
+        <Class IRI="#Ciutat"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="#pes"/>
+        <Class IRI="#DemanarOfertaTransport"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="#pes"/>
+        <Class IRI="#TriarTransportista"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="#pis"/>
+        <Class IRI="#Direcció"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="#preu"/>
+        <Class IRI="#OfertaTransport"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="#preu"/>
+        <Class IRI="#Producte"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="#preuTotal"/>
+        <Class IRI="#Compra"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="#prioritatEntrega"/>
+        <Class IRI="#Compra"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="#quantitat"/>
+        <Class IRI="#Stock"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="#telefon"/>
+        <Class IRI="#VenedorExtern"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="#cobrat?"/>
+        <Class IRI="#Compra"/>
+    </DataPropertyDomain>
+    <DataPropertyRange>
+        <DataProperty IRI="#carrer"/>
+        <Datatype abbreviatedIRI="xsd:string"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="#categoria"/>
+        <Datatype abbreviatedIRI="xsd:string"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="#correu"/>
+        <Datatype abbreviatedIRI="xsd:string"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="#data"/>
+        <Datatype abbreviatedIRI="xsd:dateTime"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="#dataEntrega"/>
+        <Datatype abbreviatedIRI="xsd:dateTime"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="#dataEnviament"/>
+        <Datatype abbreviatedIRI="xsd:dateTime"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="#dataMaximaEntrega"/>
+        <Datatype abbreviatedIRI="xsd:dateTime"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="#descripcio"/>
+        <Datatype abbreviatedIRI="xsd:string"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="#estrelles"/>
+        <Datatype abbreviatedIRI="xsd:int"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="#estrellesMitges"/>
+        <Datatype abbreviatedIRI="xsd:double"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="#latitud"/>
+        <Datatype abbreviatedIRI="xsd:float"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="#longitud"/>
+        <Datatype abbreviatedIRI="xsd:float"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="#nom"/>
+        <Datatype abbreviatedIRI="xsd:string"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="#nomEmpresa"/>
+        <Datatype abbreviatedIRI="xsd:string"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="#numCerques"/>
+        <Datatype abbreviatedIRI="xsd:integer"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="#numValoracions"/>
+        <Datatype abbreviatedIRI="xsd:integer"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="#numero"/>
+        <Datatype abbreviatedIRI="xsd:integer"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="#pais"/>
+        <Datatype abbreviatedIRI="xsd:string"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="#pes"/>
+        <Datatype abbreviatedIRI="xsd:float"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="#pis"/>
+        <Datatype abbreviatedIRI="xsd:string"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="#preu"/>
+        <Datatype abbreviatedIRI="xsd:double"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="#preuTotal"/>
+        <Datatype abbreviatedIRI="xsd:double"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="#prioritatEntrega"/>
+        <Datatype abbreviatedIRI="xsd:int"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="#quantitat"/>
+        <Datatype abbreviatedIRI="xsd:integer"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="#telefon"/>
+        <Datatype abbreviatedIRI="xsd:string"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="#cobrat?"/>
+        <Datatype abbreviatedIRI="xsd:boolean"/>
+    </DataPropertyRange>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#Constituit_per</IRI>
+        <Literal>Un lot de productes esta constituit per diferents productes</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#De</IRI>
+        <Literal>Enviament d&apos;un lot de productes</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#Demana</IRI>
+        <Literal>El usuari demana Buscar un o més producte (ja sigui filtrant-lo o demanant un producte en especific)</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#Disposa_de</IRI>
+        <Literal>Un centre logistic disposa de stock</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#Es_demana_a</IRI>
+        <Literal>Es demana disponibilitat de stock al centre logistic</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#Formada_de</IRI>
+        <Literal>Una compra esta formada per diferents productes</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#Formada_per</IRI>
+        <Literal>Empresa de transport formada per diferents transportistes</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#Necessita</IRI>
+        <Literal>Una oferta de transport necessita un transportista</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#Ofereix</IRI>
+        <Literal>Una empresa de transport ofereix diferents ofertes</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#Te_desti_en</IRI>
+        <Literal>Un lot de productes (que esta format per productes comprats) tots sentreguen a la mateixa ciutat</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#Ubicat_en</IRI>
+        <Literal>un Centre logistic esta ubicat en una ciutat</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#Viu_a</IRI>
+        <Literal>1 usuari viu a 1 ciutat
+1 ciutat hi viuen 1..* usuaris</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#prioritatEntrega</IRI>
+        <Literal>Baixa prioritat: no es paga res extra
+Mitja prioritat: es paga un 5% extra de la compra
+Alta prioritat: es paga un 10% extra de la compra
+
+1: Alta prioritat d&apos;entrega
+2: Mitjana prioritat d&apos;entrega
+3: Baixa prioritat d&apos;entrega</Literal>
+    </AnnotationAssertion>
+</Ontology>
+
+
+
+<!-- Generated by the OWL API (version 4.5.26.2023-07-17T20:34:13Z) https://github.com/owlcs/owlapi -->
+

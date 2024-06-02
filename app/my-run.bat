@@ -9,6 +9,8 @@ start "Logistic Center Administrator Agent" cmd /c "python -m app.MyAgents.logis
 timeout /t 1
 start "Lots Administrator Agent" cmd /c "python -m app.MyAgents.lots_administrator_agent"
 timeout /t 1
+start "Interface Agent" cmd /c "python -m app.MyAgents.interface_agent"
+timeout /t 1
 
 REM Wait for user input before stopping all agents
 pause

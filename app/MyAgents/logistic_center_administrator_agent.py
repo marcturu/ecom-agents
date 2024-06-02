@@ -7,7 +7,7 @@ from pathlib import Path
 import psutil
 import requests
 from flask import Flask, jsonify, request
-from rdflib import Graph, Namespace, URIRef
+from rdflib import Graph, Literal, Namespace, URIRef
 from rdflib.namespace import RDF
 from SPARQLWrapper import DELETE, INSERT, JSON, POST, SELECT, SPARQLWrapper
 
@@ -151,30 +151,47 @@ def get_agent_dir(sender):
 @app.route("/comm", methods=['POST'])
 def communicate():
     global data_storage_graph
-    message = request.get_json()
+    message = request.data.decode('utf-8')
 
     try:
         # Extract message properties
         msg_graph = Graph()
-        msg_graph.parse(data=message['content'], format='turtle')
+        msg_graph.parse(data=message, format='turtle')
         msg_props = get_message_properties(msg_graph)
 
         performative = msg_props.get('performative')
         sender = msg_props.get('sender')
         receiver = msg_props.get('receiver')
         content = msg_props.get('content')
-        action = msg_props.get('action')
+
+        # Extract action from the RDF graph
+        action = None
+        for s, p, o in msg_graph.triples((None, RDF.type, None)):
+            if o.startswith(ECSDI):
+                action = o
+                content = s
+                break
+
+        # Log the extracted values
+        print(f"Received message with action: {action}")
+        print(f"Content: {content}")
 
         # Handle different performatives
         if performative == ACL.inform:
             pass
         elif performative == ACL.request:
-            if action == DSO.Register:
-                pass
-            elif action == DSO.Search:
-                pass
-            elif action == ECSDI.DispatchProduct:
-                pass
+            if action == ECSDI.DispatchProduct:
+                product_name = msg_graph.value(
+                    subject=content, predicate=ECSDI.Producte_comprat)
+                delivery_address = msg_graph.value(
+                    subject=content, predicate=ECSDI.Direccio_entrega)
+                delivery_city = msg_graph.value(
+                    subject=content, predicate=ECSDI.Ciutat_entrega)
+                # Implement your logic to handle the product dispatch here
+                # For example, log the dispatch details
+                print(f"Dispatching product: {product_name}")
+                print(f"Delivery address: {delivery_address}")
+                print(f"Delivery city: {delivery_city}")
             elif action == ECSDI.DeleteProduct:
                 delete_query = f"""
                 DELETE WHERE {{
@@ -207,7 +224,7 @@ def communicate():
         response_graph = Graph()
         response_graph = build_message(
             response_graph, performative, agent_uri, sender, content)
-        return response_graph.serialize(format='turtle')
+        return response_graph.serialize(format='turtle'), 200
     except Exception as e:
         return str(e), 500
 

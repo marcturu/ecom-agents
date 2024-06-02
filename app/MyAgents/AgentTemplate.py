@@ -1,20 +1,18 @@
-import logging
 import os
 import signal
 import socket
 from multiprocessing import Process, Queue
+from pathlib import Path
 
 import psutil
 import requests
 from flask import Flask, jsonify, request
-from rdflib import Graph, Literal, Namespace, URIRef
+from rdflib import Graph, Namespace, URIRef
 from rdflib.namespace import RDF
 from SPARQLWrapper import DELETE, INSERT, JSON, POST, SELECT, SPARQLWrapper
 
-from app.utils.ACL import (CANCEL, CONFIRM, DISCONFIRM, INFORM, PROPOSE,
-                           QUERY_IF, QUERY_REF, REQUEST, SUBSCRIBE)
-from app.utils.ACLMessages import (build_message, get_message_properties,
-                                   send_message)
+from app.utils.ACL import ACL
+from app.utils.ACLMessages import build_message, get_message_properties
 from app.utils.Agent import Agent
 from app.utils.DSO import DSO
 from app.utils.FlaskServer import shutdown_server
@@ -66,18 +64,14 @@ app = Flask(__name__)
 # SPARQL Endpoint
 sparql_endpoint = f'http://{hostname}:{port}/sparql'
 
-# Setup logging
-logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger(__name__)
-
 
 def save_data():
     try:
         with open(data_file_path, 'w') as f:
             f.write(data_storage_graph.serialize(format='turtle'))
-        logger.info("Data successfully saved.")
+        print("Data successfully saved.")
     except Exception as e:
-        logger.error(f"Error saving data: {e}")
+        print(f"Error saving data: {e}")
 
 
 @app.route("/Stop")
@@ -86,7 +80,7 @@ def stop():
         save_data()
         shutdown_server()
     except Exception as e:
-        logger.error(f"Error stopping server: {e}")
+        print(f"Error stopping server: {e}")
         print('Using Alternative stopping method...')
         kill_child_processes(os.getpid())
         os.kill(os.getpid(), signal.SIGINT)
@@ -132,7 +126,7 @@ def sparql():
             results = sparql_wrapper.query().convert()
             return jsonify(results)
     except Exception as e:
-        logger.error(f"Error processing SPARQL query: {e}")
+        print(f"Error processing SPARQL query: {e}")
         return str(e), 500
 
 
@@ -141,7 +135,7 @@ def agentbehavior(queue):
         msg = queue.get()
         if msg == 'STOP':
             break
-        logger.info(f"NewAgent behavior received message: {msg}")
+        print(f"NewAgent behavior received message: {msg}")
 
 
 def get_agent_dir(sender):
@@ -151,7 +145,7 @@ def get_agent_dir(sender):
         sender_address = response_body.get(sender)
         return sender_address
     except Exception as e:
-        logger.error(f"Error getting agent directory: {e}")
+        print(f"Error getting agent directory: {e}")
         return None
 
 
@@ -160,7 +154,7 @@ def communicate():
 
     global data_storage_graph
     message = request.get_json()
-    logger.info("NewAgent received message")
+    print("NewAgent received message")
 
     try:
         # Extract message properties
@@ -175,39 +169,39 @@ def communicate():
         action = msg_props.get('action')
 
         # Handle different performatives
-        if performative == INFORM:
-            # Handle INFORM performative
+        if performative == ACL.inform:
             pass
-        elif performative == REQUEST:
+        elif performative == ACL.request:
             if action == DSO.Register:
-                # Handle registration logic
                 pass
             elif action == DSO.Search:
-                # Handle search logic
+                pass
+            elif action == ECSDI.DispatchProduct:
                 pass
             elif action == ECSDI.DeleteProduct:
-                # Handle delete product logic
-                pass
-        elif performative == CONFIRM:
-            # Handle CONFIRM performative
+                delete_query = f"""
+                DELETE WHERE {{
+                    ?product a <{ECSDI.Product}> ;
+                             <{ECSDI.productID}> "{content}" .
+                }}
+                """
+                sparql_wrapper = SPARQLWrapper(sparql_endpoint)
+                sparql_wrapper.setQuery(delete_query)
+                sparql_wrapper.setMethod(POST)
+                sparql_wrapper.query()
+        elif performative == ACL.confirm:
             pass
-        elif performative == QUERY_IF:
-            # Handle QUERY_IF performative
+        elif performative == ACL['query-if']:
             pass
-        elif performative == QUERY_REF:
-            # Handle QUERY_REF performative
+        elif performative == ACL['query-ref']:
             pass
-        elif performative == DISCONFIRM:
-            # Handle DISCONFIRM performative
+        elif performative == ACL.disconfirm:
             pass
-        elif performative == SUBSCRIBE:
-            # Handle SUBSCRIBE performative
+        elif performative == ACL.subscribe:
             pass
-        elif performative == PROPOSE:
-            # Handle PROPOSE performative
+        elif performative == ACL.propose:
             pass
-        elif performative == CANCEL:
-            # Handle CANCEL performative
+        elif performative == ACL.cancel:
             pass
         else:
             return "Unknown performative", 400
@@ -219,7 +213,7 @@ def communicate():
 
         return response_graph.serialize(format='turtle')
     except Exception as e:
-        logger.error(f"Error processing communication: {e}")
+        print(f"Error processing communication: {e}")
         return str(e), 500
 
 
@@ -230,9 +224,9 @@ def register_with_directory():
             'address': f'http://{hostname}:{port}/comm'
         }
         requests.post(directory_address_register, json=registration_info)
-        logger.info("NewAgent registered with DirectoryAgent")
+
     except Exception as e:
-        logger.error(f"Error registering with directory: {e}")
+        print(f"Error registering with directory: {e}")
 
 
 if __name__ == "__main__":
