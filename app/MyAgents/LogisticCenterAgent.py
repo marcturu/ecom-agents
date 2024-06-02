@@ -121,10 +121,9 @@ def communicate():
 
         # Extract action from the RDF graph
         action = None
-        for s, p, o in msg_graph.triples((None, RDF.type, None)):
+        for s, p, o in msg_graph.triples((content, RDF.type, None)):
             if o.startswith(ECSDI):
                 action = o
-                content = s
                 break
 
         # Log the extracted values
@@ -141,7 +140,7 @@ def communicate():
                     (agent_uri, ECSDI.LocationCity, Literal("Mataró", datatype=XSD.string)))
 
                 response_message = build_message(
-                    response_graph, ACL.inform, sender=agent_uri, receiver=sender)
+                    response_graph, ACL.inform, sender=agent_uri, receiver=sender, content=agent_uri)
                 return response_message.serialize(format='turtle'), 200
 
             elif action == ECSDI.ReceiveProduct:
@@ -149,21 +148,76 @@ def communicate():
                     subject=content, predicate=ECSDI.Producte_comprat)
                 delivery_address = msg_graph.value(
                     subject=content, predicate=ECSDI.Direccio_entrega)
+
+                # Update stock quantity and store product information
+                product_uri = None
+                for s in data_storage_graph.subjects(predicate=ECSDI.Producte_nom, object=Literal(product_name)):
+                    product_uri = s
+                    stock_quantity = int(data_storage_graph.value(
+                        subject=product_uri, predicate=ECSDI.Quantitat_stock))
+                    stock_quantity -= 1
+                    data_storage_graph.set((product_uri, ECSDI.Quantitat_stock, Literal(
+                        stock_quantity, datatype=XSD.integer)))
+                    break
+
                 # Store the product and delivery address
                 data_storage_graph.add(
-                    (URIRef(f'http://example.org/product/{product_name}'), RDF.type, ECSDI.Product))
-                data_storage_graph.add((URIRef(f'http://example.org/product/{
-                                       product_name}'), ECSDI.Producte_comprat, Literal(product_name, datatype=XSD.string)))
-                data_storage_graph.add((URIRef(f'http://example.org/product/{
-                                       product_name}'), ECSDI.Direccio_entrega, Literal(delivery_address, datatype=XSD.string)))
+                    (URIRef(f'http://example.org/delivery/{product_name}'), RDF.type, ECSDI.ProductDelivery))
+                data_storage_graph.add(
+                    (URIRef(f'http://example.org/delivery/{product_name}'), ECSDI.Producte_comprat, Literal(product_name, datatype=XSD.string)))
+                data_storage_graph.add(
+                    (URIRef(f'http://example.org/delivery/{product_name}'), ECSDI.Direccio_entrega, Literal(delivery_address, datatype=XSD.string)))
 
                 save_data()
                 print(f"Received product: {product_name}")
                 print(f"Delivery address: {delivery_address}")
 
-            elif action == ECSDI.Send:
-                # Implement logic for sending the product here
-                print("Send action received from the interface agent")
+            elif action == ECSDI.RegisterProduct:
+                product_name = msg_graph.value(
+                    subject=content, predicate=ECSDI.Producte_nom)
+                product_price = msg_graph.value(
+                    subject=content, predicate=ECSDI.Producte_preu)
+                stock_quantity = msg_graph.value(
+                    subject=content, predicate=ECSDI.Quantitat_stock)
+
+                # Store product details in the graph
+                product_uri = URIRef(
+                    f'http://example.org/product/{product_name}')
+                data_storage_graph.add((product_uri, RDF.type, ECSDI.Product))
+                data_storage_graph.add(
+                    (product_uri, ECSDI.Producte_nom, Literal(product_name, datatype=XSD.string)))
+                data_storage_graph.add(
+                    (product_uri, ECSDI.Producte_preu, Literal(product_price, datatype=XSD.float)))
+                data_storage_graph.add((product_uri, ECSDI.Quantitat_stock, Literal(
+                    stock_quantity, datatype=XSD.integer)))
+
+                save_data()
+                print(f"Registered product: {product_name}, Price: {
+                      product_price}, Stock: {stock_quantity}")
+
+            elif action == ECSDI.QueryProductAvailability:
+                product_name = msg_graph.value(
+                    subject=content, predicate=ECSDI.Producte_nom)
+                if product_name is None:
+                    return jsonify({"status": "error", "message": "Product Name not provided"}), 400
+
+                available_stock = 0
+                for s in data_storage_graph.subjects(predicate=ECSDI.Producte_nom, object=Literal(product_name)):
+                    available_stock = int(data_storage_graph.value(
+                        subject=s, predicate=ECSDI.Quantitat_stock))
+                    break
+
+                response_graph = Graph()
+                response_graph.add(
+                    (agent_uri, RDF.type, ECSDI.LogisticCenterAgent))
+                response_graph.add(
+                    (agent_uri, ECSDI.Producte_nom, Literal(product_name, datatype=XSD.string)))
+                response_graph.add((agent_uri, ECSDI.Quantitat_stock, Literal(
+                    available_stock, datatype=XSD.integer)))
+
+                response_message = build_message(
+                    response_graph, ACL.inform, sender=agent_uri, receiver=sender, content=agent_uri)
+                return response_message.serialize(format='turtle'), 200
 
         return jsonify({"status": "ok"}), 200
     except Exception as e:
