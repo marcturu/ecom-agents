@@ -10,10 +10,11 @@ Created on 08/02/2014 ###
 """
 __author__ = 'SergiMarcMiquel'
 
-from rdflib import Graph, URIRef
 import requests
-from rdflib.namespace import RDF, OWL
-from utils.ACL import ACL
+from rdflib import Graph, URIRef
+from rdflib.namespace import OWL, RDF
+
+from .ACL import ACL
 
 
 def build_message(gmess, perf, sender=None, receiver=None,  content=None, msgcnt=0):
@@ -35,7 +36,8 @@ def build_message(gmess, perf, sender=None, receiver=None,  content=None, msgcnt
     # No podemos crear directamente una instancia en el namespace ACL ya que es un ClosedNamedspace
     ms = URIRef(mssid)
     gmess.bind('acl', ACL)
-    gmess.add((ms, RDF.type, OWL.NamedIndividual)) # Declaramos la URI como instancia
+    # Declaramos la URI como instancia
+    gmess.add((ms, RDF.type, OWL.NamedIndividual))
     gmess.add((ms, RDF.type, ACL.FipaAclMessage))
     gmess.add((ms, ACL.performative, perf))
     gmess.add((ms, ACL.sender, sender))
@@ -43,7 +45,7 @@ def build_message(gmess, perf, sender=None, receiver=None,  content=None, msgcnt
         gmess.add((ms, ACL.receiver, receiver))
     if content is not None:
         gmess.add((ms, ACL.content, content))
-        
+
     return gmess
 
 
@@ -74,7 +76,7 @@ def get_message_properties(msg):
              'conversation-id': ACL['conversation-id'],
              'in-reply-to': ACL['in-reply-to'], 'content': ACL.content}
 
-    msgdic = {} # Diccionario donde se guardan los elementos del mensaje
+    msgdic = {}  # Diccionario donde se guardan los elementos del mensaje
 
     # Extraemos la parte del FipaAclMessage del mensaje
     valid = msg.value(predicate=RDF.type, object=ACL.FipaAclMessage)
