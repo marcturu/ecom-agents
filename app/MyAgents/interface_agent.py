@@ -120,7 +120,7 @@ def get_agent_dir(agent_name):
         return None
 
 
-def create_performative_request(product_name, delivery_address, delivery_city):
+def create_performative_request(action, **kwargs):
     # Create a new RDF graph
     g = Graph()
 
@@ -128,22 +128,17 @@ def create_performative_request(product_name, delivery_address, delivery_city):
     request = URIRef(
         "http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Request")
 
-    # Add product details to the graph
-    g.add((request, RDF.type, ECSDI.DispatchProduct))
-    g.add((request, ECSDI.Producte_comprat, Literal(
-        product_name, datatype=XSD.string)))
-    g.add((request, ECSDI.Direccio_entrega, Literal(
-        delivery_address, datatype=XSD.string)))
-    g.add((request, ECSDI.Ciutat_entrega, Literal(
-        delivery_city, datatype=XSD.string)))
-    g.add((request, ECSDI.necessita_trasport, Literal(True, datatype=XSD.boolean)))
+    # Add action and details to the graph
+    g.add((request, RDF.type, action))
+    for key, value in kwargs.items():
+        g.add((request, ECSDI[key], Literal(value, datatype=XSD.string)))
 
     return g
 
 
 @app.route("/")
 def index():
-    return render_template('dispatch_product.html')
+    return render_template('index.html')
 
 
 @app.route("/dispatch", methods=["POST"])
@@ -154,7 +149,12 @@ def dispatch_product():
 
     # Create the RDF graph for the request
     dispatch_graph = create_performative_request(
-        product_name, delivery_address, delivery_city)
+        ECSDI.DispatchProduct,
+        Producte_comprat=product_name,
+        Direccio_entrega=delivery_address,
+        Ciutat_entrega=delivery_city,
+        necessita_trasport=True
+    )
 
     # Use build_message to construct the ACL message
     sender = agent_uri
@@ -177,6 +177,46 @@ def dispatch_product():
         return response.content, response.status_code
     else:
         return "Logistic Center Administrator Agent not found", 404
+
+
+@app.route("/register_product", methods=["POST"])
+def register_product():
+    product_name = request.form['product_name']
+    product_id = request.form['product_id']
+    product_price = request.form['product_price']
+    stock_quantity = request.form['stock_quantity']
+    target_agent_name = request.form['target_agent_name']
+
+    # Create the RDF graph for the request
+    register_graph = create_performative_request(
+        ECSDI.RegisterProduct,
+        Producte_nom=product_name,
+        Producte_id=product_id,
+        Producte_preu=product_price,
+        Quantitat_stock=stock_quantity
+    )
+
+    # Use build_message to construct the ACL message
+    sender = agent_uri
+    receiver_base_url = get_agent_dir(target_agent_name)
+    perf = ACL.request
+
+    if receiver_base_url:
+        receiver = f"{receiver_base_url}/comm"
+        # Build the message
+        register_message = build_message(
+            register_graph, perf, sender=sender, receiver=URIRef(receiver))
+
+        # Log the message being sent
+        print(f"Sending message to {receiver} with content:\n{
+              register_message.serialize(format='turtle')}")
+
+        # Send the message
+        response = requests.post(receiver, data=register_message.serialize(format='turtle'),
+                                 headers={'Content-Type': 'application/x-turtle'})
+        return response.content, response.status_code
+    else:
+        return "Logistic Center Agent not found", 404
 
 
 @app.route("/comm", methods=['POST'])
@@ -210,7 +250,7 @@ def communicate():
         elif performative == ACL.request:
             if action == ECSDI.QueryProductAvailability:
                 product_id = msg_graph.value(
-                    subject=content, predicate=ECSDI.productID)
+                    subject=content, predicate=ECSDI.Producte_id)
                 # Query the logistic center for product availability
                 logistic_center_address = get_agent_dir(
                     'LogisticCenterAdministratorAgent')
@@ -219,7 +259,7 @@ def communicate():
                     query_graph.add(
                         (URIRef(''), RDF.type, ECSDI.QueryProductAvailability))
                     query_graph.add(
-                        (URIRef(''), ECSDI.productID, Literal(product_id)))
+                        (URIRef(''), ECSDI.Producte_id, Literal(product_id)))
                     query_message = build_message(
                         query_graph, ACL['query-if'], agent_uri, URIRef(logistic_center_address))
                     response = requests.post(
@@ -231,14 +271,14 @@ def communicate():
                 if lots_address:
                     insert_graph = Graph()
                     product = URIRef(
-                        f"http://example.org/product/{msg_graph.value(subject=content, predicate=ECSDI.productID)}")
+                        f"http://example.org/product/{msg_graph.value(subject=content, predicate=ECSDI.Producte_id)}")
                     insert_graph.add((product, RDF.type, ECSDI.Product))
-                    insert_graph.add((product, ECSDI.productID, msg_graph.value(
-                        subject=content, predicate=ECSDI.productID)))
-                    insert_graph.add((product, ECSDI.productName, msg_graph.value(
-                        subject=content, predicate=ECSDI.productName)))
-                    insert_graph.add((product, ECSDI.productPrice, msg_graph.value(
-                        subject=content, predicate=ECSDI.productPrice)))
+                    insert_graph.add((product, ECSDI.Producte_id, msg_graph.value(
+                        subject=content, predicate=ECSDI.Producte_id)))
+                    insert_graph.add((product, ECSDI.Producte_nom, msg_graph.value(
+                        subject=content, predicate=ECSDI.Producte_nom)))
+                    insert_graph.add((product, ECSDI.Producte_preu, msg_graph.value(
+                        subject=content, predicate=ECSDI.Producte_preu)))
                     insert_message = build_message(
                         insert_graph, ACL.request, agent_uri, URIRef(lots_address))
                     response = requests.post(
