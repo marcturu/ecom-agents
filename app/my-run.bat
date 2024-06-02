@@ -5,9 +5,9 @@ start "Directory Service" cmd /c "python -m app.MyAgents.simple_directory"
 timeout /t 1
 
 REM Start all agents
-start "Logistic Center Administrator Agent" cmd /c "python -m app.MyAgents.logistic_center_administrator_agent"
+start "Logistic Center Administrator Agent" cmd /c "python -m app.MyAgents.LogisticCenterAdministratorAgent"
 timeout /t 1
-start "Lots Administrator Agent" cmd /c "python -m app.MyAgents.lots_administrator_agent"
+start "Logistic Center Agent" cmd /c "python -m app.MyAgents.LogisticCenterAgent"
 timeout /t 1
 start "Interface Agent" cmd /c "python -m app.MyAgents.interface_agent"
 timeout /t 1
