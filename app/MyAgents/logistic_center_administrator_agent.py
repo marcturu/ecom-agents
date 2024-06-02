@@ -1,35 +1,33 @@
-import logging
 import os
 import signal
 import socket
 from multiprocessing import Process, Queue
+from pathlib import Path
 
+import psutil
 import requests
 from flask import Flask, jsonify, request
-from rdflib import Graph, Literal, Namespace, URIRef
+from rdflib import Graph, Namespace, URIRef
 from rdflib.namespace import RDF
 from SPARQLWrapper import DELETE, INSERT, JSON, POST, SELECT, SPARQLWrapper
 
-from app.utils.ACL import (CANCEL, CONFIRM, DISCONFIRM, INFORM, PROPOSE,
-                           QUERY_IF, QUERY_REF, REQUEST, SUBSCRIBE)
-from app.utils.ACLMessages import (build_message, get_message_properties,
-                                   send_message)
+from app.utils.ACL import ACL
+from app.utils.ACLMessages import build_message, get_message_properties
 from app.utils.Agent import Agent
 from app.utils.DSO import DSO
 from app.utils.FlaskServer import shutdown_server
 
 # Configuration
 hostname = socket.gethostname()
-port = 5002
+port = 5003
 
-self_name = 'NewAgent'
+self_name = 'LogisticCenterAdministratorAgent'
 agent_uri = URIRef(f'http://{hostname}:{port}/{self_name}')
-data_folder = 'app/data'
-data_file_path = os.path.join(data_folder, f'{self_name}_data.ttl')
+data_folder = Path('app/data')
+data_file_path = data_folder / f'{self_name}_data.ttl'
 
 # Ensure the data folder exists
-if not os.path.exists(data_folder):
-    os.makedirs(data_folder)
+data_folder.mkdir(parents=True, exist_ok=True)
 
 # Directory agent address
 directory_address_hostname = socket.gethostname()
@@ -48,16 +46,22 @@ DSO = Namespace(
 data_storage_graph = Graph()
 
 # Load ontology data
-ontology_path = 'app/ontologiaTTL/Ontologies_v8.ttl'
-data_storage_graph.parse(ontology_path, format='turtle')
+ontology_path = Path('app/ontologiaTTL/Ontologies_v8.ttl').resolve()
+ontology_uri = ontology_path.as_uri()
+data_storage_graph.parse(ontology_uri, format='turtle')
 
 # Load stored data if exists
-if os.path.exists(data_file_path):
-    data_storage_graph.parse(data_file_path, format='turtle')
+data_file_path = data_file_path.resolve()
+if data_file_path.exists():
+    try:
+        data_file_uri = data_file_path.as_uri()
+        data_storage_graph.parse(data_file_uri, format='turtle')
+    except UnicodeDecodeError:
+        pass
 
 # Agent Definition
-NewAgent = Agent(self_name, ECSDI.NewAgent,
-                 f'http://{hostname}:{port}/comm', f'http://{hostname}:{port}/Stop')
+LogisticCenterAdministratorAgent = Agent(self_name, ECSDI.LogisticCenterAdministratorAgent,
+                                         f'http://{hostname}:{port}/comm', f'http://{hostname}:{port}/Stop')
 
 # Flask app
 app = Flask(__name__)
@@ -65,18 +69,13 @@ app = Flask(__name__)
 # SPARQL Endpoint
 sparql_endpoint = f'http://{hostname}:{port}/sparql'
 
-# Setup logging
-logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger(__name__)
-
 
 def save_data():
     try:
-        with open(data_file_path, 'w') as f:
+        with open(data_file_path, 'w', encoding='utf-8') as f:
             f.write(data_storage_graph.serialize(format='turtle'))
-        logger.info("Data successfully saved.")
-    except Exception as e:
-        logger.error(f"Error saving data: {e}")
+    except Exception:
+        pass
 
 
 @app.route("/Stop")
@@ -84,12 +83,24 @@ def stop():
     try:
         save_data()
         shutdown_server()
-    except Exception as e:
-        logger.error(f"Error stopping server: {e}")
+    except Exception:
         print('Using Alternative stopping method...')
+        kill_child_processes(os.getpid())
         os.kill(os.getpid(), signal.SIGINT)
+    return "LogisticCenterAdministratorAgent stopping..."
 
-    return "NewAgent stopping..."
+
+def kill_child_processes(parent_pid, sig=signal.SIGTERM):
+    try:
+        parent = psutil.Process(parent_pid)
+    except psutil.NoSuchProcess:
+        return
+    children = parent.children(recursive=True)
+    for process in children:
+        try:
+            process.send_signal(sig)
+        except psutil.NoSuchProcess:
+            continue
 
 
 @app.route("/sparql", methods=['POST'])
@@ -117,7 +128,6 @@ def sparql():
             results = sparql_wrapper.query().convert()
             return jsonify(results)
     except Exception as e:
-        logger.error(f"Error processing SPARQL query: {e}")
         return str(e), 500
 
 
@@ -126,7 +136,6 @@ def agentbehavior(queue):
         msg = queue.get()
         if msg == 'STOP':
             break
-        logger.info(f"NewAgent behavior received message: {msg}")
 
 
 def get_agent_dir(sender):
@@ -135,8 +144,7 @@ def get_agent_dir(sender):
         response_body = response.json()
         sender_address = response_body.get(sender)
         return sender_address
-    except Exception as e:
-        logger.error(f"Error getting agent directory: {e}")
+    except Exception:
         return None
 
 
@@ -144,7 +152,6 @@ def get_agent_dir(sender):
 def communicate():
     global data_storage_graph
     message = request.get_json()
-    logger.info("NewAgent received message")
 
     try:
         # Extract message properties
@@ -159,19 +166,16 @@ def communicate():
         action = msg_props.get('action')
 
         # Handle different performatives
-        if performative == INFORM:
-            # Handle INFORM performative
+        if performative == ACL.inform:
             pass
-        elif performative == REQUEST:
+        elif performative == ACL.request:
             if action == DSO.Register:
-                # Handle registration logic
                 pass
             elif action == DSO.Search:
-                # Handle search logic
+                pass
+            elif action == ECSDI.DispatchProduct:
                 pass
             elif action == ECSDI.DeleteProduct:
-                # Handle delete product logic
-                logger.info(f"Deleting product: {content}")
                 delete_query = f"""
                 DELETE WHERE {{
                     ?product a <{ECSDI.Product}> ;
@@ -182,27 +186,19 @@ def communicate():
                 sparql_wrapper.setQuery(delete_query)
                 sparql_wrapper.setMethod(POST)
                 sparql_wrapper.query()
-                logger.info(f"Product {content} deleted successfully.")
-        elif performative == CONFIRM:
-            # Handle CONFIRM performative
+        elif performative == ACL.confirm:
             pass
-        elif performative == QUERY_IF:
-            # Handle QUERY_IF performative
+        elif performative == ACL['query-if']:
             pass
-        elif performative == QUERY_REF:
-            # Handle QUERY_REF performative
+        elif performative == ACL['query-ref']:
             pass
-        elif performative == DISCONFIRM:
-            # Handle DISCONFIRM performative
+        elif performative == ACL.disconfirm:
             pass
-        elif performative == SUBSCRIBE:
-            # Handle SUBSCRIBE performative
+        elif performative == ACL.subscribe:
             pass
-        elif performative == PROPOSE:
-            # Handle PROPOSE performative
+        elif performative == ACL.propose:
             pass
-        elif performative == CANCEL:
-            # Handle CANCEL performative
+        elif performative == ACL.cancel:
             pass
         else:
             return "Unknown performative", 400
@@ -211,10 +207,8 @@ def communicate():
         response_graph = Graph()
         response_graph = build_message(
             response_graph, performative, agent_uri, sender, content)
-
         return response_graph.serialize(format='turtle')
     except Exception as e:
-        logger.error(f"Error processing communication: {e}")
         return str(e), 500
 
 
@@ -225,9 +219,8 @@ def register_with_directory():
             'address': f'http://{hostname}:{port}/comm'
         }
         requests.post(directory_address_register, json=registration_info)
-        logger.info("NewAgent registered with DirectoryAgent")
-    except Exception as e:
-        logger.error(f"Error registering with directory: {e}")
+    except Exception:
+        pass
 
 
 if __name__ == "__main__":
@@ -237,6 +230,8 @@ if __name__ == "__main__":
 
     register_with_directory()
 
-    app.run(host=hostname, port=port)
-
-    p.join()
+    try:
+        app.run(host=hostname, port=port)
+    finally:
+        p.terminate()
+        p.join()
