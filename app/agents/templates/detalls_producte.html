@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalles del Producto</title>
+</head>
+<body>
+    <h1>Detalles del Producto</h1>
+    <p>Nombre: {{ producto.nombre }}</p>
+    <p>Precio: {{ producto.precio }}</p>
+    <p>Categoría: {{ producto.categoria }}</p>
+    <p>Descripción: {{ producto.descripcion }}</p>
+    <p>Número de Valoraciones: {{ producto.num_valoraciones }}</p>
+    <p>Estrellas Medias: {{ producto.estrellas_mitges }}</p>
+    <!-- Otros detalles del producto aquí -->
+    <form action="/seleccionar_producto" method="post">
+        <input type="hidden" name="producto" value='{{ producto | tojson | safe }}'>
+        <button type="submit">Agregar al Carrito</button>
+    </form>
+    <br>
+    <p><a href="/">Volver a la página principal</a></p>
+</body>
+</html>
