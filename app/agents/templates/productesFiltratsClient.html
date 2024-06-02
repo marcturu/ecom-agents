@@ -11,7 +11,7 @@
         {% for producto in productos %}
             <li>
                 {{ producto['nombre'] }} - {{ producto['precio'] }} EUR
-                <form action="/seleccionar_producto" method="post" style="display:inline;">
+                <form action="/detalls_producte" method="post" style="display:inline;">
                     <input type="hidden" name="producto" value='{{ producto | tojson | safe }}'>
                     <button type="submit">Seleccionar</button>
                 </form>

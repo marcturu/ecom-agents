@@ -96,6 +96,14 @@ def home():
             """
         return html
 
+@app.route('/detalls_producte', methods=['POST'])
+def detalls_producte():
+    try:
+        prod = json.loads(request.form['producto'])
+        return render_template('detalls_producte.html', producto=prod)
+    except Exception as e:
+        return f"Error: {e}"
+
 
 @app.route('/seleccionar_producto', methods=['POST'])
 def seleccionar_producto():
