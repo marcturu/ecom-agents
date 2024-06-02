@@ -38,7 +38,6 @@ def home():
             "num_valoracions_min": num_valoracions_min,
             "estrelles_min": estrelles_min
         }
-
         try:
             response = requests.post(AGENTE_URL, json=filtro_json)
             print(f"Código de estado de la respuesta: {response.status_code}")
@@ -46,22 +45,10 @@ def home():
                 productosFiltrados = response.json()
 
                 if productosFiltrados:
-                    prod1 = productosFiltrados[0]
-                    print(prod1)
-                    try:
-                        otra_response = requests.post(AGENTE_PRODUCTE_URL, json=prod1)
-                        if otra_response.status_code == 200:
-                            print("El primer producto se ha enviado correctamente a otra URL.")
-                            carritoCompra.append(prod1)
-                            global precioTotal 
-                            precioTotal += prod1['precio']
-                            return render_template('carritoCompra.html', carritoCompra=carritoCompra, precioTotal=precioTotal)
-                        else:
-                            print("Error al enviar el primer producto a otra URL.")
-                    except Exception as e:
-                        print(f"Error al enviar el primer producto a otra URL: {e}")
+                    return render_template('productesFiltratsClient.html', productos=productosFiltrados)
                 else:
                     print("No se encontraron productos.")
+                    return "No se encontraron productos. <br><a href='/'>Volver</a>"
 
             else:
                 mensaje = "Productos no trobats." if response.status_code == 404 else "Error en el envío de los filtros."
@@ -101,13 +88,43 @@ def home():
                     <label for="estrelles_min">Estrellas Mínimas:</label>
                     <input type="number" id="estrelles_min" name="estrelles_min" min="1" max="5"><br><br>
 
-                    <input type="submit" value="Filtrar">
+                    <input type="submit" value="Buscar productos">
                     <p><a href="/cart">Anar carrito compra</a></p>
                 </form>
             </body>
             </html>
             """
         return html
+
+@app.route('/detalls_producte', methods=['POST'])
+def detalls_producte():
+    try:
+        prod = json.loads(request.form['producto'])
+        return render_template('detalls_producte.html', producto=prod)
+    except Exception as e:
+        return f"Error: {e}"
+
+
+@app.route('/seleccionar_producto', methods=['POST'])
+def seleccionar_producto():
+    try:
+        prod1 = json.loads(request.form['producto'])
+        print("Producto seleccionado (JSON):", prod1)  # Verificar la cadena JSON
+        otra_response = requests.post(AGENTE_PRODUCTE_URL, json=prod1)
+
+        if otra_response.status_code == 200:
+            print("El primer producto se ha enviado correctamente a otra URL.")
+            carritoCompra.append(prod1)
+            global precioTotal 
+            precioTotal += prod1['precio']
+            return render_template('carritoCompra.html', carritoCompra=carritoCompra, precioTotal=precioTotal)
+        else:
+            print("Error al enviar el primer producto a otra URL.")
+            return "Error al enviar el primer producto a otra URL."
+    except Exception as e:
+        print(f"Error al enviar el primer producto a otra URL: {e}")
+        return f"Error al enviar el primer producto a otra URL: {e}"
+
 
 @app.route('/cart')
 def view_cart():
@@ -129,11 +146,11 @@ def comprar():
             carritoCompra.clear()  # Limpiar el carrito después de la compra exitosa
             global precioTotal 
             precioTotal = 0
-            return "Compra realizada con éxito."
+            return "Compra realizada con éxito.<br><a href='/'>Volver a la página principal</a>"
         else:
-            return "Error al procesar la compra."
+            return "Error al procesar la compra.<br><a href='/'>Volver a la página principal</a>"
     except Exception as e:
-        return f"Error al enviar la información al vendedor: {e}"
-    
+        return f"Error al enviar la información al vendedor: {e}<br><a href='/'>Volver a la página principal</a>"
+
 if __name__ == "__main__":
     app.run(port=5007)
