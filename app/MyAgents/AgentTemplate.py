@@ -4,6 +4,7 @@ import signal
 import socket
 from multiprocessing import Process, Queue
 
+import psutil
 import requests
 from flask import Flask, jsonify, request
 from rdflib import Graph, Literal, Namespace, URIRef
@@ -87,9 +88,23 @@ def stop():
     except Exception as e:
         logger.error(f"Error stopping server: {e}")
         print('Using Alternative stopping method...')
+        kill_child_processes(os.getpid())
         os.kill(os.getpid(), signal.SIGINT)
 
     return "NewAgent stopping..."
+
+
+def kill_child_processes(parent_pid, sig=signal.SIGTERM):
+    try:
+        parent = psutil.Process(parent_pid)
+    except psutil.NoSuchProcess:
+        return
+    children = parent.children(recursive=True)
+    for process in children:
+        try:
+            process.send_signal(sig)
+        except psutil.NoSuchProcess:
+            continue
 
 
 @app.route("/sparql", methods=['POST'])
@@ -142,6 +157,7 @@ def get_agent_dir(sender):
 
 @app.route("/comm", methods=['POST'])
 def communicate():
+
     global data_storage_graph
     message = request.get_json()
     logger.info("NewAgent received message")
@@ -171,18 +187,7 @@ def communicate():
                 pass
             elif action == ECSDI.DeleteProduct:
                 # Handle delete product logic
-                logger.info(f"Deleting product: {content}")
-                delete_query = f"""
-                DELETE WHERE {{
-                    ?product a <{ECSDI.Product}> ;
-                             <{ECSDI.productID}> "{content}" .
-                }}
-                """
-                sparql_wrapper = SPARQLWrapper(sparql_endpoint)
-                sparql_wrapper.setQuery(delete_query)
-                sparql_wrapper.setMethod(POST)
-                sparql_wrapper.query()
-                logger.info(f"Product {content} deleted successfully.")
+                pass
         elif performative == CONFIRM:
             # Handle CONFIRM performative
             pass
