@@ -10,6 +10,7 @@ from flask import Flask, jsonify, request
 from rdflib import Graph, Literal, Namespace, URIRef
 from rdflib.namespace import RDF, XSD
 
+from app.MyAgents.interface_agent import create_performative_request
 from app.utils.ACL import ACL
 from app.utils.ACLMessages import build_message, get_message_properties
 from app.utils.Agent import Agent
@@ -117,11 +118,12 @@ def get_agent_dir(agent_name):
 
 
 def query_location(agent_url):
-    query_graph = Graph()
-    query_graph.add((URIRef(''), RDF.type, ECSDI.QueryLocation))
+    query_graph, request_uri = create_performative_request(
+        ECSDI.QueryLocation
+    )
 
     query_message = build_message(
-        query_graph, ACL.request, sender=agent_uri, receiver=URIRef(agent_url))
+        query_graph, ACL['query-if'], sender=agent_uri, receiver=URIRef(agent_url), content=request_uri)
     response = requests.post(f"{agent_url}/comm", data=query_message.serialize(format='turtle'),
                              headers={'Content-Type': 'application/x-turtle'})
     response_graph = Graph()
@@ -130,6 +132,24 @@ def query_location(agent_url):
     for _, _, city in response_graph.triples((None, ECSDI.LocationCity, None)):
         return str(city)
     return None
+
+
+def query_product_availability(agent_url, product_name):
+    query_graph, request_uri = create_performative_request(
+        ECSDI.QueryProductAvailability,
+        Producte_nom=product_name
+    )
+
+    query_message = build_message(
+        query_graph, ACL['query-if'], sender=agent_uri, receiver=URIRef(agent_url), content=request_uri)
+    response = requests.post(f"{agent_url}/comm", data=query_message.serialize(format='turtle'),
+                             headers={'Content-Type': 'application/x-turtle'})
+    response_graph = Graph()
+    response_graph.parse(data=response.text, format='turtle')
+
+    for _, _, stock in response_graph.triples((None, ECSDI.Quantitat_stock, None)):
+        return int(stock)
+    return 0
 
 
 @app.route("/comm", methods=['POST'])
@@ -150,7 +170,7 @@ def communicate():
 
         # Extract action from the RDF graph
         action = None
-        for s, p, o in msg_graph.triples((None, RDF.type, None)):
+        for s, p, o in msg_graph.triples((content, RDF.type, None)):
             if o.startswith(ECSDI):
                 action = o
                 content = s
@@ -172,32 +192,35 @@ def communicate():
                 # Query LogisticCenterAgent instances to find the one with the matching city
                 logistic_agents = ['LogisticCenterAgent']  # Example list
                 selected_agent = None
+                max_stock = 0
 
                 for agent in logistic_agents:
                     agent_url = get_agent_dir(agent)
                     if agent_url:
                         agent_city = query_location(agent_url)
-                        if agent_city == str(delivery_city):
+                        stock_quantity = query_product_availability(
+                            agent_url, product_name)
+                        if agent_city == str(delivery_city) and stock_quantity > 0:
                             selected_agent = agent_url
                             break
+                        elif stock_quantity > max_stock:
+                            max_stock = stock_quantity
+                            selected_agent = agent_url
 
                 if selected_agent:
                     # Send message to the selected LogisticCenterAgent
-                    dispatch_graph = Graph()
-                    dispatch_graph.add(
-                        (URIRef(''), RDF.type, ECSDI.ReceiveProduct))
-                    dispatch_graph.add((URIRef(''), ECSDI.Producte_comprat, Literal(
-                        product_name, datatype=XSD.string)))
-                    dispatch_graph.add((URIRef(''), ECSDI.Direccio_entrega, Literal(
-                        delivery_address, datatype=XSD.string)))
-
+                    dispatch_graph, request_uri = create_performative_request(
+                        ECSDI.ReceiveProduct,
+                        Producte_comprat=product_name,
+                        Direccio_entrega=delivery_address
+                    )
                     dispatch_message = build_message(
-                        dispatch_graph, ACL.request, sender=agent_uri, receiver=URIRef(selected_agent + '/comm'))
+                        dispatch_graph, ACL.request, sender=agent_uri, receiver=URIRef(selected_agent + '/comm'), content=request_uri)
                     requests.post(selected_agent + '/comm', data=dispatch_message.serialize(format='turtle'),
                                   headers={'Content-Type': 'application/x-turtle'})
                 else:
-                    print(f"No matching LogisticCenterAgent found for city: {
-                          delivery_city}")
+                    print(
+                        f"No matching LogisticCenterAgent found for city: {delivery_city}")
 
         return jsonify({"status": "ok"}), 200
     except Exception as e:
