@@ -3,6 +3,10 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
+<http://example.org/product/Laptop> a practicaecsdi:Product ;
+    practicaecsdi:Direccio_entrega "Rnda Mossèn Jacint Verdaguer, 23, 4rt 2a"^^xsd:string ;
+    practicaecsdi:Producte_comprat "Laptop"^^xsd:string .
+
 <http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI> a owl:Ontology .
 
 practicaecsdi:Ciutat_entrega a owl:ObjectProperty ;
@@ -209,40 +213,6 @@ practicaecsdi:Viu_a a owl:ObjectProperty ;
         """1 usuari viu a 1 ciutat\r\r\r\r\r\r
 1 ciutat hi viuen 1..* usuaris""",
         """1 usuari viu a 1 ciutat\r\r\r\r\r\r\r
-1 ciutat hi viuen 1..* usuaris""",
-        """1 usuari viu a 1 ciutat\r\r\r\r\r\r\r\r
-1 ciutat hi viuen 1..* usuaris""",
-        """1 usuari viu a 1 ciutat\r\r\r\r\r\r\r\r\r
-1 ciutat hi viuen 1..* usuaris""",
-        """1 usuari viu a 1 ciutat\r\r\r\r\r\r\r\r\r\r
-1 ciutat hi viuen 1..* usuaris""",
-        """1 usuari viu a 1 ciutat\r\r\r\r\r\r\r\r\r\r\r
-1 ciutat hi viuen 1..* usuaris""",
-        """1 usuari viu a 1 ciutat\r\r\r\r\r\r\r\r\r\r\r\r
-1 ciutat hi viuen 1..* usuaris""",
-        """1 usuari viu a 1 ciutat\r\r\r\r\r\r\r\r\r\r\r\r\r
-1 ciutat hi viuen 1..* usuaris""",
-        """1 usuari viu a 1 ciutat\r\r\r\r\r\r\r\r\r\r\r\r\r\r
-1 ciutat hi viuen 1..* usuaris""",
-        """1 usuari viu a 1 ciutat\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r
-1 ciutat hi viuen 1..* usuaris""",
-        """1 usuari viu a 1 ciutat\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r
-1 ciutat hi viuen 1..* usuaris""",
-        """1 usuari viu a 1 ciutat\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r
-1 ciutat hi viuen 1..* usuaris""",
-        """1 usuari viu a 1 ciutat\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r
-1 ciutat hi viuen 1..* usuaris""",
-        """1 usuari viu a 1 ciutat\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r
-1 ciutat hi viuen 1..* usuaris""",
-        """1 usuari viu a 1 ciutat\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r
-1 ciutat hi viuen 1..* usuaris""",
-        """1 usuari viu a 1 ciutat\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r
-1 ciutat hi viuen 1..* usuaris""",
-        """1 usuari viu a 1 ciutat\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r
-1 ciutat hi viuen 1..* usuaris""",
-        """1 usuari viu a 1 ciutat\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r
-1 ciutat hi viuen 1..* usuaris""",
-        """1 usuari viu a 1 ciutat\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r
 1 ciutat hi viuen 1..* usuaris""" ;
     rdfs:domain practicaecsdi:Usuari ;
     rdfs:range practicaecsdi:Ciutat ;
@@ -429,125 +399,6 @@ Alta prioritat: es paga un 10% extra de la compra\r\r\r\r\r\r\r
 \r\r\r\r\r\r\r
 1: Alta prioritat d'entrega\r\r\r\r\r\r\r
 2: Mitjana prioritat d'entrega\r\r\r\r\r\r\r
-3: Baixa prioritat d'entrega""",
-        """Baixa prioritat: no es paga res extra\r\r\r\r\r\r\r\r
-Mitja prioritat: es paga un 5% extra de la compra\r\r\r\r\r\r\r\r
-Alta prioritat: es paga un 10% extra de la compra\r\r\r\r\r\r\r\r
-\r\r\r\r\r\r\r\r
-1: Alta prioritat d'entrega\r\r\r\r\r\r\r\r
-2: Mitjana prioritat d'entrega\r\r\r\r\r\r\r\r
-3: Baixa prioritat d'entrega""",
-        """Baixa prioritat: no es paga res extra\r\r\r\r\r\r\r\r\r
-Mitja prioritat: es paga un 5% extra de la compra\r\r\r\r\r\r\r\r\r
-Alta prioritat: es paga un 10% extra de la compra\r\r\r\r\r\r\r\r\r
-\r\r\r\r\r\r\r\r\r
-1: Alta prioritat d'entrega\r\r\r\r\r\r\r\r\r
-2: Mitjana prioritat d'entrega\r\r\r\r\r\r\r\r\r
-3: Baixa prioritat d'entrega""",
-        """Baixa prioritat: no es paga res extra\r\r\r\r\r\r\r\r\r\r
-Mitja prioritat: es paga un 5% extra de la compra\r\r\r\r\r\r\r\r\r\r
-Alta prioritat: es paga un 10% extra de la compra\r\r\r\r\r\r\r\r\r\r
-\r\r\r\r\r\r\r\r\r\r
-1: Alta prioritat d'entrega\r\r\r\r\r\r\r\r\r\r
-2: Mitjana prioritat d'entrega\r\r\r\r\r\r\r\r\r\r
-3: Baixa prioritat d'entrega""",
-        """Baixa prioritat: no es paga res extra\r\r\r\r\r\r\r\r\r\r\r
-Mitja prioritat: es paga un 5% extra de la compra\r\r\r\r\r\r\r\r\r\r\r
-Alta prioritat: es paga un 10% extra de la compra\r\r\r\r\r\r\r\r\r\r\r
-\r\r\r\r\r\r\r\r\r\r\r
-1: Alta prioritat d'entrega\r\r\r\r\r\r\r\r\r\r\r
-2: Mitjana prioritat d'entrega\r\r\r\r\r\r\r\r\r\r\r
-3: Baixa prioritat d'entrega""",
-        """Baixa prioritat: no es paga res extra\r\r\r\r\r\r\r\r\r\r\r\r
-Mitja prioritat: es paga un 5% extra de la compra\r\r\r\r\r\r\r\r\r\r\r\r
-Alta prioritat: es paga un 10% extra de la compra\r\r\r\r\r\r\r\r\r\r\r\r
-\r\r\r\r\r\r\r\r\r\r\r\r
-1: Alta prioritat d'entrega\r\r\r\r\r\r\r\r\r\r\r\r
-2: Mitjana prioritat d'entrega\r\r\r\r\r\r\r\r\r\r\r\r
-3: Baixa prioritat d'entrega""",
-        """Baixa prioritat: no es paga res extra\r\r\r\r\r\r\r\r\r\r\r\r\r
-Mitja prioritat: es paga un 5% extra de la compra\r\r\r\r\r\r\r\r\r\r\r\r\r
-Alta prioritat: es paga un 10% extra de la compra\r\r\r\r\r\r\r\r\r\r\r\r\r
-\r\r\r\r\r\r\r\r\r\r\r\r\r
-1: Alta prioritat d'entrega\r\r\r\r\r\r\r\r\r\r\r\r\r
-2: Mitjana prioritat d'entrega\r\r\r\r\r\r\r\r\r\r\r\r\r
-3: Baixa prioritat d'entrega""",
-        """Baixa prioritat: no es paga res extra\r\r\r\r\r\r\r\r\r\r\r\r\r\r
-Mitja prioritat: es paga un 5% extra de la compra\r\r\r\r\r\r\r\r\r\r\r\r\r\r
-Alta prioritat: es paga un 10% extra de la compra\r\r\r\r\r\r\r\r\r\r\r\r\r\r
-\r\r\r\r\r\r\r\r\r\r\r\r\r\r
-1: Alta prioritat d'entrega\r\r\r\r\r\r\r\r\r\r\r\r\r\r
-2: Mitjana prioritat d'entrega\r\r\r\r\r\r\r\r\r\r\r\r\r\r
-3: Baixa prioritat d'entrega""",
-        """Baixa prioritat: no es paga res extra\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r
-Mitja prioritat: es paga un 5% extra de la compra\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r
-Alta prioritat: es paga un 10% extra de la compra\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r
-\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r
-1: Alta prioritat d'entrega\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r
-2: Mitjana prioritat d'entrega\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r
-3: Baixa prioritat d'entrega""",
-        """Baixa prioritat: no es paga res extra\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r
-Mitja prioritat: es paga un 5% extra de la compra\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r
-Alta prioritat: es paga un 10% extra de la compra\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r
-\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r
-1: Alta prioritat d'entrega\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r
-2: Mitjana prioritat d'entrega\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r
-3: Baixa prioritat d'entrega""",
-        """Baixa prioritat: no es paga res extra\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r
-Mitja prioritat: es paga un 5% extra de la compra\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r
-Alta prioritat: es paga un 10% extra de la compra\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r
-\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r
-1: Alta prioritat d'entrega\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r
-2: Mitjana prioritat d'entrega\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r
-3: Baixa prioritat d'entrega""",
-        """Baixa prioritat: no es paga res extra\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r
-Mitja prioritat: es paga un 5% extra de la compra\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r
-Alta prioritat: es paga un 10% extra de la compra\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r
-\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r
-1: Alta prioritat d'entrega\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r
-2: Mitjana prioritat d'entrega\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r
-3: Baixa prioritat d'entrega""",
-        """Baixa prioritat: no es paga res extra\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r
-Mitja prioritat: es paga un 5% extra de la compra\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r
-Alta prioritat: es paga un 10% extra de la compra\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r
-\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r
-1: Alta prioritat d'entrega\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r
-2: Mitjana prioritat d'entrega\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r
-3: Baixa prioritat d'entrega""",
-        """Baixa prioritat: no es paga res extra\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r
-Mitja prioritat: es paga un 5% extra de la compra\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r
-Alta prioritat: es paga un 10% extra de la compra\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r
-\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r
-1: Alta prioritat d'entrega\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r
-2: Mitjana prioritat d'entrega\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r
-3: Baixa prioritat d'entrega""",
-        """Baixa prioritat: no es paga res extra\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r
-Mitja prioritat: es paga un 5% extra de la compra\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r
-Alta prioritat: es paga un 10% extra de la compra\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r
-\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r
-1: Alta prioritat d'entrega\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r
-2: Mitjana prioritat d'entrega\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r
-3: Baixa prioritat d'entrega""",
-        """Baixa prioritat: no es paga res extra\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r
-Mitja prioritat: es paga un 5% extra de la compra\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r
-Alta prioritat: es paga un 10% extra de la compra\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r
-\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r
-1: Alta prioritat d'entrega\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r
-2: Mitjana prioritat d'entrega\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r
-3: Baixa prioritat d'entrega""",
-        """Baixa prioritat: no es paga res extra\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r
-Mitja prioritat: es paga un 5% extra de la compra\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r
-Alta prioritat: es paga un 10% extra de la compra\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r
-\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r
-1: Alta prioritat d'entrega\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r
-2: Mitjana prioritat d'entrega\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r
-3: Baixa prioritat d'entrega""",
-        """Baixa prioritat: no es paga res extra\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r
-Mitja prioritat: es paga un 5% extra de la compra\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r
-Alta prioritat: es paga un 10% extra de la compra\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r
-\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r
-1: Alta prioritat d'entrega\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r
-2: Mitjana prioritat d'entrega\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r
 3: Baixa prioritat d'entrega""" ;
     rdfs:domain practicaecsdi:Compra ;
     rdfs:range xsd:int ;

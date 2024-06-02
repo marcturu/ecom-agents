@@ -233,14 +233,14 @@ def communicate():
                     product = URIRef(
                         f"http://example.org/product/{msg_graph.value(subject=content, predicate=ECSDI.productID)}")
                     insert_graph.add((product, RDF.type, ECSDI.Product))
-                    insert_graph.add(
-                        (product, ECSDI.productID, msg_graph.value(subject=content, predicate=ECSDI.productID)))
-                    insert_graph.add(
-                        (product, ECSDI.productName, msg_graph.value(subject=content, predicate=ECSDI.productName)))
-                    insert_graph.add(
-                        (product, ECSDI.productPrice, msg_graph.value(subject=content, predicate=ECSDI.productPrice)))
-                    insert_message = build_message(insert_graph, ACL.request, agent_uri, URIRef(
-                        lots_address))
+                    insert_graph.add((product, ECSDI.productID, msg_graph.value(
+                        subject=content, predicate=ECSDI.productID)))
+                    insert_graph.add((product, ECSDI.productName, msg_graph.value(
+                        subject=content, predicate=ECSDI.productName)))
+                    insert_graph.add((product, ECSDI.productPrice, msg_graph.value(
+                        subject=content, predicate=ECSDI.productPrice)))
+                    insert_message = build_message(
+                        insert_graph, ACL.request, agent_uri, URIRef(lots_address))
                     response = requests.post(
                         lots_address + '/comm', data=insert_message.serialize(format='turtle'))
                     return response.content, response.status_code
@@ -257,8 +257,8 @@ def communicate():
                         msg_graph.value(subject=content,
                                         predicate=ECSDI.Ciutat_entrega)
                     )
-                    dispatch_message = build_message(dispatch_graph, ACL.request, agent_uri, URIRef(
-                        logistic_center_address))
+                    dispatch_message = build_message(
+                        dispatch_graph, ACL.request, agent_uri, URIRef(logistic_center_address))
                     response = requests.post(
                         logistic_center_address + '/comm', data=dispatch_message.serialize(format='turtle'))
                     return response.content, response.status_code
