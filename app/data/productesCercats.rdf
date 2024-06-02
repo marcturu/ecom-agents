@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rdf:RDF
+   xmlns:ns1="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+>
+  <rdf:Description rdf:about="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Producte_Producte1">
+    <ns1:ProducteCercat>Producte1</ns1:ProducteCercat>
+    <ns1:Usuario>Sergi</ns1:Usuario>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Producte_Producte4">
+    <ns1:ProducteCercat>Producte4</ns1:ProducteCercat>
+    <ns1:Usuario>Sergi</ns1:Usuario>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Producte_Producte2">
+    <ns1:ProducteCercat>Producte2</ns1:ProducteCercat>
+    <ns1:Usuario>Sergi</ns1:Usuario>
+  </rdf:Description>
+</rdf:RDF>

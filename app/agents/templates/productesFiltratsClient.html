@@ -2,19 +2,23 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Productes Filtrats</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Productos</title>
 </head>
 <body>
-    <h1>Productes Filtrats</h1>
+    <h1>Lista de Productos</h1>
     <ul>
         {% for producto in productos %}
             <li>
-                <a href="{{ url_for('detalle', product_id=producto['id']) }}">{{ producto['nom'] }}</a> -
-                {{ producto['preu'] }} EUR - {{ producto['categoria'] }}
+                {{ producto['nombre'] }} - {{ producto['precio'] }} EUR
+                <form action="/seleccionar_producto" method="post" style="display:inline;">
+                    <input type="hidden" name="producto" value='{{ producto | tojson | safe }}'>
+                    <button type="submit">Seleccionar</button>
+                </form>
             </li>
         {% endfor %}
     </ul>
     <br>
-    <a href="/">Tornar</a>
+    <p><a href="/">Volver a la página principal</a></p>
 </body>
 </html>
