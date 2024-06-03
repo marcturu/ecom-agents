@@ -16,7 +16,7 @@ transport_agency_db_path = "../data/pedidos.rdf"
 pedidos_db_path = "../data/pedidos.rdf"
 stock_db_path = "../data/stock.rdf"
 
-client_agent_url = 'http://localhost:5007/NotifyClient'
+client_agent_url = 'http://localhost:5008/NotifyClient'
 ta_url = 'http://localhost:5014/GetOffer'
 
 
@@ -160,7 +160,7 @@ def guardar_pedido(nombre_producto, direccion):
     print("Pedido guardado correctamente")
 
 
-@app.route('/EnviarPedidos', methods=['POST', 'GET'])
+@app.route('/EnviarPedidos', methods=['POST'])
 def enviar_pedidos():
     try:
         organizar_lotes()

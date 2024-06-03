@@ -1,4 +1,5 @@
 import uuid
+
 import requests
 from flask import Flask, jsonify, request
 from rdflib import Graph, Literal, Namespace, URIRef
@@ -6,7 +7,8 @@ from rdflib.namespace import RDF, XSD
 
 app = Flask(__name__)
 
-ns = Namespace("http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#")
+ns = Namespace(
+    "http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#")
 
 archivo_base_datos = "../data/factures.rdf"
 
@@ -23,14 +25,15 @@ def procesar_pedido():
         carrito = data['carrito']
         direccion = data['direccion']
         totalPreu = data['totalPreu']
-        
+
         print(f"Pedido recibido: {carrito}")
         print(f"Dirección de entrega: {direccion}")
         print(f"Precio total: {totalPreu}")
 
         usuario_id = 'Antonio'
         facturaPagada = False
-        guardar_factura(carrito, usuario_id, direccion, totalPreu, facturaPagada)
+        guardar_factura(carrito, usuario_id, direccion,
+                        totalPreu, facturaPagada)
 
         lca_url = 'http://localhost:5007/posarFactura'
 
@@ -40,17 +43,37 @@ def procesar_pedido():
             return jsonify({"message": "Factura creada con exito"}), 200
         else:
             print("Error al notificar al centro logístico")
-        
+
     except Exception as e:
         print(f"Error en el procesamiento del pedido: {e}")
         return jsonify({"error": str(e)}), 500
 
 
+@app.route('/NotifyClient', methods=['POST'])
+def notify_client():
+    try:
+        data = request.get_json()
+        nombre_producto = data['nombre_producto']
+        direccion = data['direccion']
+        price = data['price']
+        time_of_delivery = data['time_of_delivery']
+        delivery_guy = data['delivery_guy']
+
+        # Log the notification details
+        print(f"Notificación recibida para el producto {nombre_producto}")
+        print(f"Dirección de entrega: {direccion}")
+        print(f"Precio: {price}")
+        print(f"Tiempo de entrega estimado: {time_of_delivery}")
+        print(f"Repartidor: {delivery_guy}")
+
+        # Process the notification (e.g., update the database, send an email, etc.)
+
+        return jsonify({"message": "Notificación recibida"}), 200
+    except Exception as e:
+        print(f"Error al recibir la notificación: {e}")
+        return jsonify({"error": str(e)}), 500
 
 
-
-
-# Función para leer la base de datos RDF
 def leer_DB(ruta_archivo):
     base_datos = Graph()
     try:
@@ -59,7 +82,7 @@ def leer_DB(ruta_archivo):
         print("Error:", e)
     return base_datos
 
-# Función para añadir una factura a la base de datos RDF
+
 def guardar_factura(carrito, usuario_id, direccion, preuTotal, facturaPagada):
     base_datos = leer_DB(archivo_base_datos)
     print(f"Carrito: {carrito}")
@@ -75,16 +98,21 @@ def guardar_factura(carrito, usuario_id, direccion, preuTotal, facturaPagada):
     base_datos.add((factura_uri, RDF.type, ns.Factura))
     base_datos.add((factura_uri, ns.Usuario, Literal(usuario_id)))
     base_datos.add((factura_uri, ns.Direccion, Literal(direccion)))
-    base_datos.add((factura_uri, ns.PrecioTotal, Literal(preuTotal, datatype=XSD.float)))
-    base_datos.add((factura_uri, ns.FacturaPagada, Literal(facturaPagada, datatype=XSD.boolean)))
+    base_datos.add((factura_uri, ns.PrecioTotal,
+                   Literal(preuTotal, datatype=XSD.float)))
+    base_datos.add((factura_uri, ns.FacturaPagada, Literal(
+        facturaPagada, datatype=XSD.boolean)))
 
     for producto in carrito:
         producto_uri = ns[f"Producto_{producto['nombre'].replace(' ', '_')}"]
         base_datos.add((producto_uri, RDF.type, ns.Producto))
         base_datos.add((producto_uri, ns.Nombre, Literal(producto['nombre'])))
-        base_datos.add((producto_uri, ns.Descripcion, Literal(producto['descripcion'])))
-        base_datos.add((producto_uri, ns.Categoria, Literal(producto['categoria'])))
-        base_datos.add((producto_uri, ns.Precio, Literal(producto['precio'], datatype=XSD.float)))
+        base_datos.add((producto_uri, ns.Descripcion,
+                       Literal(producto['descripcion'])))
+        base_datos.add((producto_uri, ns.Categoria,
+                       Literal(producto['categoria'])))
+        base_datos.add((producto_uri, ns.Precio, Literal(
+            producto['precio'], datatype=XSD.float)))
 
         # Relacionar producto con factura
         base_datos.add((factura_uri, ns.Producto, producto_uri))
