@@ -52,11 +52,12 @@ def guardar_producto_cercat(nombre_producto, nombre_usuario):
     producto_uri = ECSDI[f"Producte_{nombre_producto.replace(' ', '')}"]
 
     # Agregar tripleta a la base de datos
+    guardar_producto_cercat.base_datos_productes_cercats.add((producto_uri, RDF.type, ECSDI.CercaUsuari))
     guardar_producto_cercat.base_datos_productes_cercats.add((producto_uri, ECSDI.ProducteCercat, Literal(nombre_producto)))
     guardar_producto_cercat.base_datos_productes_cercats.add((producto_uri, ECSDI.Usuario, Literal(nombre_usuario)))
 
     # Guardar la base de datos en un archivo
-    guardar_producto_cercat.base_datos_productes_cercats.serialize(destination="../data/productesCercats.rdf", format="xml")
+    guardar_producto_cercat.base_datos_productes_cercats.serialize(destination=base_datos_productesCercats, format="xml")
 
     return
 

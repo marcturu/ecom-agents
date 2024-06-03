@@ -19,7 +19,7 @@ RECOMANADOR_URL = 'http://localhost:5010'
 AGENTE_VALORACIONES_URL = 'http://localhost:5005'
 
 
-USER_ID = "Manolo"
+USER_ID = "Sergi"
 
 # Definir el namespace
 ns = Namespace(
@@ -101,6 +101,9 @@ def home():
                 <form action="/valorar" method="post">
                     <p><a href="/valorar"><button>Fer Valoracio</button></a></p>
                 </form>
+                <form action="/mostrar_recomendacion" method="post">
+                    <p><a href="/mostrar_recomendacion"><button>Recomana</button></a></p>
+                </form>
             </body>
             </html>
             """
@@ -179,25 +182,28 @@ def comprar():
         """
 
 
-@app.route('/RebreRecomanacio', methods=['POST'])
-def rebre_recomanacio():
-    producto_info = request.get_json()
-    print(f"Producto recomendado recibido: {producto_info}")
+@app.route('/mostrar_recomendacion', methods=['POST'])
+def mostrar_recomendacion():
 
-    # Renderizar la plantilla HTML con la información del producto recomendado
-    return render_template('recomendacion.html', producto=producto_info)
-
+    try:
+        response = requests.post(RECOMANADOR_URL + '/EnviarRecomanacio')
+        print("Contenido de la respuesta:", response.text)  # Agrega esta línea para depurar
+        if response.status_code == 200:
+            producto_recomendado = response.json()
+            return render_template('recomendacion.html', producto=producto_recomendado)
+        else:
+            return "Error al obtener la recomendación del servidor de recomendación."
+    except Exception as e:
+        return f"Error: {e}"
 
 @app.route('/valorar', methods=['POST'])
 def valorar():
     return render_template('valorar_producto.html')
 
-
 @app.route('/TocaValorar', methods=['POST'])
 def TocaValorar():
     print("TOCA FER VALORACIO")
     return "TOCA FER VALORACIO ENVIAT"
-
 
 @app.route('/submit_valoracion', methods=['POST'])
 def submit_valoracion():
