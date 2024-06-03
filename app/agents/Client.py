@@ -14,6 +14,8 @@ AGENTE_URL = 'http://localhost:5006/FiltrarProducte'
 AGENTE_PRODUCTE_URL = 'http://localhost:5006/MostrarProducte'
 VENDEDOR_URL = 'http://localhost:5003'
 
+USER_ID = "Manolo"
+
 # Definir el namespace
 ns = Namespace("http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#")
   
@@ -137,7 +139,11 @@ def comprar():
         <a href="/">Volver a la página principal</a>
         """
     try:
-        response = requests.post(VENDEDOR_URL + '/ProcesarCompra', json=carritoCompra)
+        datosCompra = {
+            "carrito": carritoCompra,
+            "usuario_id": USER_ID
+        }
+        response = requests.post(VENDEDOR_URL + '/ProcesarCompra', json=datosCompra)
         if response.status_code == 200:
             carritoCompra.clear()  # Limpiar el carrito después de la compra exitosa
             global precioTotal 

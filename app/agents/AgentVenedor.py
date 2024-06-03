@@ -19,73 +19,51 @@ def leer_DB(ruta_archivo):
         print("Error:", e)
     return g
 
-# Ruta principal para recibir el JSON y procesarlo
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/')
 def home():
-    if request.method == 'POST':
-        num_productos = 4
-        noms = generar_noms(num_productos)
-        quantitats = generar_quantitats(num_productos)
+    return "<h1>Bienvenido al agente venedor</h1>"
 
-        insertar_compra(noms, quantitats)
-
-        return """Compra registrada con éxito <br>
-            <a href="/">Añadir Nuevo Producto</a>
-            """
-        
-    else:
-        html = """
-        <!DOCTYPE html>
-            <html lang="es">
-            <head>
-                <meta charset="UTF-8">
-                <title>Afegir Compra</title>
-            </head>
-            <body>
-                <h1>Afegir Compra</h1>
-                <form method="post">
-                    <input type="submit" value="Afegir Compra">
-                </form>
-            </body>
-            </html>
-        """
-        return html
 
 @app.route('/ProcesarCompra', methods=['POST'])
 def procesar_compra():
     try:
-        carrito = request.get_json()
+        data = request.get_json()
+        carrito = data['carrito']
+        usuario_id = data['usuario_id']
         print(f"Carrito recibido: {carrito}")
+        print(f"Usuario recibido: {usuario_id}")
 
         if not carrito:
             print("El carrito está vacío")
             return jsonify({"error": "El carrito está vacío"}), 400
 
         noms = [producto['nombre'] for producto in carrito]
-        quantitats = [1 for _ in carrito]  # Asumimos cantidad 1 por defecto
+        preus = [producto['precio'] for producto in carrito]
         print(f"Nombres de productos: {noms}")
-        print(f"Cantidad de productos: {quantitats}")
+        print(f"Precios de productos: {preus}")
 
-        insertar_compra(noms, quantitats)
+        insertar_compra(noms, preus, usuario_id)
 
         return jsonify({"message": "Compra registrada con éxito"}), 200
     except Exception as e:
         print(f"Error en el procesamiento de la compra: {e}")
         return jsonify({"error": str(e)}), 500    
 
-def insertar_compra(noms, quantitats):
+
+def insertar_compra(noms, preus, usuario_id):
     base_datos = leer_DB("../data/compres.rdf")
 
     # Asegurarse de que las listas tengan la misma longitud
-    if len(noms) != len(quantitats):
-        print("Error: Las listas de nombres y cantidades no tienen la misma longitud")
+    if len(noms) != len(preus):
+        print("Error: Las listas de nombres, cantidades y precios no tienen la misma longitud")
         return
 
     # Generar un identificador único para la compra
     compra_id = str(datetime.datetime.now().timestamp()).replace(".", "_")
 
+    preuTotal = sum(preus)
     # Insertar cada producto en la base de datos
-    for i, (nom, quantitat) in enumerate(zip(noms, quantitats), start=1):
+    for i, (nom, preu) in enumerate(zip(noms, preus), start=1):
         # Generar una URI única para el producto en esta compra
         product_uri = ns[f"Compra_{compra_id}_Producte{i}_{nom.replace(' ', '_')}"]
 
@@ -93,31 +71,16 @@ def insertar_compra(noms, quantitats):
         base_datos.add((product_uri, RDF.type, ns.Compra))
         base_datos.add((product_uri, ns.Nom, Literal(nom)))
         base_datos.add((product_uri, ns.Quantitat, Literal(quantitat)))
+        base_datos.add((product_uri, ns.Preu, Literal(preu, datatype=XSD.float)))
+        base_datos.add((product_uri, ns.Usuari, Literal(usuario_id)))
 
+    compra_uri = ns[f"Compra_{compra_id}"]
+    base_datos.add((compra_uri, RDF.type, ns.Compra))
+    base_datos.add((compra_uri, ns.PreuTotal, Literal(preuTotal, datatype=XSD.float)))
+    base_datos.add((compra_uri, ns.Usuari, Literal(usuario_id)))
+    
     # Guardar los cambios en la base de datos
     base_datos.serialize(destination="../data/compres.rdf", format="xml")
-
-
-# Generar nombres ficticios para productos
-def generar_noms(num_productos):
-    noms = []
-    for i in range(1, num_productos + 1):
-        noms.append(f"Producte{i}")
-    return noms
-
-# Generar cantidades ficticias para productos
-def generar_quantitats(num_productos):
-    return [random.randint(1, 10) for _ in range(num_productos)]
-
-# Ejemplo de uso
-num_productos = 5
-noms = generar_noms(num_productos)
-quantitats = generar_quantitats(num_productos)
-
-# Imprimir los nombres y cantidades generadas
-for nom, quantitat in zip(noms, quantitats):
-    print(f"Nom: {nom}, Quantitat: {quantitat}")
-
 
 def register_with_directory():
     directory_url = 'http://localhost:5000/register'
