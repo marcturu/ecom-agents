@@ -55,6 +55,11 @@ start "Agent Centre Logistic" cmd /c "cd agents && python AgentCentreLogistic.py
 echo Starting Agent Centre Logistic Administrator on port 5013...
 start "Agent Centre Logistic Administrator" cmd /c "cd agents && python AgentCentreLogisticAdministrator.py"
 
+
+:: Start Agent Transport
+echo Starting Agent Transport on port 5014...
+start "Agent Transport" cmd /c "cd agents && python TransportAgency.py"
+
 :: Wait a bit to ensure all agents start
 timeout /t 2 /nobreak > NUL
 
@@ -72,6 +77,7 @@ echo Agent Recomanador running at http://localhost:5010
 echo Extern Productes running at http://localhost:5011
 echo Agent Centre Logistic running at http://localhost:5012
 echo Agent Centre Logistic Administrator running at http://localhost:5013
+echo Agent Transport running at http://localhost:5014
 
 pause
 

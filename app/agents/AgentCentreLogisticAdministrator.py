@@ -61,5 +61,20 @@ def solicitar_envio_producto(nombre_producto, direccion):
     return False
 
 
+def register_with_directory(agent_name, agent_location):
+    directory_url = 'http://localhost:5000/register'
+    agent_info = {
+        'name': agent_name,
+        'location': agent_location
+    }
+    response = requests.post(directory_url, json=agent_info)
+    if response.status_code == 201:
+        print(f'{agent_name} registered successfully with the directory')
+    else:
+        print(f'Failed to register {agent_name} with the directory')
+
+
 if __name__ == "__main__":
+    register_with_directory(
+        'LogisticCenterAdministratorAgent', 'http://localhost:5013')
     app.run(port=5013)
