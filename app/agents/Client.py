@@ -13,6 +13,7 @@ precioTotal = 0.0
 AGENTE_URL = 'http://localhost:5006/FiltrarProducte'
 AGENTE_PRODUCTE_URL = 'http://localhost:5006/MostrarProducte'
 VENDEDOR_URL = 'http://localhost:5003'
+RECOMANADOR_URL = 'http://localhost:5010'
 
 USER_ID = "Manolo"
 
@@ -153,6 +154,13 @@ def comprar():
             return f"Error al procesar la compra: {response.text}<br><a href='/'>Volver a la página principal</a>"
     except Exception as e:
         return f"Error al enviar la información al vendedor: {e}<br><a href='/'>Volver a la página principal</a>"
+
+
+@app.route('/EnviarRecomanacio', methods=['POST'])
+def seleccionar_producto():
+    try:
+
+    except Exception as e:
 
 
 if __name__ == "__main__":
