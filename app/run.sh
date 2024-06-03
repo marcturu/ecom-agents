@@ -35,6 +35,10 @@ python3 Client.py &
 
 python3 AgentRecomanador.py &
 
+# Start Extern Productes
+
+python3 ExternProductes.py &
+
 # Wait to ensure all services are up
 sleep 3
 
@@ -48,5 +52,7 @@ echo "Agent 5 running at http://localhost:5005"
 echo "Agent 6 running at http://localhost:5006"
 echo "Agent 7 running at http://localhost:5007"
 echo "Agent 8 running at http://localhost:5010"
+echo "Agent 9 running at http://localhost:5011"
+
 
 
