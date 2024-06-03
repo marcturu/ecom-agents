@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valorar Producto</title>
+</head>
+<body>
+    <!-- <h1>Valorar Producto: {{ producto }}</h1> -->
+    <h1>Valorar Producto:</h1>
+    <form action="/submit_valoracion" method="post">
+        <label for="valoracion">Valoración (1-5):</label>
+        <input type="number" id="valoracion" name="valoracion" min="1" max="5" required><br><br>
+        <label for="comentario">Comentario:</label><br>
+        <textarea id="comentario" name="comentario" rows="4" cols="50"></textarea><br><br>
+        <input type="submit" value="Enviar Valoración">
+    </form>
+</body>
+</html>
