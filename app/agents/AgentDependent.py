@@ -104,10 +104,10 @@ def cerca():
             producto_filtrado = {
                 'nombre': nombre if nombre else '',
                 'precio': float(precio) if precio else 0.0,
-                #'categoria': categoria_producto if categoria_producto else '',
-                #'descripcion': descripcion if descripcion else '',
-                #'num_valoraciones': int(num_valoraciones) if num_valoraciones else 0,
-                #'estrellas_mitges': int(estrellas_mitges) if estrellas_mitges else 0
+                'categoria': categoria_producto if categoria_producto else '',
+                'descripcion': descripcion if descripcion else '',
+                'num_valoraciones': int(num_valoraciones) if num_valoraciones else 0,
+                'estrellas_mitges': int(estrellas_mitges) if estrellas_mitges else 0
             }
             productos_filtrados_list.append(producto_filtrado)
 

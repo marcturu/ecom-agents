@@ -13,7 +13,8 @@ precioTotal = 0.0
 AGENTE_URL = 'http://localhost:5006/FiltrarProducte'
 AGENTE_PRODUCTE_URL = 'http://localhost:5006/MostrarProducte'
 VENDEDOR_URL = 'http://localhost:5003'
-# VENDEDOR_URL = 'http://localhost:5003/ProcesarCompra'
+
+USER_ID = "Manolo"
 
 # Definir el namespace
 ns = Namespace("http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#")
@@ -138,19 +139,21 @@ def comprar():
         <a href="/">Volver a la página principal</a>
         """
     try:
-        response = requests.post(VENDEDOR_URL, json=carritoCompra)
+        datosCompra = {
+            "carrito": carritoCompra,
+            "usuario_id": USER_ID
+        }
+        response = requests.post(VENDEDOR_URL + '/ProcesarCompra', json=datosCompra)
         if response.status_code == 200:
-
-             # ENVIAR LA INFO AL VENDEDOR
-
             carritoCompra.clear()  # Limpiar el carrito después de la compra exitosa
             global precioTotal 
             precioTotal = 0
             return "Compra realizada con éxito.<br><a href='/'>Volver a la página principal</a>"
         else:
-            return "Error al procesar la compra.<br><a href='/'>Volver a la página principal</a>"
+            return f"Error al procesar la compra: {response.text}<br><a href='/'>Volver a la página principal</a>"
     except Exception as e:
         return f"Error al enviar la información al vendedor: {e}<br><a href='/'>Volver a la página principal</a>"
+
 
 if __name__ == "__main__":
     app.run(port=5007)
