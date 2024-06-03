@@ -35,6 +35,10 @@ start "Agent Dependent" cmd /c "cd agents && python AgentDependent.py"
 echo Starting Client on port 5007...
 start "Client" cmd /c "cd agents && python Client.py"
 
+:: Start Agent Tresorer
+echo Starting Agent Tresorer on port 5008...
+start "Agent Tresorer" cmd /c "cd agents && python AgentTresorer.py"
+
 :: Start Recomanador
 echo Starting Recomanador on port 5010...
 start "Agent Recomanador" cmd /c "cd agents && python AgentRecomanador.py"
@@ -63,6 +67,7 @@ echo Agent Extern running at http://localhost:5004
 echo Agent Valoracions running at http://localhost:5005
 echo Agent Dependent running at http://localhost:5006
 echo Client running at http://localhost:5007
+echo Agent Tresorer running at http://localhost:5008
 echo Agent Recomanador running at http://localhost:5010
 echo Extern Productes running at http://localhost:5011
 echo Agent Centre Logistic running at http://localhost:5012

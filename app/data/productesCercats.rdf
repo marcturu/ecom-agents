@@ -7,4 +7,8 @@
     <ns1:ProducteCercat>Laptop</ns1:ProducteCercat>
     <ns1:Usuario>Sergi</ns1:Usuario>
   </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Producte_Producte400">
+    <ns1:ProducteCercat>Producte400</ns1:ProducteCercat>
+    <ns1:Usuario>Sergi</ns1:Usuario>
+  </rdf:Description>
 </rdf:RDF>

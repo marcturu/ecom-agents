@@ -43,11 +43,14 @@ def procesar_compra():
 
         noms = [producto['nombre'] for producto in carrito]
         preus = [producto['precio'] for producto in carrito]
+        totalPreu = sum(preus)
         print(f"Nombres de productos: {noms}")
         print(f"Precios de productos: {preus}")
+        print(f"Total a pagar: {totalPreu} EUR")
 
         insertar_compra(noms, preus, usuario_id, direccion)
         notificar_centro_logistico(carrito, direccion)
+        notificar_facturador(carrito, direccion, totalPreu)
 
         return jsonify({"message": "Compra registrada con éxito"}), 200
     except Exception as e:
@@ -114,6 +117,18 @@ def notificar_centro_logistico(carrito, direccion):
     else:
         print("Error al notificar al centro logístico")
 
+def notificar_facturador(carrito, direccion, totalPreu):
+    lca_url = 'http://localhost:5008/CrearFactura'
+    data = {
+        "carrito": carrito,
+        "direccion": direccion,
+        "totalPreu": totalPreu
+    }
+    response = requests.post(lca_url, json=data)
+    if response.status_code == 200:
+        print("Notificación al centro logístico exitosa")
+    else:
+        print("Error al notificar al centro logístico")
 
 def register_with_directory():
     directory_url = 'http://localhost:5000/register'
