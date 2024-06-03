@@ -11,8 +11,7 @@ agents = {
     'AgentValoracions': 'http://localhost:5005',
     'AgentDependent': 'http://localhost:5006',
     'Client': 'http://localhost:5007',
-    'AgentRecomanador': 'http://localhost:5010',
-    'ExternProductes': 'http://localhost:5011'
+    'AgentRecomanador': 'http://localhost:5010'
 }
 
 @app.route('/')

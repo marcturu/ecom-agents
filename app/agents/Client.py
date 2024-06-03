@@ -14,6 +14,7 @@ precioTotal = 0.0
 AGENTE_URL = 'http://localhost:5006/FiltrarProducte'
 AGENTE_PRODUCTE_URL = 'http://localhost:5006/MostrarProducte'
 VENDEDOR_URL = 'http://localhost:5003'
+RECOMANADOR_URL = 'http://localhost:5010'
 AGENTE_VALORACIONES_URL = 'http://localhost:5005' 
 
 
@@ -159,6 +160,15 @@ def comprar():
             return f"Error al procesar la compra: {response.text}<br><a href='/'>Volver a la página principal</a>"
     except Exception as e:
         return f"Error al enviar la información al vendedor: {e}<br><a href='/'>Volver a la página principal</a>"
+
+
+@app.route('/RebreRecomanacio', methods=['POST'])
+def rebre_recomanacio():
+    producto_info = request.get_json()
+    print(f"Producto recomendado recibido: {producto_info}")
+
+    # Renderizar la plantilla HTML con la información del producto recomendado
+    return render_template('recomendacion.html', producto=producto_info)
 
 
 @app.route('/valorar', methods=['POST'])
