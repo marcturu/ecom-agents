@@ -280,6 +280,7 @@ def TocaValorar():
     print("TOCA FER VALORACIO")
     return "TOCA FER VALORACIO ENVIAT"
 
+
 @app.route('/mirarFactura', methods=['POST'])
 def mirarFactura():
     return render_template('factura.html', carrito=carritoGeneral, direccion=direccioGeneral, preuTotal=preuGeneral)
@@ -304,7 +305,9 @@ def submit_valoracion():
         # Crear un JSON con los datos de la valoración
         data = {
             "valoracion": valoracion,
-            "comentario": comentario
+            "comentario": comentario,
+            "usuario_id": USUARIO_REGISTRADO['nombre'], 
+            "product_id": 'Moto'
         }
 
         # Enviar los datos al agente encargado de las valoraciones
