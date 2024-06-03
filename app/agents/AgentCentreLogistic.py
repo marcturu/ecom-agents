@@ -16,7 +16,7 @@ transport_agency_db_path = "../data/pedidos.rdf"
 pedidos_db_path = "../data/pedidos.rdf"
 stock_db_path = "../data/stock.rdf"
 
-client_agent_url = 'http://localhost:5007/NotifyClient'
+client_agent_url = 'http://localhost:5008/NotifyClient'
 ta_url = 'http://localhost:5014/GetOffer'
 
 
@@ -33,15 +33,25 @@ def inicializar_transport_agency_db():
     g = Graph()
     if os.path.exists(transport_agency_db_path):
         g.parse(transport_agency_db_path, format="xml")
-    else:
-        print("Creating Transport Agency DB...")
 
-    ta_id = str(uuid.uuid4())
-    ta_uri = ns[f"TransportAgency_{ta_id}"]
-    g.add((ta_uri, RDF.type, ns.TransportAgency))
-    g.add((ta_uri, ns.url, Literal(ta_url, datatype=XSD.string)))
-    g.serialize(destination=transport_agency_db_path, format="xml")
-    print("Transport Agency DB initialized.")
+    # Check if the TA is already in the database
+    existing_ta = None
+    for ta in g.subjects(RDF.type, ns.TransportAgency):
+        url = str(g.value(ta, ns.url))
+        if url == ta_url:
+            existing_ta = ta
+            break
+
+    if existing_ta is None:
+        print("Adding Transport Agency to the DB...")
+        ta_id = str(uuid.uuid4())
+        ta_uri = ns[f"TransportAgency_{ta_id}"]
+        g.add((ta_uri, RDF.type, ns.TransportAgency))
+        g.add((ta_uri, ns.url, Literal(ta_url, datatype=XSD.string)))
+        g.serialize(destination=transport_agency_db_path, format="xml")
+        print("Transport Agency added to the DB.")
+    else:
+        print("Transport Agency already exists in the DB.")
 
 
 def register_with_directory(agent_name, agent_location):
