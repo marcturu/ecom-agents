@@ -3,6 +3,7 @@ from rdflib import Graph, Namespace, Literal
 from rdflib.namespace import RDF, XSD
 import requests
 import uuid
+import random
 
 app = Flask(__name__)
 
@@ -23,7 +24,7 @@ def home():
             <input type="submit" value="Iniciar Valoración">
         </form>
         """
-    
+
 @app.route('/avisarClient', methods=['POST'])
 def avisarClient():
     try:
@@ -34,6 +35,7 @@ def avisarClient():
             return f"Error al notificar al cliente para valorar el producto: {response.status_code}"
     except requests.exceptions.RequestException as e:
         return f"Error de conexión: {e}"
+
 
 def leer_DB_valoraciones(ruta_archivo):
     base_datos_valoraciones = Graph()
@@ -65,10 +67,8 @@ def añadir_valoracion(usuario_id, producto_uri, valoracion, comentario):
 def guardar_valoracion():
     if request.method == 'POST':
         data = request.json
-        usuario_id = "pepo"
-        producto_uri = "hipopotamo"
-        # usuario_id = data['usuario_id']
-        # producto_uri = data['producto_uri']
+        usuario_id = data['usuario_id']
+        producto_uri = data['product_id']
         valoracion = data['valoracion']
         comentario = data['comentario']
 
@@ -77,12 +77,6 @@ def guardar_valoracion():
         return "Valoración guardada correctamente en la base de datos RDF", 200
     else:
         return "Error: La solicitud debe ser POST", 400
-
-
-
-
-
-  
 
 
 # Función para leer la base de datos RDF de compras
@@ -117,10 +111,6 @@ def obtener_productos_comprados(usuario_id):
         return jsonify({"productos_comprados": productos_comprados})
     else:
         return jsonify({"mensaje": "No se encontraron productos comprados para el usuario"}), 404
-
-
-
-
 
 
 def register_with_directory():

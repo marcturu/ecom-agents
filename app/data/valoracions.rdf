@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rdf:RDF
+   xmlns:ns1="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+>
+  <rdf:Description rdf:about="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Valoracio_f5dfefd3-4553-4f81-b239-d193509bee64">
+    <rdf:type rdf:resource="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Valoracio"/>
+    <ns1:Usuari>Eustaquiaa</ns1:Usuari>
+    <ns1:Producte>Moto</ns1:Producte>
+    <ns1:Valoracio rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5</ns1:Valoracio>
+    <ns1:Comentari>Hola</ns1:Comentari>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Valoracio_854373cd-3078-41b8-bb1d-76be3103d75f">
+    <rdf:type rdf:resource="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Valoracio"/>
+    <ns1:Usuari>Antonio</ns1:Usuari>
+    <ns1:Producte>2</ns1:Producte>
+    <ns1:Valoracio rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">4</ns1:Valoracio>
+    <ns1:Comentari>vsvddsfvsdfb</ns1:Comentari>
+  </rdf:Description>
+</rdf:RDF>
