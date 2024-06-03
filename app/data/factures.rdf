@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rdf:RDF
+   xmlns:ns1="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+>
+  <rdf:Description rdf:about="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Factura_9db76dc0-5232-4864-8463-88e6ff69450b">
+    <rdf:type rdf:resource="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Factura"/>
+    <ns1:Usuario>Antonio</ns1:Usuario>
+    <ns1:Direccion>dfcdsavdfvdfv</ns1:Direccion>
+    <ns1:PrecioTotal rdf:datatype="http://www.w3.org/2001/XMLSchema#float">510.0</ns1:PrecioTotal>
+    <ns1:FacturaPagada rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</ns1:FacturaPagada>
+    <ns1:Producto rdf:resource="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Producto_Producte400"/>
+    <ns1:Producto rdf:resource="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Producto_Laptop"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Producto_Producte400">
+    <rdf:type rdf:resource="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Producto"/>
+    <ns1:Nombre>Producte400</ns1:Nombre>
+    <ns1:Descripcion>dcsdc</ns1:Descripcion>
+    <ns1:Categoria>Bici</ns1:Categoria>
+    <ns1:Precio rdf:datatype="http://www.w3.org/2001/XMLSchema#float">500.0</ns1:Precio>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Producto_Laptop">
+    <rdf:type rdf:resource="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Producto"/>
+    <ns1:Nombre>Laptop</ns1:Nombre>
+    <ns1:Descripcion>laptoping</ns1:Descripcion>
+    <ns1:Categoria>IT</ns1:Categoria>
+    <ns1:Precio rdf:datatype="http://www.w3.org/2001/XMLSchema#float">10.0</ns1:Precio>
+  </rdf:Description>
+</rdf:RDF>

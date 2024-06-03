@@ -131,7 +131,7 @@ def mostrar():
     # Verificar si se proporcionó el nombre del producto seleccionado
     if 'nombre' in data:
         nom = data.get('nombre', '')
-        usuari = "Sergi"
+        usuari = data['usuario_id']
         if nom:
             guardar_producto_cercat(nom, usuari)
 

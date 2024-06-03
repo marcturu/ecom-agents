@@ -200,7 +200,10 @@ def seleccionar_producto():
     try:
         prod1 = json.loads(request.form['producto'])
         print("Producto seleccionado (JSON):", prod1)
+        # Agregar el nombre de usuario al diccionario
+        prod1['usuario_id'] = USUARIO_REGISTRADO['nombre']
         otra_response = requests.post(AGENTE_PRODUCTE_URL, json=prod1)
+
 
         if otra_response.status_code == 200:
             print("El primer producto se ha enviado correctamente a otra URL.")
@@ -233,8 +236,8 @@ def comprar():
         try:
             datosCompra = {
                 "carrito": carritoCompra,
-                "usuario_id": USUARIO_REGISTRADO.nombre,
-                "direccion": USUARIO_REGISTRADO.direccion
+                "usuario_id": USUARIO_REGISTRADO['nombre'],
+                "direccion": direccion
             }
             response = requests.post(
                 VENDEDOR_URL + '/ProcesarCompra', json=datosCompra)
