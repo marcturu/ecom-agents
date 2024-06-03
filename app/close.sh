@@ -36,7 +36,10 @@ kill_by_port 5006
 # Kill Client (port 5007)
 kill_by_port 5007
 
-# Kill Client (port 5010)
+# Kill Agent Recomanador (port 5010)
 kill_by_port 5010
+
+# Kill Extern (port 5011)
+kill_by_port 5011
 
 echo "All agents and the directory service have been terminated."

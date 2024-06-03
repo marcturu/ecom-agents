@@ -32,12 +32,16 @@ echo Starting Agent Extern on port 5006...
 start "Agent Dependent" cmd /c "cd agents && python AgentDependent.py"
 
 :: Start Client
-echo Starting Client on port 5006...
+echo Starting Client on port 5007...
 start "Client" cmd /c "cd agents && python Client.py"
 
 :: Start Recomanador
 echo Starting Recomanador on port 5010...
 start "Agent Recomanador" cmd /c "cd agents && python AgentRecomanador.py"
+
+:: Start Extern Productes
+echo Starting Extern Productes on port 5011...
+start "Extern Productes" cmd /c "cd agents && python ExternProductes.py"
 
 :: Wait a bit to ensure all agents start
 timeout /t 2 /nobreak > NUL
