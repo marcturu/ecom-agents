@@ -71,7 +71,10 @@ def home():
 
 @app.route("/EnviarRecomanacio", methods=['POST'])
 def enviar_recomanacio():
-    usuario = "Sergi"
+    #usuario = "Sergi"
+    data = request.get_json()
+    usuario = str(data.get('nombre'))
+    print(f"Nom usuairo  obtingut: {usuario}")
 
     try:
         base_datos_cercats = leer_DB_productes_cercats(base_datos_productesCercats)
@@ -80,9 +83,14 @@ def enviar_recomanacio():
         return f"Error al leer la base de datos: {e}", 500
 
     if usuario:
+        #Aqui arriba
         productos_cercats_usuario = []
         for producto in base_datos_cercats.subjects(RDF.type, ECSDI.CercaUsuari):
+            #Aqui no arriba
+            print("Entro2")
             user_bd = base_datos_cercats.value(producto, ECSDI.Usuario)
+            print(f"Nom usuario hard: {usuario}")
+            print(f"Nom usuario bd: {user_bd}")
             if str(usuario) == str(user_bd):
                 nombre_producto = base_datos_cercats.value(producto, ECSDI.ProducteCercat)
                 productos_cercats_usuario.append(str(nombre_producto))
@@ -108,10 +116,8 @@ def enviar_recomanacio():
                             if str(categoria).lower() == str(categoria_recomendada).lower():
                                 productos_recomendados.append(producto_recomendado)
 
-        print("Ups")
         if not productos_recomendados:
             return jsonify({"error": "No se encontraron productos recomendados"}), 404
-        print("Holaaaaaaaaaaaa")
 
         # Seleccionar el primer producto recomendado (o aplicar alguna otra lógica de selección)
         producto_recomendar = productos_recomendados[0]

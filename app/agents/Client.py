@@ -267,7 +267,7 @@ def comprar():
 def mostrar_recomendacion():
 
     try:
-        response = requests.post(RECOMANADOR_URL + '/EnviarRecomanacio')
+        response = requests.post(RECOMANADOR_URL + '/EnviarRecomanacio', json=USUARIO_REGISTRADO)
         print("Contenido de la respuesta:", response.text)  # Agrega esta línea para depurar
         if response.status_code == 200:
             producto_recomendado = response.json()
