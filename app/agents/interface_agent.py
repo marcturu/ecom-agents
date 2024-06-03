@@ -5,7 +5,7 @@ import socket
 import requests
 from flask import Flask, jsonify, render_template, request
 
-# Configuration stuff
+# Flask app setup
 hostname = socket.gethostname()
 port = 5003
 

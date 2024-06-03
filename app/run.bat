@@ -43,6 +43,14 @@ start "Agent Recomanador" cmd /c "cd agents && python AgentRecomanador.py"
 echo Starting Extern Productes on port 5011...
 start "Extern Productes" cmd /c "cd agents && python ExternProductes.py"
 
+:: Start Agent Centre Logistic
+echo Starting Agent Centre Logistic on port 5012...
+start "Agent Centre Logistic" cmd /c "cd agents && python AgentCentreLogistic.py"
+
+:: Start Agent Centre Logistic Administrator
+echo Starting Agent Centre Logistic Administrator on port 5013...
+start "Agent Centre Logistic Administrator" cmd /c "cd agents && python AgentCentreLogisticAdministrator.py"
+
 :: Wait a bit to ensure all agents start
 timeout /t 2 /nobreak > NUL
 
@@ -56,4 +64,9 @@ echo Agent Valoracions running at http://localhost:5005
 echo Agent Dependent running at http://localhost:5006
 echo Client running at http://localhost:5007
 echo Agent Recomanador running at http://localhost:5010
+echo Extern Productes running at http://localhost:5011
+echo Agent Centre Logistic running at http://localhost:5012
+echo Agent Centre Logistic Administrator running at http://localhost:5013
+
 pause
+
