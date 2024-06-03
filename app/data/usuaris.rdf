@@ -45,6 +45,12 @@
     <ns1:Correu>maria@example.com</ns1:Correu>
     <ns1:Direccio>carrer vall 23</ns1:Direccio>
   </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Usuario_7bba0937-60de-4436-b4b3-d91625eb9b1a">
+    <rdf:type rdf:resource="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Usuario"/>
+    <ns1:Nombre>Sergi</ns1:Nombre>
+    <ns1:Correo>marcturu80@gmail.com</ns1:Correo>
+    <ns1:Direccion>sxaxax</ns1:Direccion>
+  </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Usuari_Antonio">
     <rdf:type rdf:resource="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Usuari"/>
     <ns1:Nom>Antonio</ns1:Nom>

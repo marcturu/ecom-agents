@@ -23,6 +23,8 @@ RECOMANADOR_URL = 'http://localhost:5010'
 AGENTE_VALORACIONES_URL = 'http://localhost:5005'
 
 
+USER_ID = "Sergi"
+
 # Definir el namespace
 ns = Namespace(
     "http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#")
@@ -52,7 +54,7 @@ def home():
                 <button type="submit">Anar pagina principal</button>
             </form>
             """
-    else: 
+    else:
         html = """
             <!DOCTYPE html>
             <html lang="en">
@@ -177,6 +179,9 @@ def buscar():
                 <form action="/valorar" method="post">
                     <p><a href="/valorar"><button>Fer Valoracio</button></a></p>
                 </form>
+                <form action="/mostrar_recomendacion" method="post">
+                    <p><a href="/mostrar_recomendacion"><button>Recomana</button></a></p>
+                </form>
                 <form action="/mirarFactura" method="post">
                     <p><a href="/mirarFactura"><button>Veure factures</button></a></p>
                 </form>
@@ -261,14 +266,19 @@ def comprar():
         """
 
 
-@app.route('/RebreRecomanacio', methods=['POST'])
-def rebre_recomanacio():
-    producto_info = request.get_json()
-    print(f"Producto recomendado recibido: {producto_info}")
+@app.route('/mostrar_recomendacion', methods=['POST'])
+def mostrar_recomendacion():
 
-    # Renderizar la plantilla HTML con la información del producto recomendado
-    return render_template('recomendacion.html', producto=producto_info)
-
+    try:
+        response = requests.post(RECOMANADOR_URL + '/EnviarRecomanacio', json=USUARIO_REGISTRADO)
+        print("Contenido de la respuesta:", response.text)  # Agrega esta línea para depurar
+        if response.status_code == 200:
+            producto_recomendado = response.json()
+            return render_template('recomendacion.html', producto=producto_recomendado)
+        else:
+            return "Error al obtener la recomendación del servidor de recomendación."
+    except Exception as e:
+        return f"Error: {e}"
 
 @app.route('/valorar', methods=['POST'])
 def valorar():
