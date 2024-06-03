@@ -3,9 +3,16 @@
    xmlns:ns1="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#"
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
 >
-  <rdf:Description rdf:about="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Pedido_d69048a3-e55f-4bd0-b2b2-6f6965e71e3a">
-    <rdf:type rdf:resource="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Pedido"/>
-    <ns1:nombre_producto rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Laptop</ns1:nombre_producto>
-    <ns1:direccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Ronda Mossèn Jacint Verdagguer 4t 2a, 23</ns1:direccion>
+  <rdf:Description rdf:about="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#TransportAgency_4b2a584c-996a-481f-ac3a-db2c1b72e682">
+    <rdf:type rdf:resource="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#TransportAgency"/>
+    <ns1:url rdf:datatype="http://www.w3.org/2001/XMLSchema#string">http://localhost:5014/GetOffer</ns1:url>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#TransportAgency_cb51f01f-c99c-4476-a3ab-b4811f0df014">
+    <rdf:type rdf:resource="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#TransportAgency"/>
+    <ns1:url rdf:datatype="http://www.w3.org/2001/XMLSchema#string">http://localhost:5014/GetOffer</ns1:url>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#TransportAgency_9ba9787a-2918-4ef9-b3a7-884e475046a3">
+    <rdf:type rdf:resource="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#TransportAgency"/>
+    <ns1:url rdf:datatype="http://www.w3.org/2001/XMLSchema#string">http://localhost:5014/GetOffer</ns1:url>
   </rdf:Description>
 </rdf:RDF>

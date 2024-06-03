@@ -3,10 +3,48 @@
    xmlns:ns1="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#"
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
 >
-  <rdf:Description rdf:about="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Compra_f3037733-c1be-4856-9737-4d3dd4598a37_Producte_c3930353-2ce8-4494-b2aa-98cc2826ef71">
+  <rdf:Description rdf:about="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Compra_1aa28360-832a-49ca-8a5f-2fe9ee81baa1_Producte_d06a63d5-d30d-4903-bc66-7e12d613bba1">
     <rdf:type rdf:resource="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Producte"/>
     <ns1:nom rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Laptop</ns1:nom>
     <ns1:preu rdf:datatype="http://www.w3.org/2001/XMLSchema#float">10.0</ns1:preu>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Compra_5f74ee64-cc93-4668-9e47-d76514beac03_Producte1_Laptop">
+    <rdf:type rdf:resource="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Compra"/>
+    <ns1:Nom>Laptop</ns1:Nom>
+    <ns1:Preu rdf:datatype="http://www.w3.org/2001/XMLSchema#float">10.0</ns1:Preu>
+    <ns1:Usuari>Manolo</ns1:Usuari>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Compra_7045f074-0bc0-4695-b2b7-a135871c89e8_Producte_e410acc1-f362-48f3-9f16-e71b16af5ac5">
+    <rdf:type rdf:resource="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Producte"/>
+    <ns1:nom rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Laptop</ns1:nom>
+    <ns1:preu rdf:datatype="http://www.w3.org/2001/XMLSchema#float">10.0</ns1:preu>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Compra_a14f05c4-c2dd-479e-afd2-4a56a6f5c2ec">
+    <rdf:type rdf:resource="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Compra"/>
+    <ns1:id_usuario rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Manolo</ns1:id_usuario>
+    <ns1:fecha rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2024-06-03T19:49:09.636407</ns1:fecha>
+    <ns1:direccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Mi Casa, 23 Barcelona</ns1:direccion>
+    <ns1:conté rdf:resource="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Compra_a14f05c4-c2dd-479e-afd2-4a56a6f5c2ec_Producte_67335067-10a0-4c0d-9784-4932a6b61f7c"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Compra_2f8384ed-a824-4ade-89c0-19a900275034">
+    <rdf:type rdf:resource="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Compra"/>
+    <ns1:id_usuario rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Manolo</ns1:id_usuario>
+    <ns1:fecha rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2024-06-03T19:54:48.764970</ns1:fecha>
+    <ns1:direccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Mi Casa, 23 Barcelona</ns1:direccion>
+    <ns1:conté rdf:resource="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Compra_2f8384ed-a824-4ade-89c0-19a900275034_Producte_32e7e527-d81c-49d7-946a-56d26270d0a2"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Compra_7045f074-0bc0-4695-b2b7-a135871c89e8_Producte1_Laptop">
+    <rdf:type rdf:resource="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Compra"/>
+    <ns1:Nom>Laptop</ns1:Nom>
+    <ns1:Preu rdf:datatype="http://www.w3.org/2001/XMLSchema#float">10.0</ns1:Preu>
+    <ns1:Usuari>Manolo</ns1:Usuari>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Compra_d0e742c3-a5ef-4095-ae57-c9cdc9db9f0e">
+    <rdf:type rdf:resource="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Compra"/>
+    <ns1:id_usuario rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Manolo</ns1:id_usuario>
+    <ns1:fecha rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2024-06-03T19:46:48.938913</ns1:fecha>
+    <ns1:direccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Mi Casa, 23 Mataró</ns1:direccion>
+    <ns1:conté rdf:resource="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Compra_d0e742c3-a5ef-4095-ae57-c9cdc9db9f0e_Producte_c73da717-5b81-4b49-8f4d-59e49a4b8f91"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Compra_f3037733-c1be-4856-9737-4d3dd4598a37">
     <rdf:type rdf:resource="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Compra"/>
@@ -14,5 +52,111 @@
     <ns1:fecha rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2024-06-03T17:30:15.686998</ns1:fecha>
     <ns1:direccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Ronda Mossèn Jacint Verdagguer 4t 2a, 23</ns1:direccion>
     <ns1:conté rdf:resource="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Compra_f3037733-c1be-4856-9737-4d3dd4598a37_Producte_c3930353-2ce8-4494-b2aa-98cc2826ef71"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Compra_d84ac90e-8c4d-45c9-9c19-343016e3c268_Producte_a05205fb-2d1b-4f5a-bacf-4bec948850d3">
+    <rdf:type rdf:resource="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Producte"/>
+    <ns1:nom rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Laptop</ns1:nom>
+    <ns1:preu rdf:datatype="http://www.w3.org/2001/XMLSchema#float">10.0</ns1:preu>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Compra_2f8384ed-a824-4ade-89c0-19a900275034_Producte1_Laptop">
+    <rdf:type rdf:resource="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Compra"/>
+    <ns1:Nom>Laptop</ns1:Nom>
+    <ns1:Preu rdf:datatype="http://www.w3.org/2001/XMLSchema#float">10.0</ns1:Preu>
+    <ns1:Usuari>Manolo</ns1:Usuari>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Compra_a14f05c4-c2dd-479e-afd2-4a56a6f5c2ec_Producte_67335067-10a0-4c0d-9784-4932a6b61f7c">
+    <rdf:type rdf:resource="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Producte"/>
+    <ns1:nom rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Laptop</ns1:nom>
+    <ns1:preu rdf:datatype="http://www.w3.org/2001/XMLSchema#float">10.0</ns1:preu>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Compra_5a1a8d31-d0f7-4638-b2d3-1728c1a2fa5f_Producte1_Laptop">
+    <rdf:type rdf:resource="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Compra"/>
+    <ns1:Nom>Laptop</ns1:Nom>
+    <ns1:Preu rdf:datatype="http://www.w3.org/2001/XMLSchema#float">10.0</ns1:Preu>
+    <ns1:Usuari>Manolo</ns1:Usuari>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Compra_7045f074-0bc0-4695-b2b7-a135871c89e8">
+    <rdf:type rdf:resource="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Compra"/>
+    <ns1:id_usuario rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Manolo</ns1:id_usuario>
+    <ns1:fecha rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2024-06-03T19:54:05.992131</ns1:fecha>
+    <ns1:direccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Mi Casa, 23 Mataró</ns1:direccion>
+    <ns1:conté rdf:resource="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Compra_7045f074-0bc0-4695-b2b7-a135871c89e8_Producte_e410acc1-f362-48f3-9f16-e71b16af5ac5"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Compra_1aa28360-832a-49ca-8a5f-2fe9ee81baa1">
+    <rdf:type rdf:resource="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Compra"/>
+    <ns1:id_usuario rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Manolo</ns1:id_usuario>
+    <ns1:fecha rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2024-06-03T19:34:42.634535</ns1:fecha>
+    <ns1:direccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Mi Casa, 23 Mataró</ns1:direccion>
+    <ns1:conté rdf:resource="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Compra_1aa28360-832a-49ca-8a5f-2fe9ee81baa1_Producte_d06a63d5-d30d-4903-bc66-7e12d613bba1"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Compra_d84ac90e-8c4d-45c9-9c19-343016e3c268">
+    <rdf:type rdf:resource="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Compra"/>
+    <ns1:id_usuario rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Manolo</ns1:id_usuario>
+    <ns1:fecha rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2024-06-03T19:40:20.012958</ns1:fecha>
+    <ns1:direccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Mi Casa, 23 Mataró</ns1:direccion>
+    <ns1:conté rdf:resource="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Compra_d84ac90e-8c4d-45c9-9c19-343016e3c268_Producte_a05205fb-2d1b-4f5a-bacf-4bec948850d3"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Compra_5a1a8d31-d0f7-4638-b2d3-1728c1a2fa5f">
+    <rdf:type rdf:resource="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Compra"/>
+    <ns1:id_usuario rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Manolo</ns1:id_usuario>
+    <ns1:fecha rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2024-06-03T17:47:34.396797</ns1:fecha>
+    <ns1:direccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Mi Casa, 23</ns1:direccion>
+    <ns1:conté rdf:resource="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Compra_5a1a8d31-d0f7-4638-b2d3-1728c1a2fa5f_Producte_00a032c9-c7f7-486c-9a69-4dce6b6a8682"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Compra_5a1a8d31-d0f7-4638-b2d3-1728c1a2fa5f_Producte_00a032c9-c7f7-486c-9a69-4dce6b6a8682">
+    <rdf:type rdf:resource="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Producte"/>
+    <ns1:nom rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Laptop</ns1:nom>
+    <ns1:preu rdf:datatype="http://www.w3.org/2001/XMLSchema#float">10.0</ns1:preu>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Compra_f3037733-c1be-4856-9737-4d3dd4598a37_Producte_c3930353-2ce8-4494-b2aa-98cc2826ef71">
+    <rdf:type rdf:resource="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Producte"/>
+    <ns1:nom rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Laptop</ns1:nom>
+    <ns1:preu rdf:datatype="http://www.w3.org/2001/XMLSchema#float">10.0</ns1:preu>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Compra_5f74ee64-cc93-4668-9e47-d76514beac03_Producte_4f27f449-f6d7-4a67-8387-b8cef641d18a">
+    <rdf:type rdf:resource="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Producte"/>
+    <ns1:nom rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Laptop</ns1:nom>
+    <ns1:preu rdf:datatype="http://www.w3.org/2001/XMLSchema#float">10.0</ns1:preu>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Compra_d0e742c3-a5ef-4095-ae57-c9cdc9db9f0e_Producte_c73da717-5b81-4b49-8f4d-59e49a4b8f91">
+    <rdf:type rdf:resource="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Producte"/>
+    <ns1:nom rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Laptop</ns1:nom>
+    <ns1:preu rdf:datatype="http://www.w3.org/2001/XMLSchema#float">10.0</ns1:preu>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Compra_1aa28360-832a-49ca-8a5f-2fe9ee81baa1_Producte1_Laptop">
+    <rdf:type rdf:resource="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Compra"/>
+    <ns1:Nom>Laptop</ns1:Nom>
+    <ns1:Preu rdf:datatype="http://www.w3.org/2001/XMLSchema#float">10.0</ns1:Preu>
+    <ns1:Usuari>Manolo</ns1:Usuari>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Compra_a14f05c4-c2dd-479e-afd2-4a56a6f5c2ec_Producte1_Laptop">
+    <rdf:type rdf:resource="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Compra"/>
+    <ns1:Nom>Laptop</ns1:Nom>
+    <ns1:Preu rdf:datatype="http://www.w3.org/2001/XMLSchema#float">10.0</ns1:Preu>
+    <ns1:Usuari>Manolo</ns1:Usuari>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Compra_d0e742c3-a5ef-4095-ae57-c9cdc9db9f0e_Producte1_Laptop">
+    <rdf:type rdf:resource="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Compra"/>
+    <ns1:Nom>Laptop</ns1:Nom>
+    <ns1:Preu rdf:datatype="http://www.w3.org/2001/XMLSchema#float">10.0</ns1:Preu>
+    <ns1:Usuari>Manolo</ns1:Usuari>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Compra_5f74ee64-cc93-4668-9e47-d76514beac03">
+    <rdf:type rdf:resource="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Compra"/>
+    <ns1:id_usuario rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Manolo</ns1:id_usuario>
+    <ns1:fecha rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2024-06-03T17:45:58.213327</ns1:fecha>
+    <ns1:direccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Ronda Mossèn Jacint Verdagguer 23, 4t 2a</ns1:direccion>
+    <ns1:conté rdf:resource="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Compra_5f74ee64-cc93-4668-9e47-d76514beac03_Producte_4f27f449-f6d7-4a67-8387-b8cef641d18a"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Compra_d84ac90e-8c4d-45c9-9c19-343016e3c268_Producte1_Laptop">
+    <rdf:type rdf:resource="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Compra"/>
+    <ns1:Nom>Laptop</ns1:Nom>
+    <ns1:Preu rdf:datatype="http://www.w3.org/2001/XMLSchema#float">10.0</ns1:Preu>
+    <ns1:Usuari>Manolo</ns1:Usuari>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Compra_2f8384ed-a824-4ade-89c0-19a900275034_Producte_32e7e527-d81c-49d7-946a-56d26270d0a2">
+    <rdf:type rdf:resource="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Producte"/>
+    <ns1:nom rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Laptop</ns1:nom>
+    <ns1:preu rdf:datatype="http://www.w3.org/2001/XMLSchema#float">10.0</ns1:preu>
   </rdf:Description>
 </rdf:RDF>
