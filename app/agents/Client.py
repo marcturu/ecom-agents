@@ -1,5 +1,6 @@
 import json
 import uuid
+from itertools import product
 
 import requests
 from flask import Flask, redirect, render_template, request, url_for
@@ -14,6 +15,9 @@ precioTotal = 0.0
 AGENTE_URL = 'http://localhost:5006/FiltrarProducte'
 AGENTE_PRODUCTE_URL = 'http://localhost:5006/MostrarProducte'
 VENDEDOR_URL = 'http://localhost:5003'
+RECOMANADOR_URL = 'http://localhost:5010'
+AGENTE_VALORACIONES_URL = 'http://localhost:5005'
+
 
 USER_ID = "Manolo"
 
@@ -94,6 +98,9 @@ def home():
                     <input type="submit" value="Buscar productos">
                     <p><a href="/cart">Anar carrito compra</a></p>
                 </form>
+                <form action="/valorar" method="post">
+                    <p><a href="/valorar"><button>Fer Valoracio</button></a></p>
+                </form>
             </body>
             </html>
             """
@@ -170,6 +177,53 @@ def comprar():
         </form>
         <br><a href="/">Volver a la página principal</a>
         """
+
+
+@app.route('/RebreRecomanacio', methods=['POST'])
+def rebre_recomanacio():
+    producto_info = request.get_json()
+    print(f"Producto recomendado recibido: {producto_info}")
+
+    # Renderizar la plantilla HTML con la información del producto recomendado
+    return render_template('recomendacion.html', producto=producto_info)
+
+
+@app.route('/valorar', methods=['POST'])
+def valorar():
+    return render_template('valorar_producto.html')
+
+
+@app.route('/TocaValorar', methods=['POST'])
+def TocaValorar():
+    print("TOCA FER VALORACIO")
+    return "TOCA FER VALORACIO ENVIAT"
+
+
+@app.route('/submit_valoracion', methods=['POST'])
+def submit_valoracion():
+    if request.method == 'POST':
+        valoracion = request.form['valoracion']
+        comentario = request.form['comentario']
+
+        # Crear un JSON con los datos de la valoración
+        data = {
+            "valoracion": valoracion,
+            "comentario": comentario
+        }
+
+        # Enviar los datos al agente encargado de las valoraciones
+        response = requests.post(
+            AGENTE_VALORACIONES_URL + '/guardar_valoracion', json=data)
+
+        if response.status_code == 200:
+            # Si la solicitud fue exitosa, devolver un mensaje de éxito
+            return "Valoración enviada correctamente al agente encargado de las valoraciones"
+        else:
+            # Si hubo un error en la solicitud, devolver un mensaje de error
+            return "Error al enviar la valoración al agente encargado de las valoraciones"
+    else:
+        # Si la solicitud no es POST, devolver un mensaje de error
+        return "Error: La solicitud debe ser POST", 400
 
 
 if __name__ == "__main__":

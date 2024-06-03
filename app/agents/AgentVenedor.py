@@ -62,7 +62,23 @@ def insertar_compra(noms, preus, usuario_id, direccion):
         print("Las listas de nombres y precios tienen diferentes longitudes")
         return
 
+    # Generar un identificador único para la compra
     compra_id = str(uuid.uuid4())
+
+    preuTotal = sum(preus)
+    # Insertar cada producto en la base de datos
+    for i, (nom, preu) in enumerate(zip(noms, preus), start=1):
+        # Generar una URI única para el producto en esta compra
+        product_uri = ns[f"Compra_{compra_id}_Producte{
+            i}_{nom.replace(' ', '_')}"]
+
+        # Añadir el producto a la base de datos
+        base_datos.add((product_uri, RDF.type, ns.Compra))
+        base_datos.add((product_uri, ns.Nom, Literal(nom)))
+        base_datos.add(
+            (product_uri, ns.Preu, Literal(preu, datatype=XSD.float)))
+        base_datos.add((product_uri, ns.Usuari, Literal(usuario_id)))
+
     compra_uri = ns[f"Compra_{compra_id}"]
     base_datos.add((compra_uri, RDF.type, ns.Compra))
     base_datos.add((compra_uri, ns.id_usuario, Literal(
