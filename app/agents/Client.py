@@ -156,11 +156,13 @@ def comprar():
         return f"Error al enviar la información al vendedor: {e}<br><a href='/'>Volver a la página principal</a>"
 
 
-@app.route('/EnviarRecomanacio', methods=['POST'])
-def seleccionar_producto():
-    try:
+@app.route('/RebreRecomanacio', methods=['POST'])
+def rebre_recomanacio():
+    producto_info = request.get_json()
+    print(f"Producto recomendado recibido: {producto_info}")
 
-    except Exception as e:
+    # Renderizar la plantilla HTML con la información del producto recomendado
+    return render_template('recomendacion.html', producto=producto_info)
 
 
 if __name__ == "__main__":
