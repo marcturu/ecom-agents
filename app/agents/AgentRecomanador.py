@@ -1,7 +1,7 @@
 from flask import Flask, request, jsonify, render_template
 from rdflib import Graph, Namespace, Literal
 from rdflib.namespace import RDF
-import requests
+import requests, random
 import json
 import time
 import threading
@@ -10,6 +10,7 @@ app = Flask(__name__)
 
 base_datos_productes = "../data/productes.rdf"
 base_datos_productesCercats = "../data/productesCercats.rdf"
+base_datos_compras = "../data/compres.rdf"
 ECSDI = Namespace("http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#")
 CLIENT_URL = 'http://localhost:5007'
 
@@ -60,6 +61,25 @@ def leer_DB_productes_cercats(ruta_archivo):
 
     return base_datos
 
+def leer_DB_compras(ruta_archivo):
+    base_datos = Graph()
+
+    try:
+        base_datos.parse(ruta_archivo, format="xml")
+        print("Productos cercados en la base de datos productesCercats:")
+
+        for producto_cercat in base_datos.subjects(RDF.type, ECSDI.Compra):
+            nombre_producto = base_datos.value(producto_cercat, ECSDI.Producto)
+            usuario = base_datos.value(producto_cercat, ECSDI.Usuario)
+            print(f" Producto Comprado: {nombre_producto}")
+            print(f"  Usuario: {usuario}")
+            print("---")
+
+    except Exception as e:
+        print("Error:", e)
+
+    return base_datos
+
 @app.route('/', methods=['GET', 'POST'])
 def home():
     return """
@@ -78,25 +98,28 @@ def enviar_recomanacio():
 
     try:
         base_datos_cercats = leer_DB_productes_cercats(base_datos_productesCercats)
+        #base_datos_compras = leer_DB_compras(base_datos_compras)
         base_datos_productos = leer_DB(base_datos_productes)
     except Exception as e:
         return f"Error al leer la base de datos: {e}", 500
 
     if usuario:
-        #Aqui arriba
         productos_cercats_usuario = []
+
+        #Busca a compres
         for producto in base_datos_cercats.subjects(RDF.type, ECSDI.CercaUsuari):
-            #Aqui no arriba
-            print("Entro2")
             user_bd = base_datos_cercats.value(producto, ECSDI.Usuario)
-            print(f"Nom usuario hard: {usuario}")
-            print(f"Nom usuario bd: {user_bd}")
             if str(usuario) == str(user_bd):
                 nombre_producto = base_datos_cercats.value(producto, ECSDI.ProducteCercat)
                 productos_cercats_usuario.append(str(nombre_producto))
-                print(f"Nombre producto bd: {nombre_producto}")
-                print(f"Usuario bd: {user_bd}")
-                print(f"Producto buscado añadido: {productos_cercats_usuario}")
+
+        #Busca a compres
+        '''
+        for producto in base_datos_compras.subjects(RDF.type, ECSDI.Compra):
+            user_bd = base_datos_compras.value(producto, ECSDI.Usuario)
+            if str(usuario) == str(user_bd):
+                nombre_producto = base_datos_cercats.value(producto, ECSDI.Producto)
+                productos_cercats_usuario.append(str(nombre_producto))'''
 
         if not productos_cercats_usuario:
             return jsonify({"error": "No se encontraron productos cercados para el usuario proporcionado"}), 404
@@ -120,7 +143,8 @@ def enviar_recomanacio():
             return jsonify({"error": "No se encontraron productos recomendados"}), 404
 
         # Seleccionar el primer producto recomendado (o aplicar alguna otra lógica de selección)
-        producto_recomendar = productos_recomendados[0]
+        #producto_recomendar = productos_recomendados[0]
+        producto_recomendar = random.choice(productos_recomendados)
         producto_info_a_enviar = {
             'nombre': str(base_datos_productos.value(producto_recomendar, ECSDI.Nom)),
             'precio': float(base_datos_productos.value(producto_recomendar, ECSDI.Preu)),
