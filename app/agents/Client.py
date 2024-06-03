@@ -1,3 +1,4 @@
+from itertools import product
 from flask import Flask, request, render_template, redirect, url_for
 from rdflib import Graph, Namespace, Literal
 from rdflib.namespace import RDF, XSD
@@ -13,6 +14,8 @@ precioTotal = 0.0
 AGENTE_URL = 'http://localhost:5006/FiltrarProducte'
 AGENTE_PRODUCTE_URL = 'http://localhost:5006/MostrarProducte'
 VENDEDOR_URL = 'http://localhost:5003'
+AGENTE_VALORACIONES_URL = 'http://localhost:5005' 
+
 
 USER_ID = "Manolo"
 
@@ -92,6 +95,9 @@ def home():
                     <input type="submit" value="Buscar productos">
                     <p><a href="/cart">Anar carrito compra</a></p>
                 </form>
+                <form action="/valorar" method="post">
+                    <p><a href="/valorar"><button>Fer Valoracio</button></a></p>
+                </form>
             </body>
             </html>
             """
@@ -153,6 +159,42 @@ def comprar():
             return f"Error al procesar la compra: {response.text}<br><a href='/'>Volver a la página principal</a>"
     except Exception as e:
         return f"Error al enviar la información al vendedor: {e}<br><a href='/'>Volver a la página principal</a>"
+
+
+@app.route('/valorar', methods=['POST'])
+def valorar():
+    return render_template('valorar_producto.html')
+
+
+@app.route('/TocaValorar', methods=['POST'])
+def TocaValorar():
+    print ("TOCA FER VALORACIO")
+    return "TOCA FER VALORACIO ENVIAT"
+
+@app.route('/submit_valoracion', methods=['POST'])
+def submit_valoracion():
+    if request.method == 'POST':
+        valoracion = request.form['valoracion']
+        comentario = request.form['comentario']
+
+        # Crear un JSON con los datos de la valoración
+        data = {
+            "valoracion": valoracion,
+            "comentario": comentario
+        }
+
+        # Enviar los datos al agente encargado de las valoraciones
+        response = requests.post(AGENTE_VALORACIONES_URL + '/guardar_valoracion', json=data)
+
+        if response.status_code == 200:
+            # Si la solicitud fue exitosa, devolver un mensaje de éxito
+            return "Valoración enviada correctamente al agente encargado de las valoraciones"
+        else:
+            # Si hubo un error en la solicitud, devolver un mensaje de error
+            return "Error al enviar la valoración al agente encargado de las valoraciones"
+    else:
+        # Si la solicitud no es POST, devolver un mensaje de error
+        return "Error: La solicitud debe ser POST", 400
 
 
 if __name__ == "__main__":

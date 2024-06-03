@@ -70,7 +70,6 @@ def insertar_compra(noms, preus, usuario_id):
         # Añadir el producto a la base de datos
         base_datos.add((product_uri, RDF.type, ns.Compra))
         base_datos.add((product_uri, ns.Nom, Literal(nom)))
-        base_datos.add((product_uri, ns.Quantitat, Literal(quantitat)))
         base_datos.add((product_uri, ns.Preu, Literal(preu, datatype=XSD.float)))
         base_datos.add((product_uri, ns.Usuari, Literal(usuario_id)))
 
