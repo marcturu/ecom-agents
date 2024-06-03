@@ -51,6 +51,28 @@ def home():
         """
         return html
 
+@app.route('/ProcesarCompra', methods=['POST'])
+def procesar_compra():
+    try:
+        carrito = request.get_json()
+        print(f"Carrito recibido: {carrito}")
+
+        if not carrito:
+            print("El carrito está vacío")
+            return jsonify({"error": "El carrito está vacío"}), 400
+
+        noms = [producto['nombre'] for producto in carrito]
+        quantitats = [1 for _ in carrito]  # Asumimos cantidad 1 por defecto
+        print(f"Nombres de productos: {noms}")
+        print(f"Cantidad de productos: {quantitats}")
+
+        insertar_compra(noms, quantitats)
+
+        return jsonify({"message": "Compra registrada con éxito"}), 200
+    except Exception as e:
+        print(f"Error en el procesamiento de la compra: {e}")
+        return jsonify({"error": str(e)}), 500    
+
 def insertar_compra(noms, quantitats):
     base_datos = leer_DB("../data/compres.rdf")
 
