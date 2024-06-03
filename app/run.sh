@@ -31,6 +31,10 @@ python3 AgentDependent.py &
 
 python3 Client.py &
 
+# Start Agent Tresorer
+
+python3 AgentTresorer.py &
+
 # Start Agent Recomanador
 
 python3 AgentRecomanador.py &
@@ -51,8 +55,9 @@ echo "Agent 4 running at http://localhost:5004"
 echo "Agent 5 running at http://localhost:5005"
 echo "Agent 6 running at http://localhost:5006"
 echo "Agent 7 running at http://localhost:5007"
-echo "Agent 8 running at http://localhost:5010"
-echo "Agent 9 running at http://localhost:5011"
+echo "Agent 8 running at http://localhost:5008"
+echo "Agent 9 running at http://localhost:5010"
+echo "Agent 10 running at http://localhost:5011"
 
 
 

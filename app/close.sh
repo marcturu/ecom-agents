@@ -36,6 +36,9 @@ kill_by_port 5006
 # Kill Client (port 5007)
 kill_by_port 5007
 
+# Kill Agent Tresorer (port 5008)
+kill_by_port 5008
+
 # Kill Agent Recomanador (port 5010)
 kill_by_port 5010
 
