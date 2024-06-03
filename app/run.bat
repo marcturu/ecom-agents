@@ -35,6 +35,10 @@ start "Agent Dependent" cmd /c "cd agents && python AgentDependent.py"
 echo Starting Client on port 5006...
 start "Client" cmd /c "cd agents && python Client.py"
 
+:: Start Recomanador
+echo Starting Recomanador on port 5010...
+start "Agent Recomanador" cmd /c "cd agents && python AgentRecomanador.py"
+
 :: Wait a bit to ensure all agents start
 timeout /t 2 /nobreak > NUL
 
@@ -47,4 +51,5 @@ echo Agent Extern running at http://localhost:5004
 echo Agent Valoracions running at http://localhost:5005
 echo Agent Dependent running at http://localhost:5006
 echo Client running at http://localhost:5007
+echo Agent Recomanador running at http://localhost:5010
 pause
