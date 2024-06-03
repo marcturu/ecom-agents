@@ -1,15 +1,16 @@
-from flask import Flask, request, render_template, redirect, url_for, jsonify
-from rdflib import Graph, Namespace, URIRef, Literal
-from rdflib.namespace import RDF, XSD
-import uuid
-import requests
 import datetime
-import random
+import uuid
 
+import requests
+from flask import Flask, jsonify, request
+from rdflib import Graph, Literal, Namespace, URIRef
+from rdflib.namespace import RDF, XSD
 
 app = Flask(__name__)
 
-ns = Namespace("http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#")
+ns = Namespace(
+    "http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#")
+
 
 def leer_DB(ruta_archivo):
     g = Graph()
@@ -18,6 +19,7 @@ def leer_DB(ruta_archivo):
     except Exception as e:
         print("Error:", e)
     return g
+
 
 @app.route('/')
 def home():
@@ -30,8 +32,10 @@ def procesar_compra():
         data = request.get_json()
         carrito = data['carrito']
         usuario_id = data['usuario_id']
+        direccion = data['direccion']
         print(f"Carrito recibido: {carrito}")
         print(f"Usuario recibido: {usuario_id}")
+        print(f"Dirección recibida: {direccion}")
 
         if not carrito:
             print("El carrito está vacío")
@@ -42,45 +46,58 @@ def procesar_compra():
         print(f"Nombres de productos: {noms}")
         print(f"Precios de productos: {preus}")
 
-        insertar_compra(noms, preus, usuario_id)
+        insertar_compra(noms, preus, usuario_id, direccion)
+        notificar_centro_logistico(carrito, direccion)
 
         return jsonify({"message": "Compra registrada con éxito"}), 200
     except Exception as e:
         print(f"Error en el procesamiento de la compra: {e}")
-        return jsonify({"error": str(e)}), 500    
+        return jsonify({"error": str(e)}), 500
 
 
-def insertar_compra(noms, preus, usuario_id):
+def insertar_compra(noms, preus, usuario_id, direccion):
     base_datos = leer_DB("../data/compres.rdf")
 
-    # Asegurarse de que las listas tengan la misma longitud
     if len(noms) != len(preus):
-        print("Error: Las listas de nombres, cantidades y precios no tienen la misma longitud")
+        print("Las listas de nombres y precios tienen diferentes longitudes")
         return
 
-    # Generar un identificador único para la compra
-    compra_id = str(datetime.datetime.now().timestamp()).replace(".", "_")
-
-    preuTotal = sum(preus)
-    # Insertar cada producto en la base de datos
-    for i, (nom, preu) in enumerate(zip(noms, preus), start=1):
-        # Generar una URI única para el producto en esta compra
-        product_uri = ns[f"Compra_{compra_id}_Producte{i}_{nom.replace(' ', '_')}"]
-
-        # Añadir el producto a la base de datos
-        base_datos.add((product_uri, RDF.type, ns.Compra))
-        base_datos.add((product_uri, ns.Nom, Literal(nom)))
-        base_datos.add((product_uri, ns.Quantitat, Literal(quantitat)))
-        base_datos.add((product_uri, ns.Preu, Literal(preu, datatype=XSD.float)))
-        base_datos.add((product_uri, ns.Usuari, Literal(usuario_id)))
-
+    compra_id = str(uuid.uuid4())
     compra_uri = ns[f"Compra_{compra_id}"]
     base_datos.add((compra_uri, RDF.type, ns.Compra))
-    base_datos.add((compra_uri, ns.PreuTotal, Literal(preuTotal, datatype=XSD.float)))
-    base_datos.add((compra_uri, ns.Usuari, Literal(usuario_id)))
-    
-    # Guardar los cambios en la base de datos
+    base_datos.add((compra_uri, ns.id_usuario, Literal(
+        usuario_id, datatype=XSD.string)))
+    base_datos.add((compra_uri, ns.fecha, Literal(
+        datetime.datetime.now(), datatype=XSD.dateTime)))
+    base_datos.add((compra_uri, ns.direccion, Literal(
+        direccion, datatype=XSD.string)))
+
+    for nom, preu in zip(noms, preus):
+        producte_id = str(uuid.uuid4())
+        producte_uri = ns[f"Compra_{compra_id}_Producte_{producte_id}"]
+        base_datos.add((producte_uri, RDF.type, ns.Producte))
+        base_datos.add(
+            (producte_uri, ns.nom, Literal(nom, datatype=XSD.string)))
+        base_datos.add(
+            (producte_uri, ns.preu, Literal(preu, datatype=XSD.float)))
+        base_datos.add((compra_uri, ns.conté, producte_uri))
+
     base_datos.serialize(destination="../data/compres.rdf", format="xml")
+    print("Compra insertada correctamente")
+
+
+def notificar_centro_logistico(carrito, direccion):
+    lca_url = 'http://localhost:5013/ProcesarPedido'
+    data = {
+        "carrito": carrito,
+        "direccion": direccion
+    }
+    response = requests.post(lca_url, json=data)
+    if response.status_code == 200:
+        print("Notificación al centro logístico exitosa")
+    else:
+        print("Error al notificar al centro logístico")
+
 
 def register_with_directory():
     directory_url = 'http://localhost:5000/register'
@@ -93,9 +110,8 @@ def register_with_directory():
         print('Registered successfully with the directory')
     else:
         print('Failed to register with the directory')
-      
+
 
 if __name__ == "__main__":
     register_with_directory()
     app.run(port=5003)
-

@@ -42,4 +42,8 @@ kill_by_port 5010
 # Kill Extern (port 5011)
 kill_by_port 5011
 
+kill_by_port 5012
+
+kill_by_port 5013
+
 echo "All agents and the directory service have been terminated."

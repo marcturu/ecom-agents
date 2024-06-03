@@ -1,9 +1,10 @@
-from flask import Flask, request, render_template, redirect, url_for
-from rdflib import Graph, Namespace, Literal
-from rdflib.namespace import RDF, XSD
-import uuid
-import requests
 import json
+import uuid
+
+import requests
+from flask import Flask, redirect, render_template, request, url_for
+from rdflib import Graph, Literal, Namespace
+from rdflib.namespace import RDF, XSD
 
 app = Flask(__name__)
 
@@ -17,11 +18,12 @@ VENDEDOR_URL = 'http://localhost:5003'
 USER_ID = "Manolo"
 
 # Definir el namespace
-ns = Namespace("http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#")
-  
+ns = Namespace(
+    "http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#")
+
 
 @app.route('/', methods=['GET', 'POST'])
-def home(): 
+def home():
     if request.method == 'POST':
         nom = request.form['nom']
         preu_min = request.form['preu_min']
@@ -59,7 +61,7 @@ def home():
         except Exception as e:
             # Manejo de errores
             return f"Ocurrió un error: {e}", 500
-        
+
     else:
         html = """
             <!DOCTYPE html>
@@ -97,6 +99,7 @@ def home():
             """
         return html
 
+
 @app.route('/detalls_producte', methods=['POST'])
 def detalls_producte():
     try:
@@ -110,13 +113,13 @@ def detalls_producte():
 def seleccionar_producto():
     try:
         prod1 = json.loads(request.form['producto'])
-        print("Producto seleccionado (JSON):", prod1)  # Verificar la cadena JSON
+        print("Producto seleccionado (JSON):", prod1)
         otra_response = requests.post(AGENTE_PRODUCTE_URL, json=prod1)
 
         if otra_response.status_code == 200:
             print("El primer producto se ha enviado correctamente a otra URL.")
             carritoCompra.append(prod1)
-            global precioTotal 
+            global precioTotal
             precioTotal += prod1['precio']
             return render_template('carritoCompra.html', carritoCompra=carritoCompra, precioTotal=precioTotal)
         else:
@@ -131,28 +134,42 @@ def seleccionar_producto():
 def view_cart():
     return render_template('carritoCompra.html', carritoCompra=carritoCompra, precioTotal=precioTotal)
 
-@app.route('/comprar')
+
+@app.route('/comprar', methods=['GET', 'POST'])
 def comprar():
-    if not carritoCompra:
+    if request.method == 'POST':
+        direccion = request.form['direccion']
+        if not carritoCompra:
+            return """
+            El carrito está vacío. Añade productos antes de proceder a la compra.<br>
+            <a href="/">Volver a la página principal</a>
+            """
+        try:
+            datosCompra = {
+                "carrito": carritoCompra,
+                "usuario_id": USER_ID,
+                "direccion": direccion
+            }
+            response = requests.post(
+                VENDEDOR_URL + '/ProcesarCompra', json=datosCompra)
+            if response.status_code == 200:
+                carritoCompra.clear()
+                global precioTotal
+                precioTotal = 0
+                return "Compra realizada con éxito.<br><a href='/'>Volver a la página principal</a>"
+            else:
+                return f"Error al procesar la compra: {response.text}<br><a href='/'>Volver a la página principal</a>"
+        except Exception as e:
+            return f"Error al enviar la información al vendedor: {e}<br><a href='/'>Volver a la página principal</a>"
+    else:
         return """
-        El carrito está vacío. Añade productos antes de proceder a la compra.<br>
-        <a href="/">Volver a la página principal</a>
+        <form method="post">
+            <label for="direccion">Dirección de envío:</label><br>
+            <input type="text" id="direccion" name="direccion" required><br><br>
+            <input type="submit" value="Comprar">
+        </form>
+        <br><a href="/">Volver a la página principal</a>
         """
-    try:
-        datosCompra = {
-            "carrito": carritoCompra,
-            "usuario_id": USER_ID
-        }
-        response = requests.post(VENDEDOR_URL + '/ProcesarCompra', json=datosCompra)
-        if response.status_code == 200:
-            carritoCompra.clear()  # Limpiar el carrito después de la compra exitosa
-            global precioTotal 
-            precioTotal = 0
-            return "Compra realizada con éxito.<br><a href='/'>Volver a la página principal</a>"
-        else:
-            return f"Error al procesar la compra: {response.text}<br><a href='/'>Volver a la página principal</a>"
-    except Exception as e:
-        return f"Error al enviar la información al vendedor: {e}<br><a href='/'>Volver a la página principal</a>"
 
 
 if __name__ == "__main__":

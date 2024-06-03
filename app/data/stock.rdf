@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rdf:RDF
+   xmlns:ns1="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+>
+  <rdf:Description rdf:about="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Producto_04b7ac19-7407-41a8-9510-9b16a77396a3">
+    <rdf:type rdf:resource="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Producto"/>
+    <ns1:nombre rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Laptop</ns1:nombre>
+    <ns1:cantidad rdf:datatype="http://www.w3.org/2001/XMLSchema#int">9</ns1:cantidad>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Producto_dacbdff3-f523-49d6-b3e6-472546634c99">
+    <rdf:type rdf:resource="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Producto"/>
+    <ns1:nombre rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Laptop</ns1:nombre>
+    <ns1:cantidad rdf:datatype="http://www.w3.org/2001/XMLSchema#int">10</ns1:cantidad>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Producto_b1b51793-fa3f-411a-a2b3-05a8fd9da886">
+    <rdf:type rdf:resource="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Producto"/>
+    <ns1:nombre rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Laptop</ns1:nombre>
+    <ns1:cantidad rdf:datatype="http://www.w3.org/2001/XMLSchema#int">10</ns1:cantidad>
+  </rdf:Description>
+</rdf:RDF>
