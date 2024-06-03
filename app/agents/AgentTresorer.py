@@ -12,6 +12,8 @@ ns = Namespace(
 
 archivo_base_datos = "../data/factures.rdf"
 
+CLIENT_URL = 'http://localhost:5007/DetallsEnviament'  # New URL for forwarding
+
 
 @app.route('/')
 def home():
@@ -66,7 +68,12 @@ def notify_client():
         print(f"Tiempo de entrega estimado: {time_of_delivery}")
         print(f"Repartidor: {delivery_guy}")
 
-        # Process the notification (e.g., update the database, send an email, etc.)
+        # Forward the notification to the client
+        forward_response = requests.post(CLIENT_URL, json=data)
+        if forward_response.status_code == 200:
+            print("Notificación reenviada con éxito")
+        else:
+            print("Error al reenviar la notificación")
 
         return jsonify({"message": "Notificación recibida"}), 200
     except Exception as e:

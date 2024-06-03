@@ -3,7 +3,7 @@ import uuid
 from itertools import product
 
 import requests
-from flask import Flask, redirect, render_template, request, url_for
+from flask import Flask, jsonify, redirect, render_template, request, url_for
 from rdflib import Graph, Literal, Namespace
 from rdflib.namespace import RDF, XSD
 
@@ -22,7 +22,6 @@ VENDEDOR_URL = 'http://localhost:5003'
 RECOMANADOR_URL = 'http://localhost:5010'
 AGENTE_VALORACIONES_URL = 'http://localhost:5005'
 
-
 USER_ID = "Sergi"
 
 # Definir el namespace
@@ -32,6 +31,7 @@ ns = Namespace(
 archivo_base_datos_usuarios = "../data/usuaris.rdf"
 
 USUARIO_REGISTRADO = {}
+
 
 @app.route('/', methods=['GET', 'POST'])
 def home():
@@ -81,8 +81,9 @@ def home():
             """
         return html
 
-
 # Función para leer la base de datos RDF
+
+
 def leer_DB(ruta_archivo):
     base_datos = Graph()
     try:
@@ -92,10 +93,13 @@ def leer_DB(ruta_archivo):
     return base_datos
 
 # Función para añadir un usuario a la base de datos RDF
+
+
 def registrarUsuarioBD(nombre, correo, direccion):
     base_datos = leer_DB(archivo_base_datos_usuarios)
 
-    usuario_uri = ns["Usuario_" + str(uuid.uuid4())]  # Generar URI única para el usuario
+    # Generar URI única para el usuario
+    usuario_uri = ns["Usuario_" + str(uuid.uuid4())]
     base_datos.add((usuario_uri, RDF.type, ns.Usuario))
     base_datos.add((usuario_uri, ns.Nombre, Literal(nombre)))
     base_datos.add((usuario_uri, ns.Correo, Literal(correo)))
@@ -209,7 +213,6 @@ def seleccionar_producto():
         prod1['usuario_id'] = USUARIO_REGISTRADO['nombre']
         otra_response = requests.post(AGENTE_PRODUCTE_URL, json=prod1)
 
-
         if otra_response.status_code == 200:
             print("El primer producto se ha enviado correctamente a otra URL.")
             carritoCompra.append(prod1)
@@ -268,10 +271,11 @@ def comprar():
 
 @app.route('/mostrar_recomendacion', methods=['POST'])
 def mostrar_recomendacion():
-
     try:
-        response = requests.post(RECOMANADOR_URL + '/EnviarRecomanacio', json=USUARIO_REGISTRADO)
-        print("Contenido de la respuesta:", response.text)  # Agrega esta línea para depurar
+        response = requests.post(
+            RECOMANADOR_URL + '/EnviarRecomanacio', json=USUARIO_REGISTRADO)
+        # Agrega esta línea para depurar
+        print("Contenido de la respuesta:", response.text)
         if response.status_code == 200:
             producto_recomendado = response.json()
             return render_template('recomendacion.html', producto=producto_recomendado)
@@ -279,6 +283,7 @@ def mostrar_recomendacion():
             return "Error al obtener la recomendación del servidor de recomendación."
     except Exception as e:
         return f"Error: {e}"
+
 
 @app.route('/valorar', methods=['POST'])
 def valorar():
@@ -295,6 +300,7 @@ def TocaValorar():
 def mirarFactura():
     return render_template('factura.html', carrito=carritoGeneral, direccion=direccioGeneral, preuTotal=preuGeneral)
 
+
 @app.route('/posarFactura', methods=['POST'])
 def posarFactura():
     data = request.get_json()
@@ -304,6 +310,21 @@ def posarFactura():
     preuGeneral = data['totalPreu']
     print("NOVA FACTURA A VEURE")
     return "FACTURA MOSTRADA CORRECTAMENT"
+
+
+@app.route('/DetallsEnviament', methods=['POST'])
+def detalls_enviament():
+    data = request.get_json()
+
+    # Log the notification details
+    print("Detalles de Envío Recibidos:")
+    print(f"Nombre del producto: {data['nombre_producto']}")
+    print(f"Dirección: {data['direccion']}")
+    print(f"Precio: {data['price']}")
+    print(f"Tiempo de entrega: {data['time_of_delivery']}")
+    print(f"Repartidor: {data['delivery_guy']}")
+
+    return jsonify({"message": "Detalles de envío recibidos y registrados"}), 200
 
 
 @app.route('/submit_valoracion', methods=['POST'])
@@ -316,7 +337,7 @@ def submit_valoracion():
         data = {
             "valoracion": valoracion,
             "comentario": comentario,
-            "usuario_id": USUARIO_REGISTRADO['nombre'], 
+            "usuario_id": USUARIO_REGISTRADO['nombre'],
             "product_id": 'Moto'
         }
 
