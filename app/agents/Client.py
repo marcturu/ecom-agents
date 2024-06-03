@@ -12,6 +12,10 @@ app = Flask(__name__)
 carritoCompra = []
 precioTotal = 0.0
 
+carritoGeneral = ""
+direccioGeneral = ""
+preuGeneral = 0.0
+
 AGENTE_URL = 'http://localhost:5006/FiltrarProducte'
 AGENTE_PRODUCTE_URL = 'http://localhost:5006/MostrarProducte'
 VENDEDOR_URL = 'http://localhost:5003'
@@ -100,6 +104,9 @@ def home():
                 </form>
                 <form action="/valorar" method="post">
                     <p><a href="/valorar"><button>Fer Valoracio</button></a></p>
+                </form>
+                <form action="/mirarFactura" method="post">
+                    <p><a href="/mirarFactura"><button>Veure factures</button></a></p>
                 </form>
             </body>
             </html>
@@ -197,6 +204,20 @@ def valorar():
 def TocaValorar():
     print("TOCA FER VALORACIO")
     return "TOCA FER VALORACIO ENVIAT"
+
+@app.route('/mirarFactura', methods=['POST'])
+def mirarFactura():
+    return render_template('factura.html', carrito=carritoGeneral, direccion=direccioGeneral, preuTotal=preuGeneral)
+
+@app.route('/posarFactura', methods=['POST'])
+def posarFactura():
+    data = request.get_json()
+    global carritoGeneral, direccioGeneral, preuGeneral
+    carritoGeneral = data['carrito']
+    direccioGeneral = data['direccion']
+    preuGeneral = data['totalPreu']
+    print("NOVA FACTURA A VEURE")
+    return "FACTURA MOSTRADA CORRECTAMENT"
 
 
 @app.route('/submit_valoracion', methods=['POST'])

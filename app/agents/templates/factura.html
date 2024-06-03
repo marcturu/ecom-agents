@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Factura</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            width: 80%;
+            margin: 0 auto;
+        }
+        .header, .footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #f2f2f2;
+        }
+        .content {
+            margin: 20px 0;
+        }
+        .content h2 {
+            margin-bottom: 20px;
+        }
+        .content table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .content table, .content th, .content td {
+            border: 1px solid black;
+        }
+        .content th, .content td {
+            padding: 10px;
+            text-align: left;
+        }
+        .content .total {
+            text-align: right;
+            font-weight: bold;
+        }
+        .back-button {
+            margin-top: 20px;
+            display: flex;
+            justify-content: flex-start;
+        }
+        .back-button button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #f2f2f2;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Factura</h1>
+        </div>
+        <div class="content">
+            <h2>Dirección de entrega:</h2>
+            <p>{{ direccion }}</p>
+
+            <h2>Detalle del pedido:</h2>
+            <ul>
+                {% for producto in carrito %}
+                    <li>{{ producto['nombre'] }} - {{ producto['precio'] }} EUR</li>
+                {% endfor %}
+            </ul>
+            <table>
+                <tr>
+                    <th>Producto</th>
+                    <th>Descripción</th>
+                    <th>Categoría</th>
+                    <th>Precio</th>
+                </tr>
+                {% for item in carrito %}
+                <tr>
+                    <td>{{ item['nombre'] }}</td>
+                    <td>{{ item['descripcion'] }}</td>
+                    <td>{{ item['categoria'] }}</td>
+                    <td>{{ item['precio'] }}</td>
+                </tr>
+                {% endfor %}
+                <tr>
+                    <td colspan="3" class="total">Total a pagar</td>
+                    <td class="total">{{ preuTotal }} EUR</td>
+                </tr>
+            </table>
+        </div>
+        <div class="footer">
+            <p>Gracias por su compra!</p>
+        </div>
+        <div class="back-button">
+            <button onclick="window.history.back()">Tirar para atrás</button>
+        </div>
+    </div>
+</body>
+</html>

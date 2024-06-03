@@ -12,4 +12,13 @@
     <ns1:NumValoracions>12</ns1:NumValoracions>
     <ns1:EstrellesMitges>3</ns1:EstrellesMitges>
   </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Producte_Producte400">
+    <rdf:type rdf:resource="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Producte"/>
+    <ns1:Nom>Producte400</ns1:Nom>
+    <ns1:Preu>500</ns1:Preu>
+    <ns1:Categoria>Bici</ns1:Categoria>
+    <ns1:Descripcio>dcsdc</ns1:Descripcio>
+    <ns1:NumValoracions>2</ns1:NumValoracions>
+    <ns1:EstrellesMitges>4</ns1:EstrellesMitges>
+  </rdf:Description>
 </rdf:RDF>
