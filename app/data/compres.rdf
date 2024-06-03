@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rdf:RDF
+   xmlns:ns1="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+>
+  <rdf:Description rdf:about="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Compra_ab082c84-312b-4676-9f6f-f64c091f8e84_Producte2_Laptop">
+    <rdf:type rdf:resource="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Compra"/>
+    <ns1:Nom>Laptop</ns1:Nom>
+    <ns1:Preu rdf:datatype="http://www.w3.org/2001/XMLSchema#float">10.0</ns1:Preu>
+    <ns1:Usuari>Eustaquio</ns1:Usuari>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Compra_18d5199e-6dec-4155-a561-13f171f43c9b_Producte1_Producte400">
+    <rdf:type rdf:resource="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Compra"/>
+    <ns1:Nom>Producte400</ns1:Nom>
+    <ns1:Preu rdf:datatype="http://www.w3.org/2001/XMLSchema#float">500.0</ns1:Preu>
+    <ns1:Usuari>Eustaquiaa</ns1:Usuari>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Compra_ab082c84-312b-4676-9f6f-f64c091f8e84_Producte_c416281d-9bf9-48d0-a210-5131137732c4">
+    <rdf:type rdf:resource="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Producte"/>
+    <ns1:nom rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Producte400</ns1:nom>
+    <ns1:preu rdf:datatype="http://www.w3.org/2001/XMLSchema#float">500.0</ns1:preu>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Compra_18d5199e-6dec-4155-a561-13f171f43c9b_Producte_62888cf9-a925-4bcd-b675-feb1a7319013">
+    <rdf:type rdf:resource="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Producte"/>
+    <ns1:nom rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Producte400</ns1:nom>
+    <ns1:preu rdf:datatype="http://www.w3.org/2001/XMLSchema#float">500.0</ns1:preu>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Compra_18d5199e-6dec-4155-a561-13f171f43c9b">
+    <rdf:type rdf:resource="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Compra"/>
+    <ns1:id_usuario rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Eustaquiaa</ns1:id_usuario>
+    <ns1:fecha rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2024-06-03T22:11:17.684469</ns1:fecha>
+    <ns1:direccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">sdcsdcdsv</ns1:direccion>
+    <ns1:conté rdf:resource="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Compra_18d5199e-6dec-4155-a561-13f171f43c9b_Producte_62888cf9-a925-4bcd-b675-feb1a7319013"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Compra_ab082c84-312b-4676-9f6f-f64c091f8e84_Producte1_Producte400">
+    <rdf:type rdf:resource="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Compra"/>
+    <ns1:Nom>Producte400</ns1:Nom>
+    <ns1:Preu rdf:datatype="http://www.w3.org/2001/XMLSchema#float">500.0</ns1:Preu>
+    <ns1:Usuari>Eustaquio</ns1:Usuari>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Compra_ab082c84-312b-4676-9f6f-f64c091f8e84_Producte_a287c640-dbfd-47ed-9d41-fc2fc760885b">
+    <rdf:type rdf:resource="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Producte"/>
+    <ns1:nom rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Laptop</ns1:nom>
+    <ns1:preu rdf:datatype="http://www.w3.org/2001/XMLSchema#float">10.0</ns1:preu>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Compra_ab082c84-312b-4676-9f6f-f64c091f8e84">
+    <rdf:type rdf:resource="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Compra"/>
+    <ns1:id_usuario rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Eustaquio</ns1:id_usuario>
+    <ns1:fecha rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2024-06-03T21:28:56.903504</ns1:fecha>
+    <ns1:direccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">dfcdsavdfvdfv</ns1:direccion>
+    <ns1:conté rdf:resource="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Compra_ab082c84-312b-4676-9f6f-f64c091f8e84_Producte_c416281d-9bf9-48d0-a210-5131137732c4"/>
+    <ns1:conté rdf:resource="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Compra_ab082c84-312b-4676-9f6f-f64c091f8e84_Producte_a287c640-dbfd-47ed-9d41-fc2fc760885b"/>
+  </rdf:Description>
+</rdf:RDF>
