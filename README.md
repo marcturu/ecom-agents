@@ -1,7 +1,7 @@
 # *ECSDI PROJECT*
 ### Platform of services/agents capable of managing all processes from a global e-commerce company (such as Amazon). Platform development includes other external agents necessary to manage all the elements that are part of a solution, such as clients, third-party sellers, transportation services or payment services.
 #### To try the platform: 
-1. Download the code located in _/app_  
+1. Download the code 
 2. $ python -m venv .venv
 3. $ pip install -r /requirements.txt
 4. $ pip install Flask
