@@ -1,5 +1,5 @@
 ### 1. Project statement  
-### 2. Promethues file  
+### 2. Final documentation document  
 ### 3. Ontology file  
-### 4. Final documentation document  
+### 4. Promethues file  
 ### 5. Testing games  
