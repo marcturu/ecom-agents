@@ -10,14 +10,14 @@ The platform integrates **external agents** to handle all required elements, inc
 ## ✅ Features
 
 - **Multi-agent system** for distributed e-commerce management.
+- Centralized ontology shared across all agents for product data, orders, and communications.  
 - Integration of **external agents** for logistics, payments, and sellers.
 - **RESTful routes** for interacting with the platform.
-- Complete documentation in `/docs` including:
-  - System Specification
-  - Architectural Design
-  - Detailed Design
-  - Ontology
-  - Additional resources
+- Basic workflow:
+  1. Product search based on user constraints.
+  2. Order creation and processing.
+  3. Shipment from the nearest logistics center.
+  4. Support for returns (excluding payment refund).
 
 ---
 
@@ -110,7 +110,7 @@ Set-ExecutionPolicy -ExecutionPolicy RemoteSigned
 ```
 ---
 
-## 📂 Documentation
+## 📂 Files
 
 All additional project details are available in the `/docs` folder:
 - **System Specification**
