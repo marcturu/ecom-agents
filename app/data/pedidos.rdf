@@ -3,6 +3,11 @@
    xmlns:ns1="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#"
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
 >
+  <rdf:Description rdf:about="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Pedido_9161a20a-cd5e-4026-9d6a-1e23dc2e917d">
+    <rdf:type rdf:resource="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Pedido"/>
+    <ns1:nombre_producto rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Laptop</ns1:nombre_producto>
+    <ns1:direccion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Gal</ns1:direccion>
+  </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#TransportAgency_93e65519-3df0-414c-8ec9-636d054b2995">
     <rdf:type rdf:resource="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#TransportAgency"/>
     <ns1:url rdf:datatype="http://www.w3.org/2001/XMLSchema#string">http://localhost:5014/GetOffer</ns1:url>

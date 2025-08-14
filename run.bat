@@ -1,14 +1,16 @@
 @echo off
 cd /d %~dp0
 
-REM Activate the virtual environment if needed
+REM Activate the virtual environment
 call .venv\Scripts\activate
 
-REM Run the DirectoryAgent
-start "Directory Service" python -m app.agents.dir
+REM Go to the app directory
+cd app
 
-REM Run the agents
-start "Agent 1" python -m app.agents.agent1
-start "Agent 2" python -m app.agents.agent2
+REM Call the app's run.bat that starts all agents
+call run.bat
+
+REM Return to root
+cd ..
 
 pause

@@ -11,6 +11,29 @@
     <ns1:FacturaPagada rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</ns1:FacturaPagada>
     <ns1:Producto rdf:resource="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Producto_Laptop"/>
   </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Producto_Laptop">
+    <rdf:type rdf:resource="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Producto"/>
+    <ns1:Nombre>Laptop</ns1:Nombre>
+    <ns1:Descripcion>laptoping</ns1:Descripcion>
+    <ns1:Categoria>IT</ns1:Categoria>
+    <ns1:Precio rdf:datatype="http://www.w3.org/2001/XMLSchema#float">10.0</ns1:Precio>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Factura_11e6e2f8-4c96-41e0-879c-4822586bfb47">
+    <rdf:type rdf:resource="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Factura"/>
+    <ns1:Usuario>Antonio</ns1:Usuario>
+    <ns1:Direccion>Ronda Mossèn Jacint Verdagguer 4t 2a, 23</ns1:Direccion>
+    <ns1:PrecioTotal rdf:datatype="http://www.w3.org/2001/XMLSchema#float">10.0</ns1:PrecioTotal>
+    <ns1:FacturaPagada rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</ns1:FacturaPagada>
+    <ns1:Producto rdf:resource="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Producto_Laptop"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Factura_31d5fbaa-5584-4f9c-b733-3339d9e165bb">
+    <rdf:type rdf:resource="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Factura"/>
+    <ns1:Usuario>Antonio</ns1:Usuario>
+    <ns1:Direccion>Gal</ns1:Direccion>
+    <ns1:PrecioTotal rdf:datatype="http://www.w3.org/2001/XMLSchema#float">10.0</ns1:PrecioTotal>
+    <ns1:FacturaPagada rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</ns1:FacturaPagada>
+    <ns1:Producto rdf:resource="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Producto_Laptop"/>
+  </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Factura_3a1c8d7d-1797-4ae6-9668-757d46fd24c4">
     <rdf:type rdf:resource="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Factura"/>
     <ns1:Usuario>Antonio</ns1:Usuario>
@@ -19,25 +42,10 @@
     <ns1:FacturaPagada rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</ns1:FacturaPagada>
     <ns1:Producto rdf:resource="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Producto_Laptop"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Producto_Laptop">
-    <rdf:type rdf:resource="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Producto"/>
-    <ns1:Nombre>Laptop</ns1:Nombre>
-    <ns1:Descripcion>laptoping</ns1:Descripcion>
-    <ns1:Categoria>IT</ns1:Categoria>
-    <ns1:Precio rdf:datatype="http://www.w3.org/2001/XMLSchema#float">10.0</ns1:Precio>
-  </rdf:Description>
   <rdf:Description rdf:about="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Factura_65fb326f-4a59-4220-80c8-e1083fd7cef0">
     <rdf:type rdf:resource="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Factura"/>
     <ns1:Usuario>Antonio</ns1:Usuario>
     <ns1:Direccion>Mi Casa, 23 Barcelona</ns1:Direccion>
-    <ns1:PrecioTotal rdf:datatype="http://www.w3.org/2001/XMLSchema#float">10.0</ns1:PrecioTotal>
-    <ns1:FacturaPagada rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</ns1:FacturaPagada>
-    <ns1:Producto rdf:resource="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Producto_Laptop"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Factura_11e6e2f8-4c96-41e0-879c-4822586bfb47">
-    <rdf:type rdf:resource="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Factura"/>
-    <ns1:Usuario>Antonio</ns1:Usuario>
-    <ns1:Direccion>Ronda Mossèn Jacint Verdagguer 4t 2a, 23</ns1:Direccion>
     <ns1:PrecioTotal rdf:datatype="http://www.w3.org/2001/XMLSchema#float">10.0</ns1:PrecioTotal>
     <ns1:FacturaPagada rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</ns1:FacturaPagada>
     <ns1:Producto rdf:resource="http://www.semanticweb.org/hp/ontologies/2024/4/PracticaECSDI#Producto_Laptop"/>
