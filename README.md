@@ -9,7 +9,7 @@ The platform integrates **external agents** to handle all required elements, inc
 
 ## ✅ Features
 
-- **Multi-agent system** for distributed e-commerce management.
+- **Multi-agent system** for distributed e-commerce management with **Flask** and **RDFLib**.
 - Centralized ontology shared across all agents for product data, orders, and communications.  
 - Integration of **external agents** for logistics, payments, and sellers.
 - **RESTful routes** for interacting with the platform.
@@ -121,6 +121,10 @@ All additional project details are available in the `/docs` folder:
 
 The original repository is hosted at:  
 [https://github.com/ECSDI/ECSDI_LAB](https://github.com/ECSDI/ECSDI_LAB)
+
+---
+
+## 📷 Screenshots  
 
 ---
 
