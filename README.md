@@ -9,7 +9,7 @@ The platform integrates **external agents** to handle all required elements, inc
 
 ## ✅ Features
 
-- **Multi-agent system** for distributed e-commerce management with **Flask** and **RDFLib**.
+- **Multi-agent system** for distributed e-commerce management with **Flask**, **Jinja2** and **RDFLib**.
 - Centralized ontology shared across all agents for product data, orders, and communications.  
 - Integration of **external agents** for logistics, payments, and sellers.
 - **RESTful routes** for interacting with the platform.
@@ -69,7 +69,7 @@ pip install -r requirements.txt
 
 ### 5. Run the platform
 
-From the **project root (**``**)** in CMD:
+From the **project root** in CMD:
 
 ```cmd
 .\run.bat
