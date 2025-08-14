@@ -17,7 +17,7 @@ The platform integrates **external agents** to handle all required elements, inc
   1. Product search based on user constraints.
   2. Order creation and processing.
   3. Shipment from the nearest logistics center.
-  4. Support for returns (excluding payment refund).
+  4. Invoices, recomnedations and reviews.
 
 ---
 
