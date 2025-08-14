@@ -24,66 +24,90 @@ The platform integrates **external agents** to handle all required elements, inc
 ## 🛠 Installation & Setup
 
 ### 0. Prerequisites
+
 Make sure you have installed:
+
 - **Python 3.9+**
 - **pip** (Python package manager)
 
 You can check your versions with:
-```bash
+
+```cmd
 python --version
 pip --version
 ```
 
 ### 1. Clone the repository
-```bash
+
+Open **CMD** and run:
+
+```cmd
 git clone https://github.com/marcturu/ECSDI-Project.git
 cd ECSDI-Project
 ```
 
 ### 2. Create a virtual environment
-```bash
+
+```cmd
 python -m venv .venv
 ```
 
-### 3. Install dependencies
-```bash
-pip install -r requirements.txt
-pip install Flask
+### 3. Activate the environment
+
+```cmd
+.\.venv\Scripts\activate
 ```
 
-### 4. Activate the environment
-```bash
-# Windows (CMD / PowerShell)
-.\.venv\Scripts\activate
-# Windows (Git Bash)
-source .venv/Scripts/activate
-# macOS / Linux
-source .venv/bin/activate
+> Make sure you are using **CMD or PowerShell** on Windows.\
+> You should see `(.venv)` at the start of the command line.
+
+### 4. Install dependencies
+
+```cmd
+pip install -r requirements.txt
 ```
 
 ### 5. Run the platform
-a) **Windows (CMD / PowerShell)** from the project root:
-```bash
+
+From the **project root (**``**)** in CMD:
+
+```cmd
 .\run.bat
 ```
-The script will:
-- Start the **Directory Service** in a new window.
-- Start **Agent 1** in a new window.
-- Start **Agent 2** in a new window.
 
-b) **Windows (Git Bash) / macOS / Linux** from the project root:
-```bash
-python -m app.agents.dir &
-python -m app.agents.agent1 &
-python -m app.agents.agent2 &
-wait
+What this script does:
+
+- Starts the **Directory Service** in a new CMD window.
+- Starts all **Agents** in separate CMD windows with their assigned ports.
+- Starts the **Client** in its own window.
+- Each agent’s terminal shows logs of its execution.
+
+> ⚠️ Make sure to keep the root CMD window open so the virtual environment stays active.
+
+### 6. Test the platform
+
+- Access the services in your browser or via HTTP requests:
+  - Directory Service: `http://localhost:5000`
+  - Agent 1: `http://localhost:5001`
+  - Agent 2: `http://localhost:5002`
+  - ...and so on, following the ports specified in the `run.bat`.
+- It is recommended to start with the **Client route** to register a new user.
+
+### 7. Notes
+
+- If you do **not use CMD / PowerShell**, you can run the agents individually using:
+
+```cmd
+python -m app.agents.dir
+python -m app.agents.agent1
+python -m app.agents.agent2
 ```
-This will run all services in the same terminal (useful when `run.bat` is not supported).
 
-### 6. Try it out
-Test the different functionalities by visiting each route via the browser or HTTP client.  
-It is recommended to start with the **client route** to register a new user.
-
+PowerShell can show script limitations. To solve them, use:  
+```powershell
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned
+.venv\Scripts\Activate.ps1
+```
 ---
 
 ## 📂 Documentation
