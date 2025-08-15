@@ -10,7 +10,7 @@ The platform integrates **external agents** to handle all required elements, inc
 ## ✅ Features
 
 - **Multi-agent system** for distributed e-commerce management with **Flask**, **Jinja2** and **RDFLib**.
-- System design with **Prometheus Design Tool (PDT)**
+- System design with **Prometheus Design Tool (PDT)**.
 - Centralized ontology shared across all agents for product data, orders, and communications with **Protégé**.  
 - Integration of **external agents** for logistics, payments, and sellers.
 - **RESTful routes** for interacting with the platform.
