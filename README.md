@@ -216,7 +216,7 @@ The original repository is hosted at:
 
 ---
 
-## ⚖️ Copyright
+## ⚖️ Copyright & License
 
 © 2024 Marc Turu Roca and collaborators. All rights reserved.  
 This project is the joint intellectual property of its authors.  
