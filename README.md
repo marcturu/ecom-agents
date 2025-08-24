@@ -222,6 +222,6 @@ The original repository is hosted at:
 This project is the joint intellectual property of its authors.  
 No part may be copied, modified, distributed, or used without prior written permission from all authors.  
 
-- Miquel García    
-- Marc Turu
+- Miquel García  
 - Sergi Campuzano
+- Marc Turu
