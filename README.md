@@ -119,10 +119,6 @@ All additional project details are available in the `/docs` folder:
 - **Detailed Design**
 - **Ontology**
 - **Extras**
-
-The original repository is hosted at:  
-[https://github.com/ECSDI/ECSDI_LAB](https://github.com/ECSDI/ECSDI_LAB)
-
 ---
 
 ## 📷 Screenshots  
