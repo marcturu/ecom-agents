@@ -119,6 +119,10 @@ All additional project details are available in the `/docs` folder:
 - **Detailed Design**
 - **Ontology**
 - **Extras**
+
+---
+### Original code at _https://github.com/ECSDI_  
+
 ---
 
 ## 📷 Screenshots  
