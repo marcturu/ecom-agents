@@ -43,8 +43,8 @@ pip --version
 Open **CMD** and run:
 
 ```cmd
-git clone https://github.com/marcturu/ECSDI-Project.git
-cd ECSDI-Project
+git clone https://github.com/marcturu/ecommerce-multi-agent-platform.git
+cd ecommerce-multi-agent-platform
 ```
 
 ### 2. Create a virtual environment
