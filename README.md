@@ -209,9 +209,11 @@ All additional project details are available in the `/docs` folder:
 -
 ### Sales Manager:
 ![SalesManager](screenshots/sales_manager.jpg)
----
+
+--- 
 ### Ontology:
 ![Ontology](screenshots/ontology.jpg)
+
 ---
 
 ## ⚖️ Copyright & License
