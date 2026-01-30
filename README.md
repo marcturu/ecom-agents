@@ -128,92 +128,90 @@ All additional project details are available in the `/docs` folder:
 ## 📷 Screenshots  
 
 ### External product addition:
-![1](https://github.com/user-attachments/assets/aba9031f-4735-4337-bd07-757308bc5c05)
+![ExternalProductAddition](screenshots/external_product_addition.jpg)
 -
 ### Client registration:
-![2](https://github.com/user-attachments/assets/f2bda514-3398-4544-812c-c2d572bbba5c)
+![ClientRegistration0](screenshots/client_registration0.jpg)
 -
-![3](https://github.com/user-attachments/assets/a6945289-654b-4fa2-9023-aea54c444140)
+![ClientRegistration1](screenshots/client_registration1.jpg)
 -
 ### Main hub:
-![3+1](https://github.com/user-attachments/assets/8ab4cea5-3a47-41de-a246-2ae660f890a3)
+![MainHub](screenshots/main_hub.jpg)
 -
 ### Products:
-![4](https://github.com/user-attachments/assets/c8b27a1e-a2ad-47fa-ac33-2a62e4289f74)
+![Products0](screenshots/products0.jpg)
 -
-![7](https://github.com/user-attachments/assets/8ea3b8f4-b8e8-4eed-a438-ff69a218958b)
+![Products1](screenshots/products1.jpg)
 -
-![8](https://github.com/user-attachments/assets/8900ce53-4fa4-4669-8dbd-7fd04c56330e)
+![Products2](screenshots/products2.jpg)
 -
-![5](https://github.com/user-attachments/assets/cf72216e-781a-4a7b-973c-5fa46254bdf6)
+![Products3](screenshots/products3.jpg)
 -
 ### Buying process:
-![6](https://github.com/user-attachments/assets/d77e2358-1e57-4a15-823b-52b38744d9f5)
+![BuyingProcess0](screenshots/buying_process0.jpg)
 -
-![9](https://github.com/user-attachments/assets/5cb3fd28-439b-430d-ad06-224b024427b7)
+![BuyingProcess1](screenshots/buying_process1.jpg)
 -
-![10](https://github.com/user-attachments/assets/e2f2c161-6263-49d4-a5ed-1748ad945494)
+![BuyingProcess2](screenshots/buying_process2.jpg)
 -
 ### Recommendation:
-![11](https://github.com/user-attachments/assets/442d1ff5-dfb8-4e6d-b7df-13569361e06c)
+![Recommendation](screenshots/recommendation.jpg)
 -
 ### Review:
-![12](https://github.com/user-attachments/assets/9ae51df9-b77c-4d21-af05-914a1a39ac12)
+![Review](screenshots/review.jpg)
 -
 ##### Points 13, 14, 15, 16, and 17 from `/docs/TestCases.pdf` could not be tested due to the significant amount of time that has passed, and because I no longer recall the exact procedure required to perform them.
 ---
 ### 2.1 Analysis Overview:
-![13](https://github.com/user-attachments/assets/c994f994-2bc3-422c-af94-b8c71d804f38)
+![AnalysisOverview](screenshots/analysis_overview.jpg)
 -
 ### 2.2 Scenarios:
-![14](https://github.com/user-attachments/assets/e2f6baec-bdaa-4571-9406-12b6c89c7c07)
+![Scenarios](screenshots/scenarios.jpg)
 -
 ### 2.3 Goal Overview:
-![15](https://github.com/user-attachments/assets/cec2e4e8-fb0a-487d-9dd8-d4737af2e423)
+![GoalOverview](screenshots/goal_overview.jpg)
 -
 ### 2.4 System Roles:
-![16](https://github.com/user-attachments/assets/44509120-038a-454d-86fb-40af2dc36637)
+![SystemRoles](screenshots/system_roles.jpg)
 -
 ### 3.1 Data Coupling:
-![17](https://github.com/user-attachments/assets/8b932ac7-6e7d-458c-9f79-58605c840d33)
+![SataCoupling](screenshots/data_coupling.jpg)
 -
 ### 3.2 Agent-Role Grouping:
-![18](https://github.com/user-attachments/assets/0eec9cb4-f0ef-4de7-bcd2-676ec2d6b287)
+![AgentRoleGrouping](screenshots/agent_role_grouping.jpg)
 -
 ### 3.3 Agent Acquaintance:
-![19](https://github.com/user-attachments/assets/4cd306ee-5684-4a8c-b3fe-a434bbe69ad7)
+![AgentAcquaintance](screenshots/agent_acquaintance.jpg)
 -
 ### 3.4 System Overview:
-![20](https://github.com/user-attachments/assets/73d1c059-3bc5-486d-9760-36833a574a87)
+![SystemOverview](screenshots/system_overview.jpg)
 -
 ### Logístics:
-![21](https://github.com/user-attachments/assets/98d4aec9-02a1-46eb-89a1-a7cd1e50452f)
+![Logistics](screenshots/logistics.jpg)
 -
 ### Shop Assistant:
-![22](https://github.com/user-attachments/assets/2827a44d-f320-4ed6-b976-a6fa6b59d558)
+![ShopAssistant](screenshots/shop_assistant.jpg)
 -
 ### External:
-![23](https://github.com/user-attachments/assets/e18211e9-2027-481d-9054-69ffadf03f9b)
+![External](screenshots/external.jpg)
 -
 ### Reviews Recorder:
-![24](https://github.com/user-attachments/assets/d077e408-02f5-4289-92bd-70d1e006ddc1)
+![ReviewsRecorder](screenshots/reviews_recorder.jpg)
 -
 ### Treasurer:
-![25](https://github.com/user-attachments/assets/9fa2c685-9aee-4698-8222-77275de3974d)
+![Treasurer](screenshots/treasurer.jpg)
 -
 ### Recommender:
-![26](https://github.com/user-attachments/assets/b0cf7c95-5d8a-4885-833f-338864eda737)
+![Recommender](screenshots/recommender.jpg)
 -
 ### Returns Manager:
-![27](https://github.com/user-attachments/assets/01d1cf6a-1696-4fc5-8616-29a831a59342)
+![ReturnsManager](screenshots/returns_manager.jpg)
 -
 ### Sales Manager:
-![28](https://github.com/user-attachments/assets/31411fbb-e7f0-4e19-b257-334ca481189c)
-
+![SalesManager](screenshots/sales_manager.jpg)
 ---
 ### Ontology:
-![29](https://github.com/user-attachments/assets/b0148522-1ef1-4e85-a33a-2e672412ae2f)
-
+![Ontology](screenshots/ontology.jpg)
 ---
 
 ## ⚖️ Copyright & License
