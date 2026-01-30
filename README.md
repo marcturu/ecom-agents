@@ -1,4 +1,4 @@
-# 🛒 ECSDI-Project — E-commerce Multi-Agent Platform
+# 🛒 ECSDI-Project — Ecom Agents
 
 <sub>🗓️ Developed in April 2024</sub>
 
