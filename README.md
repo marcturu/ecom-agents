@@ -213,15 +213,3 @@ All additional project details are available in the `/docs` folder:
 --- 
 ### Ontology:
 ![Ontology](screenshots/ontology.jpg)
-
----
-
-## ⚖️ Copyright & License
-
-© 2024 Marc Turu Roca and collaborators. All rights reserved.  
-This project is the joint intellectual property of its authors.  
-No part may be copied, modified, distributed, or used without prior written permission from all authors.  
-
-- Miquel García  
-- Sergi Campuzano
-- Marc Turu
